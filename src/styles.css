@@ -1,1 +1,127 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+@font-face {
+    font-family: fontinRegular;
+    src: url(fonts/Fontin-Regular.ttf);
+}
+
+body {
+    font-family: fontinRegular;
+    background-color: #ffe1ad;
+}
+
+div.layout {
+    position: relative;
+    left: 20%
+}
+
+div.top {
+    background-color: white;
+    padding: 2em 2em 1em 2em;
+    width: 1150px;
+    display: table;
+}
+
+div.body {
+    background-color: #fbfbfb;
+    margin-bottom: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 1090px;
+    display: table;
+    padding-bottom: 50px;
+}
+
+button.back-button {
+    color: lightgray;
+    border-color: lightgray;
+    border-style: solid;
+    border-radius: 30px;
+    border-width: 2px;
+    font-size: 25px;
+    float: left;
+    margin-left: 20px;
+    padding: 0px 14px 0px 14px;
+    background-color: white;
+}
+
+div.q-title {
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    float: left;
+    margin-left: 140px;
+    margin-top: 5px;
+}
+button.add-button {
+    color: white;
+    border-color: blue;
+    border-radius: 20px;
+    font-size: 15px;
+    float: left;
+    margin-left: 30px;
+    margin-top: 10px;
+    background-color: #0266b3;
+    padding: 0px 7px 0px 7px;
+}
+
+div.q-radio {
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    float: left;
+    margin-left: 100px;
+    padding: 10px;
+    margin-top: 3px;
+}
+
+input.q-radio-input {
+    margin-left: 25px;
+}
+span.q-sort {
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 5px;
+    padding: 10px;   
+    float: left;
+    margin-top: 5px;
+}
+
+span.q-sort-link {
+    margin: 5px;
+    font-weight: bold;
+    color: blue;
+    cursor: pointer;
+}
+
+span.q-sort-link-active {
+    text-decoration: underline;
+    color: gray;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input.q-search {
+    margin-left: 200px;
+    width: 530px;
+    padding: 5px;
+    background-color: #fbfbfb;
+    border: solid lightgray; 
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+
+button.q-search-btn {
+    border: solid lightgray; 
+    border-width: 1px;
+    color: lightgray;
+    margin-left: 10px;
+    background-color: white;
+    font-weight: bold;
+    width: 140px;
+    height: 30px;
+}

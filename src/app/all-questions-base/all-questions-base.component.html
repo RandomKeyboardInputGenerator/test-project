@@ -1,0 +1,254 @@
+<div class="layout">
+    <div class="top">
+        <div>
+            <button class="back-button">&lt;</button>
+            <div class="q-title">QUESTIONS</div>
+            <button class="add-button">&#43;</button>
+            <div class="q-radio">
+                <form #f="ngForm">
+                    <input class="q-radio-input" type="radio" value="my" name="questions" id="myself" [(ngModel)]="questions" /> <label for="myself">My shelf</label>
+                    <input class="q-radio-input" type="radio" value="all" name="questions" id="allquestions" [(ngModel)]="questions" /> <label for="allquestions">All questions</label>
+                </form>
+            </div>
+            <span class="q-sort">
+                Sort by:
+                <span [class.q-sort-link]="selected !== 'recent'" [class.q-sort-link-active]="selected === 'recent'" (click)="click($event)">recent</span>
+                or
+                <span [class.q-sort-link]="selected !== 'hot'" [class.q-sort-link-active]="selected === 'hot'"  (click)="click($event)">hot</span>
+            </span>
+        </div>
+        <div>
+            <input class="q-search" type="text" name="search" title="search" placeholder="Search questions" [(ngModel)]="searchQuery"/>
+            <button class="q-search-btn">SEARCH</button>
+        </div>
+    </div>
+    <div class="body">
+        <div class="question">
+            <div class="question-title">
+                <h1 class="question-avatar">
+                    <span class="glyphicon glyphicon-user"></span>
+                </h1>
+                <div>
+                    <p><b>Eva</b> <span style="color: grey;">IS ASKING:</span></p>
+                    <h4>Will insulin make my patient gain weight?</h4>
+                </div>
+            </div>
+            <div class="question-tabs">
+                <div class="question-desc">
+                    <div class="question-desc-head"></div>
+                    <div class="question-desc-footer">
+                        <hr />
+                        <p><small>ASKED</small></p>
+                    </div>
+                </div>
+                <div class="question-count">
+                    <div class="question-count-head">
+                        <div><b>3</b></div>
+                    </div>
+                    <div class="question-count-footer">
+                        <div>more activities</div>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr class="answered" />
+                        <small>ANSWERED</small>
+                        <br />
+                        <span class="question-dot">&#8226;</span>
+                    </div>
+                </div>
+            </div>
+            <div class="question-info">
+                <p class="question-info-top">1 related discusion</p>
+                <p class="question-info-mid">6 peers involved</p>
+                <p class="question-info-bottom">3 conversations</p>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-title">
+                <h1 class="question-avatar">
+                    <span class="glyphicon glyphicon-user"></span>
+                </h1>
+                <p><b>Andrew</b> <span style="color: grey;">IS ASKING:</span></p>
+                <h4>Vegan diet in diabetes treatment?</h4>
+            </div>
+            <div class="question-tabs">
+                <div class="question-desc">
+                    <div class="question-desc-head"></div>
+                    <div class="question-desc-footer">
+                        <hr />
+                        <p><small>ASKED</small></p>
+                    </div>
+                </div>
+                <div class="question-count">
+                    <div class="question-count-head">
+                        <div><b>6</b></div>
+                    </div>
+                    <div class="question-count-footer">
+                        <div>more activities</div>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr class="answered" />
+                        <small>ANSWERED</small>
+                        <br />
+                        <span class="question-dot">&#8226;</span>
+                    </div>
+                </div>
+            </div>
+            <div class="question-info">
+                <p class="question-info-top">2 related discusion</p>
+                <p class="question-info-mid">9 peers involved</p>
+                <p class="question-info-bottom">5 conversations</p>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-title">
+                <h1 class="question-avatar">
+                    <span class="glyphicon glyphicon-user"></span>
+                </h1>
+                <p><b>Joseph</b> <span style="color: grey;">IS ASKING:</span></p>
+                <h4>Vegan diet to stop diabetes progress</h4>
+            </div>
+            <div class="question-tabs">
+                <div class="question-desc">
+                    <div class="question-desc-head"></div>
+                    <div class="question-desc-footer">
+                        <hr />
+                        <p><small>ASKED</small></p>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr />
+                        <small>COMMENTED</small>
+                        <span class="question-dot-empty">&#8226;</span>
+                    </div>
+                </div>
+                <div class="question-com">
+                    <div class="question-com-content">
+                        <h1 class="com-avatar">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </h1>
+                    </div>
+                    <div class="question-com-footer">
+                        <hr class="answered" />
+                        <small>ANSWERED</small>
+                        <br />
+                        <span class="question-dot">&#8226;</span>
+                    </div>
+                </div>
+            </div>
+            <div class="question-info">
+                <p class="question-info-top">5 related discusion</p>
+                <p class="question-info-mid">4 peers involved</p>
+                <p class="question-info-bottom">0 conversations</p>
+            </div>
+        </div>
+        <div class="question-load-more">
+            <button class="button-link">load more questions</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,214 @@
+span.q-last-time-dis {
+    margin-left: 300px;
+    padding: 10px;   
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+div.question {
+    background-color: white;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+    border: solid #ededed; 
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    width: 684px;
+}
+
+div.question-avatar {
+    display: table-cell;
+    padding: 5px 30px 5px 30px;
+    background-color: #dff3fd;
+    cursor: pointer;
+}
+
+div.question-title {
+    display: table-cell;
+    background-color: #dff3fd;
+    color: darkblue;
+    padding: 5px;
+    vertical-align: middle;
+    width: 480px;
+}
+
+div.question-option {
+    display: table-cell;
+    background-color: #dff3fd;
+    color: darkblue;
+    padding: 5px;
+    vertical-align: middle;
+    width: 120px;
+}
+
+button.button-link {
+    background: none!important;
+    border: none; 
+    padding: 0!important;
+    font-weight: bold;
+}
+
+div.question-desc {
+    display: table-cell;
+    padding: 15px;
+    border-left: solid #dff3fd;
+    border-left-width: 100px;
+    width: 520px;
+}
+
+div.question-votes {
+    display: table-cell;
+    padding-left: 10px;
+}
+
+div.question-vote {
+    display: table-cell;
+    color: darkblue;
+    font-stretch: ultra-condensed;
+}
+
+button.question-btn {
+    border: solid lightgray; 
+    border-width: 1px;
+    color: black;
+    margin-left: 10px;
+    background-color: white;
+    font-weight: bold;
+    width: 180px;
+    height: 30px;
+    position: relative;
+    bottom: -35px;
+    left: 150px;
+}
+
+ul.vote {
+    position: relative;
+    list-style-type: none;
+    font-size: 3rem;
+    left: -10px;
+}
+
+li.vote-up {
+    position: relative;
+    cursor: pointer;
+    top: -5px;
+}
+
+li.vote-down {
+    position: relative;
+    top: -25px;
+    cursor: pointer;
+}
+
+div.comments-count {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+div.comment-answered {
+    background-color: white;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: solid #ededed; 
+    border-bottom-width: 0px;
+    border-top-width: 3px;
+    border-left-width: 0px;
+    border-right-width: 3px;
+    width: 684px;
+    display: table;
+}
+
+div.comment-avatar {
+    display: table-cell;
+    padding: 5px 30px 5px 30px;
+    cursor: pointer;
+}
+
+div.comment-body {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+div.comment-title {
+    display: table-cell;
+    color: darkblue;
+    padding: 15px 15px 0px 15px;
+    width: 584px;
+    border-left: solid #ededed; 
+    border-left-width: 1px;
+}
+
+div.comment-desc {
+    display: table-cell;
+    padding: 0px 15px 15px 15px;
+    width: 420px;
+    border-left: solid #ededed; 
+    border-left-width: 1px;
+}
+
+div.comment-votes {
+    display: table-cell;
+    padding-left: 10px;
+}
+
+div.comment-vote {
+    display: table-cell;
+    color: darkblue;
+    font-stretch: ultra-condensed;
+}
+
+div.subcomment {
+    background-color: white;
+    margin-left: 300px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+    border: solid #ededed; 
+    border-bottom-width: 0px;
+    border-top-width: 1px;
+    border-left-width: 0px;
+    border-right-width: 3px;
+    width: 584px;
+    display: table;
+}
+
+div.subcomment-desc {
+    display: table-cell;
+    padding: 0px 15px 15px 15px;
+    width: 320px;
+    border-left: solid #ededed; 
+    border-left-width: 1px;
+}
+
+button.subcomment-btn {
+    border: solid lightgray; 
+    border-width: 1px;
+    color: black;
+    margin-left: 10px;
+    background-color: white;
+    font-weight: bold;
+    width: 180px;
+    height: 30px;
+    position: relative;
+    bottom: -35px;
+    left: 50px;
+}
+
+div.comment-unanswered {
+    background-color: white;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: solid #ededed; 
+    border-bottom-width: 0px;
+    border-top-width: 3px;
+    border-left-width: 0px;
+    border-right-width: 3px;
+    width: 684px;
+    display: table;
+}

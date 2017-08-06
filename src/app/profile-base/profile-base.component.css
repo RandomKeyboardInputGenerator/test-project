@@ -1,0 +1,253 @@
+div.modal-content {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #888;
+    width: 1024px;
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);*/
+}
+
+div.modal-exit-btn {
+    text-align: right;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+div.modal-avatar {
+    text-align: center;
+    cursor: pointer;
+}
+
+div.modal-user-name {
+    color: #0266b3;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.modal-user-info {
+    margin: auto;
+    display: table;
+}
+
+div.modal-user-info-left {
+    display: table-cell;
+    padding: 0px 30px;
+}
+
+div.modal-user-info-center {
+    display: table-cell;
+    padding: 0px 30px;
+}
+
+div.modal-user-info-right {
+    display: table-cell;
+    padding: 0px 30px;
+    color: orange;
+}
+
+hr.modal-hr {
+    border-top: 1px solid black;
+    margin: 20px auto;
+    width: 624px;
+}
+
+div.modal-user-menu {
+    margin: auto;
+    display: table;
+    font-size: 40px;
+}
+
+div.modal-user-menu-left {
+    display: table-cell;
+    padding: 0px 50px;
+    cursor: pointer;
+}
+
+div.modal-user-menu-name {
+    display: table-cell;
+    padding: 0px 50px;
+    font-style: italic;
+}
+
+div.modal-user-menu-right {
+    display: table-cell;
+    padding: 0px 50px;
+    cursor: pointer;
+}
+
+div.modal-profile-info {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 30px;
+    margin: auto;
+    text-align: center;
+}
+
+div.modal-profile-info-title {
+    margin-bottom: 20px;
+}
+
+div.modal-profile-info-peers {
+    display: table-cell;
+    padding: 0px 30px;
+    background-color: #e5f5fd;
+    -ms-transform: rotate(50deg);
+    -webkit-transform: rotate(50deg);
+    transform: rotate(50deg);
+}
+
+div.modal-profile-info-peers-unrotate {
+    -ms-transform: rotate(-50deg);
+    -webkit-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+}
+
+div.modal-profile-info-dis {
+    display: table-cell;
+    padding: 0px 15px;
+    background-color: #e5f5fd;
+    -ms-transform: rotate(-20deg); 
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+
+div.modal-profile-info-dis-unrotate {
+    -ms-transform: rotate(20deg);
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg);
+}
+
+div.modal-profile-info-find {
+    display: table-cell;
+    padding: 0px 25px;
+    background-color: #e5f5fd;
+    -ms-transform: rotate(50deg); 
+    -webkit-transform: rotate(50deg);
+    transform: rotate(50deg);
+}
+
+div.modal-profile-info-find-unrotate {
+    -ms-transform: rotate(-50deg); 
+    -webkit-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+}
+
+div.modal-profile-info-q {
+    display: table-cell;
+    padding: 0px 20px;
+    background-color: #e5f5fd;
+    -ms-transform: rotate(10deg); 
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+
+div.modal-profile-info-q-unrotate {
+    -ms-transform: rotate(-10deg); 
+    -webkit-transform: rotate(-10deg); 
+    transform: rotate(-10deg);
+}
+
+button.blue {
+    color: white;
+    border-width: 0;
+    border-radius: 40px;
+    font-size: 20px;
+    background-color: #0266b3;
+    padding: 0px 10px 0px 10px;
+}
+
+button.grey {
+    color: white;
+    border-width: 0;
+    border-radius: 40px;
+    font-size: 20px;
+    background-color: grey;
+    padding: 0px 10px 0px 10px;
+}
+
+div.modal-other-profiles {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+div.modal-other-profiles-profile {
+    display: table-cell;
+    cursor: pointer;
+}
+
+div.modal-other-profiles-profile-ico {
+    padding: 10px 30px;
+    background: repeating-linear-gradient(
+        45deg,
+        white,
+        #ededed 5px
+    );
+}
+
+div.modal-other-profiles-profile-name {
+    width: 96px;
+    color: #0266b3;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px;
+}
+
+div.modal-hottest-discussion {
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+div.modal-hottest-discussion-title {
+    margin-bottom: 50px;
+}
+
+div.modal-hottest-discussion-row {
+    display: row;
+    width: 100%;
+    margin: 20px auto;
+    background: repeating-linear-gradient(
+        45deg,
+        white,
+        #ededed 5px
+    );
+}
+
+div.modal-hottest-discussion-avatar {
+    position: relative;
+    top: -20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.modal-hottest-discussion-desc {
+    position: relative;
+    top: -20px;
+    color: #0266b3;
+    font-style: italic;
+    font-weight: bold;
+}
+
+div.modal-hottest-discussion-info {
+    display: table-cell;
+    font-size: 16px;
+    padding: 0 20px 20px 20px;
+}
+
+div.modal-hottest-discussion-info-row {
+    display: table;
+    margin: auto;
+    position: relative;
+    top: -10px;
+}
+
+span.modal-hottest-discussion-info-nr {
+    font-size: 18px;
+    font-weight: bold;
+}

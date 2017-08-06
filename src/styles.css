@@ -12,13 +12,14 @@ body {
 
 div.layout {
     position: relative;
-    left: 20%
+    margin: auto;
+    width: 1150px;
 }
 
 div.top {
     background-color: white;
     padding: 2em 2em 1em 2em;
-    width: 1150px;
+    width: 100%;
     display: table;
 }
 
@@ -55,7 +56,7 @@ div.q-title {
 }
 button.add-button {
     color: white;
-    border-color: blue;
+    border-width: 0;
     border-radius: 20px;
     font-size: 15px;
     float: left;
@@ -92,7 +93,7 @@ span.q-sort {
 span.q-sort-link {
     margin: 5px;
     font-weight: bold;
-    color: blue;
+    color: #0266b3;
     cursor: pointer;
 }
 

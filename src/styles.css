@@ -126,3 +126,23 @@ button.q-search-btn {
     width: 140px;
     height: 30px;
 }
+
+[class*="nowrap"] {
+    white-space: nowrap;
+}
+
+div.nowrap {
+    display: block;
+}
+    
+@media (min-width: 600px) {
+    div.nowrap {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    div.nowrap {
+        display: inline-block;
+    }
+}

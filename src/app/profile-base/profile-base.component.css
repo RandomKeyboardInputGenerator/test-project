@@ -5,7 +5,8 @@ div.modal-content {
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid #888;
-    width: 1024px;
+    max-width: 1024px;
+    min-width: 380px;
     /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);*/
 }
 
@@ -30,52 +31,171 @@ div.modal-user-name {
 div.modal-user-info {
     margin: auto;
     display: table;
+    width: 60%!important;
+    text-align: center;
 }
 
 div.modal-user-info-left {
     display: table-cell;
-    padding: 0px 30px;
+    padding: 0!important;
+    margin-bottom: 5px;
+    width: 100%;
+    float: left;
 }
 
 div.modal-user-info-center {
     display: table-cell;
-    padding: 0px 30px;
+    padding: 0!important;
+    margin-bottom: 5px;
+    width: 100%;
+    float: left;
 }
 
 div.modal-user-info-right {
     display: table-cell;
-    padding: 0px 30px;
+    padding: 0!important;
     color: orange;
+    margin-bottom: 5px;
+    width: 100%;
+    float: left;
+}
+
+
+@media (min-width: 600px) {
+    div.modal-user-info-left {
+        display: table-cell;
+        padding: 0!important;
+        width: 33.33%;
+    }
+
+    div.modal-user-info-center {
+        display: table-cell;
+        padding: 0!important;
+        width: 33.33%;
+    }
+
+    div.modal-user-info-right {
+        display: table-cell;
+        padding: 0!important;
+        color: orange;
+        width: 33.33%;
+    }
+}
+
+@media (min-width: 768px) {
+    div.modal-user-info-left {
+        display: table-cell;
+        padding: 0!important;
+        width: 33.33%;
+    }
+
+    div.modal-user-info-center {
+        display: table-cell;
+        padding: 0!important;
+        width: 33.33%;
+    }
+
+    div.modal-user-info-right {
+        display: table-cell;
+        padding: 0!important;
+        color: orange;
+        width: 33.33%;
+    }
 }
 
 hr.modal-hr {
     border-top: 1px solid black;
-    margin: 20px auto;
-    width: 624px;
+    margin: 5px auto;
+    width: 80%;
+}
+
+@media (min-width: 600px) { 
+    hr.modal-hr {
+        border-top: 1px solid black;
+        margin: 10px auto;
+        width: 70%;
+    }
+}
+
+@media (min-width: 768px) { 
+    hr.modal-hr {
+        border-top: 1px solid black;
+        margin: 20px auto;
+        width: 60%;
+    }
 }
 
 div.modal-user-menu {
     margin: auto;
     display: table;
-    font-size: 40px;
+    font-size: 20px;
+    text-align: center;
 }
 
 div.modal-user-menu-left {
     display: table-cell;
-    padding: 0px 50px;
+    padding: 0px 10px;
     cursor: pointer;
 }
 
 div.modal-user-menu-name {
     display: table-cell;
-    padding: 0px 50px;
+    padding: 0px 30px;
     font-style: italic;
 }
 
 div.modal-user-menu-right {
     display: table-cell;
-    padding: 0px 50px;
+    padding: 0px 10px;
     cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    div.modal-user-menu {
+        margin: auto;
+        display: table;
+        font-size: 30px;
+        text-align: center;
+    }
+    div.modal-user-menu-left {
+        display: table-cell;
+        padding: 0px 30px;
+        cursor: pointer;
+    }
+    div.modal-user-menu-name {
+        display: table-cell;
+        padding: 0px 30px;
+        font-style: italic;
+    }
+    div.modal-user-menu-right {
+        display: table-cell;
+        padding: 0px 30px;
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 768px) {
+    div.modal-user-menu {
+        margin: auto;
+        display: table;
+        font-size: 40px;
+        text-align: center;
+    }
+    div.modal-user-menu-left {
+        display: table-cell;
+        padding: 0px 50px;
+        cursor: pointer;
+    }
+    div.modal-user-menu-name {
+        display: table-cell;
+        padding: 0px 50px;
+        font-style: italic;
+    }
+    div.modal-user-menu-right {
+        display: table-cell;
+        padding: 0px 50px;
+        cursor: pointer;
+    }
 }
 
 div.modal-profile-info {
@@ -86,17 +206,48 @@ div.modal-profile-info {
     text-align: center;
 }
 
+div.modal-profile-info-row {
+    width: 100%
+}
+
 div.modal-profile-info-title {
-    margin-bottom: 20px;
+    display: inline-block;
+    margin-bottom: 40px;
 }
 
 div.modal-profile-info-peers {
-    display: table-cell;
+    display: inline-block;
     padding: 0px 30px;
+    margin: 5px!important;
     background-color: #e5f5fd;
     -ms-transform: rotate(50deg);
     -webkit-transform: rotate(50deg);
     transform: rotate(50deg);
+}
+
+
+@media (min-width: 600px) { 
+    div.modal-profile-info-peers {
+        display: inline-block;
+        padding: 0px 30px;
+        margin: 10px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(50deg);
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
+}
+
+@media (min-width: 768px) { 
+    div.modal-profile-info-peers {
+        display: inline-block;
+        padding: 0px 30px;
+        margin: 15px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(50deg);
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
 }
 
 div.modal-profile-info-peers-unrotate {
@@ -106,12 +257,37 @@ div.modal-profile-info-peers-unrotate {
 }
 
 div.modal-profile-info-dis {
-    display: table-cell;
+    display: inline-block;
     padding: 0px 15px;
+    margin: 5px!important;
     background-color: #e5f5fd;
     -ms-transform: rotate(-20deg); 
     -webkit-transform: rotate(-20deg);
     transform: rotate(-20deg);
+}
+
+@media (min-width: 600px) { 
+    div.modal-profile-info-dis {
+        display: inline-block;
+        padding: 0px 15px;
+        margin: 10px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(-20deg); 
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+    }
+}
+
+@media (min-width: 768px) { 
+    div.modal-profile-info-dis {
+        display: inline-block;
+        padding: 0px 15px;
+        margin: 15px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(-20deg); 
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+    }
 }
 
 div.modal-profile-info-dis-unrotate {
@@ -121,12 +297,37 @@ div.modal-profile-info-dis-unrotate {
 }
 
 div.modal-profile-info-find {
-    display: table-cell;
+    display: inline-block;
     padding: 0px 25px;
+    margin: 5px!important;
     background-color: #e5f5fd;
     -ms-transform: rotate(50deg); 
     -webkit-transform: rotate(50deg);
     transform: rotate(50deg);
+}
+
+@media (min-width: 600px) { 
+    div.modal-profile-info-find {
+        display: inline-block;
+        padding: 0px 25px;
+        margin: 10px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(50deg); 
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
+}
+
+@media (min-width: 768px) { 
+    div.modal-profile-info-find {
+        display: inline-block;
+        padding: 0px 25px;
+        margin: 15px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(50deg); 
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
 }
 
 div.modal-profile-info-find-unrotate {
@@ -136,12 +337,37 @@ div.modal-profile-info-find-unrotate {
 }
 
 div.modal-profile-info-q {
-    display: table-cell;
+    display: inline-block;
     padding: 0px 20px;
+    margin: 5px!important;
     background-color: #e5f5fd;
     -ms-transform: rotate(10deg); 
     -webkit-transform: rotate(10deg);
     transform: rotate(10deg);
+}
+
+@media (min-width: 600px) { 
+    div.modal-profile-info-q {
+        display: inline-block;
+        padding: 0px 20px;
+        margin: 10px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(10deg); 
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+    }
+}
+
+@media (min-width: 768px) { 
+    div.modal-profile-info-q {
+        display: inline-block;
+        padding: 0px 20px;
+        margin: 15px!important;
+        background-color: #e5f5fd;
+        -ms-transform: rotate(10deg); 
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+    }
 }
 
 div.modal-profile-info-q-unrotate {
@@ -176,6 +402,11 @@ div.modal-other-profiles {
     text-align: center;
 }
 
+div.modal-other-profiles-title {
+    display: inline-block;
+    padding: 0 30px;
+}
+
 div.modal-other-profiles-profile {
     display: table-cell;
     cursor: pointer;
@@ -187,7 +418,7 @@ div.modal-other-profiles-profile-ico {
         45deg,
         white,
         #ededed 5px
-    );
+        );
 }
 
 div.modal-other-profiles-profile-name {
@@ -209,14 +440,14 @@ div.modal-hottest-discussion-title {
 }
 
 div.modal-hottest-discussion-row {
-    display: row;
     width: 100%;
     margin: 20px auto;
+    padding: 0 20px 20px 20px;
     background: repeating-linear-gradient(
         45deg,
         white,
         #ededed 5px
-    );
+        );
 }
 
 div.modal-hottest-discussion-avatar {
@@ -224,6 +455,7 @@ div.modal-hottest-discussion-avatar {
     top: -20px;
     text-align: center;
     cursor: pointer;
+    margin: auto;
 }
 
 div.modal-hottest-discussion-desc {
@@ -235,13 +467,29 @@ div.modal-hottest-discussion-desc {
 }
 
 div.modal-hottest-discussion-info {
-    display: table-cell;
-    font-size: 16px;
-    padding: 0 20px 20px 20px;
+    display: inline-block;
+    font-size: 14px;
+    min-width: 160px;
+}
+
+@media (min-width: 600px) { 
+    div.modal-hottest-discussion-info {
+        display: inline-block;
+        font-size: 16px;
+        min-width: 180px;
+    }
+}
+
+@media (min-width: 768px) { 
+    div.modal-hottest-discussion-info {
+        display: inline-block;
+        font-size: 16px;
+        min-width: 180px;
+    }
 }
 
 div.modal-hottest-discussion-info-row {
-    display: table;
+    width: 100%;
     margin: auto;
     position: relative;
     top: -10px;

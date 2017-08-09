@@ -61,7 +61,7 @@ div.modal-user-info-right {
 }
 
 
-@media (min-width: 600px) {
+@media screen and (min-width: 600px) {
     div.modal-user-info-left {
         display: table-cell;
         padding: 0!important;
@@ -82,7 +82,7 @@ div.modal-user-info-right {
     }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     div.modal-user-info-left {
         display: table-cell;
         padding: 0!important;
@@ -109,7 +109,7 @@ hr.modal-hr {
     width: 80%;
 }
 
-@media (min-width: 600px) { 
+@media screen and (min-width: 600px) { 
     hr.modal-hr {
         border-top: 1px solid black;
         margin: 10px auto;
@@ -117,7 +117,7 @@ hr.modal-hr {
     }
 }
 
-@media (min-width: 768px) { 
+@media screen and (min-width: 768px) { 
     hr.modal-hr {
         border-top: 1px solid black;
         margin: 20px auto;
@@ -150,7 +150,7 @@ div.modal-user-menu-right {
     cursor: pointer;
 }
 
-@media (min-width: 600px) {
+@media screen and (min-width: 600px) {
     div.modal-user-menu {
         margin: auto;
         display: table;
@@ -174,7 +174,7 @@ div.modal-user-menu-right {
     }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     div.modal-user-menu {
         margin: auto;
         display: table;
@@ -226,7 +226,7 @@ div.modal-profile-info-peers {
 }
 
 
-@media (min-width: 600px) { 
+@media screen and (min-width: 600px) { 
     div.modal-profile-info-peers {
         display: inline-block;
         padding: 0px 30px;
@@ -238,7 +238,7 @@ div.modal-profile-info-peers {
     }
 }
 
-@media (min-width: 768px) { 
+@media screen and (min-width: 768px) { 
     div.modal-profile-info-peers {
         display: inline-block;
         padding: 0px 30px;
@@ -266,7 +266,7 @@ div.modal-profile-info-dis {
     transform: rotate(-20deg);
 }
 
-@media (min-width: 600px) { 
+@media screen and (min-width: 600px) { 
     div.modal-profile-info-dis {
         display: inline-block;
         padding: 0px 15px;
@@ -278,7 +278,7 @@ div.modal-profile-info-dis {
     }
 }
 
-@media (min-width: 768px) { 
+@media screen and (min-width: 768px) { 
     div.modal-profile-info-dis {
         display: inline-block;
         padding: 0px 15px;
@@ -306,7 +306,7 @@ div.modal-profile-info-find {
     transform: rotate(50deg);
 }
 
-@media (min-width: 600px) { 
+@media screen and (min-width: 600px) { 
     div.modal-profile-info-find {
         display: inline-block;
         padding: 0px 25px;
@@ -318,7 +318,7 @@ div.modal-profile-info-find {
     }
 }
 
-@media (min-width: 768px) { 
+@media screen and (min-width: 768px) { 
     div.modal-profile-info-find {
         display: inline-block;
         padding: 0px 25px;
@@ -346,7 +346,7 @@ div.modal-profile-info-q {
     transform: rotate(10deg);
 }
 
-@media (min-width: 600px) { 
+@media screen and (min-width: 600px) { 
     div.modal-profile-info-q {
         display: inline-block;
         padding: 0px 20px;
@@ -358,7 +358,7 @@ div.modal-profile-info-q {
     }
 }
 
-@media (min-width: 768px) { 
+@media screen and (min-width: 768px) { 
     div.modal-profile-info-q {
         display: inline-block;
         padding: 0px 20px;
@@ -402,6 +402,13 @@ div.modal-other-profiles {
     text-align: center;
 }
 
+div.modal-other-profiles-row {
+    display: table;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
 div.modal-other-profiles-title {
     display: inline-block;
     padding: 0 30px;
@@ -410,6 +417,9 @@ div.modal-other-profiles-title {
 div.modal-other-profiles-profile {
     display: table-cell;
     cursor: pointer;
+    text-align: center;
+    margin: auto;
+    max-width: 98px;
 }
 
 div.modal-other-profiles-profile-ico {
@@ -427,6 +437,8 @@ div.modal-other-profiles-profile-name {
     font-weight: bold;
     font-size: 14px;
     padding: 10px;
+    text-align: center;
+    margin: auto;
 }
 
 div.modal-hottest-discussion {
@@ -440,6 +452,7 @@ div.modal-hottest-discussion-title {
 }
 
 div.modal-hottest-discussion-row {
+    display: table;
     width: 100%;
     margin: 20px auto;
     padding: 0 20px 20px 20px;
@@ -472,7 +485,7 @@ div.modal-hottest-discussion-info {
     min-width: 160px;
 }
 
-@media (min-width: 600px) { 
+@media screen and (min-width: 600px) { 
     div.modal-hottest-discussion-info {
         display: inline-block;
         font-size: 16px;
@@ -480,7 +493,7 @@ div.modal-hottest-discussion-info {
     }
 }
 
-@media (min-width: 768px) { 
+@media screen and (min-width: 768px) { 
     div.modal-hottest-discussion-info {
         display: inline-block;
         font-size: 16px;
@@ -489,6 +502,7 @@ div.modal-hottest-discussion-info {
 }
 
 div.modal-hottest-discussion-info-row {
+    display: table;
     width: 100%;
     margin: auto;
     position: relative;

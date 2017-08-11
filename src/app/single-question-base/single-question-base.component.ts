@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
+import { ProfileBaseModalComponent } from '../profile-base-modal/profile-base-modal.component';
 
 @Component({
     selector: 'app-single-question-base',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleQuestionBaseComponent implements OnInit {
 
-    constructor() { }
+    constructor(public dialog: MdDialog) { }
 
     ngOnInit() {
     }
 
+    // Show modal dialog with injected data
+    openModal(name: string) {
+        this.dialog.open(ProfileBaseModalComponent, {
+            data: name
+        });
+    }
 }

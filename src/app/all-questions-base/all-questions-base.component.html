@@ -1,11 +1,9 @@
 <div class="layout">
     <div class="top">
         <div class="top-nav-row clear">
-<!--            <div class="title-row">
-            </div>-->
-                <button class="back-button">&lt;</button>
-                <div class="q-title">QUESTION</div>
-                <button class="add-button">&#43;</button>
+            <button class="back-button">&lt;</button>
+            <div class="q-title">QUESTION</div>
+            <button class="add-button">&#43;</button>
             <div class="q-radio">
                 <form #f="ngForm">
                     <input class="q-radio-input" type="radio" value="my" name="questions" id="myself" [(ngModel)]="questions" /> <label for="myself">My shelf</label>
@@ -27,11 +25,11 @@
     <div class="body" (window:resize)="onResize($event)">
         <div class="question">
             <div class="question-row-title">
-                <div class="question-avatar">
+                <div class="question-avatar" (click)="openModal('Eva')" >
                     <span class="glyphicon glyphicon-user"></span>
                 </div>
                 <div class="question-author">
-                    <p><span class="question-author-name">Eva</span> <span style="color: grey;">IS ASKING:</span></p>
+                    <p><span class="question-author-name" (click)="openModal('Eva')" >Eva</span> <span style="color: grey;">IS ASKING:</span></p>
                     <p><span>Will insulin make my patient gain weight?</span></p>
                 </div>
             </div>
@@ -60,7 +58,7 @@
                 </div>
                 <div class="question-com com-4">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Tom Hanks')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -72,7 +70,7 @@
                 </div>
                 <div class="question-com com-3">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Bill Gates')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -84,7 +82,7 @@
                 </div>
                 <div class="question-com com-2">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Frank')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -94,7 +92,7 @@
                         <div class="question-dot-empty">&#8226;</div>
                     </div>
                 </div>
-                <div class="question-com com-1">
+                <div class="question-com com-1" (click)="openModal('Paulina')">
                     <div class="question-com-content">
                         <div class="com-avatar">
                             <span class="glyphicon glyphicon-user"></span>
@@ -115,11 +113,11 @@
         </div>
         <div class="question">
             <div class="question-row-title">
-                <div class="question-avatar">
+                <div class="question-avatar" (click)="openModal('Andrew')">
                     <span class="glyphicon glyphicon-user"></span>
                 </div>
                 <div class="question-author">
-                    <p><span class="question-author-name">Andrew</span> <span style="color: grey;">IS ASKING:</span></p>
+                    <p><span class="question-author-name" (click)="openModal('Andrew')">Andrew</span> <span style="color: grey;">IS ASKING:</span></p>
                     <p><span>Vegan diet in diabetes treatment?</span></p>
                 </div>
             </div>
@@ -148,7 +146,7 @@
                 </div>
                 <div class="question-com com-4">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Tom Cruise')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -160,7 +158,7 @@
                 </div>
                 <div class="question-com com-3">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Brad Pitt')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -172,7 +170,7 @@
                 </div>
                 <div class="question-com com-2">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Johny Depp')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -184,7 +182,7 @@
                 </div>
                 <div class="question-com com-1">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Ed')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -203,11 +201,11 @@
         </div>
         <div class="question">
             <div class="question-row-title">
-                <div class="question-avatar">
+                <div class="question-avatar" (click)="openModal('Joseph')">
                     <span class="glyphicon glyphicon-user"></span>
                 </div>
                 <div class="question-author">
-                    <p><span class="question-author-name">Joseph</span> <span style="color: grey;">IS ASKING:</span></p>
+                    <p><span class="question-author-name" (click)="openModal('Joseph')">Joseph</span> <span style="color: grey;">IS ASKING:</span></p>
                     <p><span>Vegan diet to stop diabetes progress</span></p>
                 </div>
             </div>
@@ -236,7 +234,7 @@
                 </div>
                 <div class="question-com com-3" [class.com-3]="true">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Bruce Willis')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -248,7 +246,7 @@
                 </div>
                 <div class="question-com com-2">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Arnold Schwarzenegger')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
@@ -260,7 +258,7 @@
                 </div>
                 <div class="question-com com-1">
                     <div class="question-com-content">
-                        <div class="com-avatar">
+                        <div class="com-avatar" (click)="openModal('Sylvia')">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">

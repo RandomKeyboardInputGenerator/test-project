@@ -142,6 +142,7 @@ div.question-author {
 span.question-author-name {
     font-size: 14px; 
     font-weight: bold;
+    cursor: pointer;
 }
 
 div.question-title {

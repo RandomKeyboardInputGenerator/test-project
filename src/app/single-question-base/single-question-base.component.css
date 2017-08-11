@@ -1,3 +1,87 @@
+div.back-button {
+    display: inline-block;
+    margin: auto;
+    text-align: left;
+    vertical-align: middle;
+    width: 10%;
+    padding-left: 2%;
+}
+
+button.back-button {
+    display: inline-block;
+    color: lightgray;
+    border-color: lightgray;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 2px;
+    font-size: 15px;
+    margin: auto;
+    padding: 0px 7px;
+    background-color: white;
+}
+
+@media screen and (min-width: 600px) { 
+    div.back-button {
+        width: 20%;
+        padding-left: 5%;
+    }
+    button.back-button {
+        font-size: 20px;
+        padding: 0px 11px;
+    }
+}
+
+div.q-title {
+    display: inline-block;
+    color: black;
+    font-weight: bold;
+    font-size: 22px;
+    margin: auto 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media screen and (min-width: 600px) { 
+    div.q-title {
+        margin: auto;
+    }
+}
+
+div.add-button {
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    width: 15%;
+}
+
+button.add-button {
+    color: white;
+    border-width: 0;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: auto;
+    background-color: #0266b3;
+    padding: 0px 7px 0px 7px;
+}
+
+span.q-last-time-dis {
+    visibility: hidden;
+    clear: both;
+    display: none;
+}
+
+@media screen and (min-width: 600px) { 
+    span.q-last-time-dis {
+        display: inline-block;
+        visibility: visible;
+        margin: auto; 
+        text-align: right;
+        vertical-align: middle;
+        padding-left: 14%;
+    }
+}
+
 div.question {
     display: table;
     width: 100%;
@@ -74,7 +158,7 @@ div.question-desc {
     width: 100%;
     margin: auto;
     padding: 15px;
-        font-size: 14px;
+    font-size: 14px;
 }
 
 div.question-row-options {

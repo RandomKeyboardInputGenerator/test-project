@@ -27,9 +27,9 @@ button.back-button {
     background-color: white;
 }
 
-@media screen and (min-width: 600px) { 
+@media screen and (min-width: 530px) { 
     div.top-nav-row {
-
+        text-align: center;
     }
     button.back-button {
         display: inline-block;
@@ -46,8 +46,9 @@ button.back-button {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 830px) {
     div.top-nav-row {
+        text-align: center;
     }
     button.back-button {
         display: inline-block;
@@ -59,8 +60,19 @@ button.back-button {
         font-size: 20px;
         margin: auto;
         padding: 0px 11px;
+        margin-right: 6%;
         background-color: white;
         text-align: left;
+    }
+}
+
+@media screen and (min-width: 930px) {
+    div.top-nav-row {
+        text-align: left;
+    }
+    button.back-button {
+        margin-left: 20px;
+        margin-right: 6%;
     }
 }
 
@@ -74,13 +86,19 @@ div.q-title {
     vertical-align: middle;
 }
 
-@media screen and (min-width: 600px) { 
+@media screen and (min-width: 530px) { 
     div.q-title {
-        margin: auto 180px;
+        margin: auto 160px;
     }
 }
 
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 830px) { 
+    div.q-title {
+        margin: auto 2%;
+    }
+}
+
+@media screen and (min-width: 930px) { 
     div.q-title {
         margin: auto 5%;
     }
@@ -103,7 +121,7 @@ button.add-button {
     padding: 0px 7px 0px 7px;
 }
 
-@media screen and (min-width: 600px) { 
+@media screen and (min-width: 530px) { 
     button.add-button {
         color: white;
         border-width: 0;
@@ -115,15 +133,22 @@ button.add-button {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 830px) {
     button.add-button {
         color: white;
         border-width: 0;
         border-radius: 20px;
         font-size: 15px;
         margin: auto;
+        margin-right: 10%;
         background-color: #0266b3;
         padding: 0px 7px 0px 7px;
+    }
+}
+
+@media screen and (min-width: 930px) {
+    button.add-button {
+        margin-right: 10%;
     }
 }
 
@@ -164,7 +189,7 @@ div.q-sort {
     width: 100%;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 530px) {
     div.q-radio {
         text-align: left;
         width: calc(50% - 10px);
@@ -179,7 +204,7 @@ div.q-sort {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 830px) {
     div.q-radio {
         display: inline-block;
         text-align: center;
@@ -192,7 +217,7 @@ div.q-sort {
         text-align: right;
         width: 160px;
         margin: auto;
-        margin-left: 8%;
+        margin-left: 4%;
         vertical-align: middle;
     }
     div.title-row {
@@ -202,6 +227,12 @@ div.q-sort {
         height: 44px;
         vertical-align: middle;
         text-align: left;
+    }
+}
+
+@media screen and (min-width: 930px) {
+    div.q-sort {
+        margin-left: 8%;
     }
 }
 
@@ -248,7 +279,7 @@ button.q-search-btn {
     width: 100%;
 }   
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 530px) {
     input.q-search {
         width: calc(77% - 15px);
     }
@@ -257,7 +288,7 @@ button.q-search-btn {
     } 
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 830px) {
     input.q-search {
         width: calc(75% - 10px);
     }
@@ -324,7 +355,7 @@ div.question-title {
 }
 
 
-@media only screen and (min-width: 600px) { 
+@media only screen and (min-width: 530px) { 
     div.question-row-title {
         min-height: 80px;
         max-width: 600px;
@@ -360,7 +391,7 @@ div.question-title {
     }
 }
 
-@media only screen and (min-width: 768px) { 
+@media only screen and (min-width: 830px) { 
 
 }
 

@@ -2,28 +2,28 @@
     <div class="top">
         <div class="top-nav-row clear">
             <button class="back-button">&lt;</button>
-            <div class="q-title">QUESTION</div>
+            <div class="q-title">{{ dic.questionsTitle }}</div>
             <button class="add-button">&#43;</button>
             <div class="q-radio">
                 <form #f="ngForm">
-                    <input class="q-radio-input" type="radio" value="my" name="questions" id="myself" [(ngModel)]="questions" /> <label for="myself">My shelf</label>
-                    <input class="q-radio-input" type="radio" value="all" name="questions" id="allquestions" [(ngModel)]="questions" /> <label for="allquestions">All questions</label>
+                    <input class="q-radio-input" type="radio" value="my" name="questions" id="myself" [(ngModel)]="questions" /> <label for="myself">{{ dic.radioMyself }}</label>
+                    <input class="q-radio-input" type="radio" value="all" name="questions" id="allquestions" [(ngModel)]="questions" /> <label for="allquestions">{{ dic.radioAll }}</label>
                 </form>
             </div>
             <div class="q-sort">
-                Sort by:
-                <span [class.q-sort-link]="selected !== 'recent'" [class.q-sort-link-active]="selected === 'recent'" (click)="click($event)">recent</span>
-                or
-                <span [class.q-sort-link]="selected !== 'hot'" [class.q-sort-link-active]="selected === 'hot'"  (click)="click($event)">hot</span>
+                {{ dic.sortByDesc[0] }}
+                <span [class.q-sort-link]="selected !== 'recent'" [class.q-sort-link-active]="selected === 'recent'" (click)="click($event)">{{ dic.sortByRecent }}</span>
+                {{ dic.sortByDesc[1] }}
+                <span [class.q-sort-link]="selected !== 'hot'" [class.q-sort-link-active]="selected === 'hot'"  (click)="click($event)">{{ dic.sortByHot }}</span>
             </div>
         </div>
         <div class="top-search-row clear">
             <input class="q-search" type="text" name="search" title="search" placeholder="Search questions" [(ngModel)]="searchQuery"/>
-            <button class="q-search-btn">SEARCH</button>
+            <button class="q-search-btn">{{ dic.searchBtn }}</button>
         </div>   
     </div>
     <div class="body" (window:resize)="onResize($event)">
-        <div class="question" *ngFor="let q of data.questions | slice:0:3; index as _i;">
+        <div class="question" *ngFor="let q of qData | slice:0:3; index as _i;">
              <div class="question-row-title">
                 <div class="question-avatar" (click)="openModal(q.author)">
                     <span class="glyphicon glyphicon-user"></span>
@@ -50,7 +50,7 @@
                             <span>{{questionComCount[_i]}}</span>
                         </div>
                         <div class="question-count-footer">
-                            <span>{{ data.countDesc }}</span>
+                            <span>{{ dic.countComDesc }}</span>
                         </div>
                         <div class="count-dot-empty">&#8226;</div>
                     </div>
@@ -71,14 +71,14 @@
                     </div>
                 </div>
                 <div class="question-info">
-                    <p class="question-info-top"><span class="number">{{ q.relDis }}</span> related discusion</p>
-                    <p class="question-info-mid"><span class="number">{{ q.peerInv }}</span> peers involved</p>
-                    <p class="question-info-bottom"><span class="number">{{ q.conv }}</span> conversations</p>
+                    <p class="question-info-top"><span class="number">{{ q.relDis }}</span> {{ dic.relDis }}</p>
+                    <p class="question-info-mid"><span class="number">{{ q.peerInv }}</span> {{ dic.peerInv }}</p>
+                    <p class="question-info-bottom"><span class="number">{{ q.conv }}</span> {{ dic.conv }}</p>
                 </div>
             </div>
         </div>
         <div class="question-load-more">
-            <button class="button-link" (click)="showMoreQ()">load more questions</button>
+            <button class="button-link" (click)="showMoreQ()">{{ dic.loadMoreBtn }}</button>
         </div>
     </div>
 </div>

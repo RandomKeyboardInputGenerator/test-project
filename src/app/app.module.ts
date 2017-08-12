@@ -18,6 +18,9 @@ import { SingleQuestionBaseComponent } from './single-question-base/single-quest
 import { ProfileBaseComponent } from './profile-base/profile-base.component';
 import { ProfileBaseModalComponent } from './profile-base-modal/profile-base-modal.component';
 
+import { LimitComToPipe } from './limit-com-to.pipe';
+import { AbsPipe } from './abs.pipe';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -25,7 +28,9 @@ import { ProfileBaseModalComponent } from './profile-base-modal/profile-base-mod
         SingleQuestionBaseComponent,
         ProfileBaseComponent,
         IndexComponent,
-        ProfileBaseModalComponent
+        ProfileBaseModalComponent,
+        LimitComToPipe,
+        AbsPipe
     ],
     imports: [
         BrowserModule,

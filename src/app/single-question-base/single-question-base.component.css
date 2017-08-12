@@ -462,6 +462,7 @@ div.comment-author {
 span.comment-author-name {
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 span.comment-author-time {
@@ -626,6 +627,7 @@ div.subcomment-author {
 span.subcomment-author-name {
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 span.subcomment-author-time {

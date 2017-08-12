@@ -23,14 +23,14 @@
         </div>   
     </div>
     <div class="body" (window:resize)="onResize($event)">
-        <div class="question">
-            <div class="question-row-title">
-                <div class="question-avatar" (click)="openModal('Eva')" >
+        <div class="question" *ngFor="let q of data.questions | slice:0:3; index as _i;">
+             <div class="question-row-title">
+                <div class="question-avatar" (click)="openModal(q.author)">
                     <span class="glyphicon glyphicon-user"></span>
                 </div>
                 <div class="question-author">
-                    <p><span class="question-author-name" (click)="openModal('Eva')" >Eva</span> <span style="color: grey;">IS ASKING:</span></p>
-                    <p><span>Will insulin make my patient gain weight?</span></p>
+                    <p><span class="question-author-name" (click)="openModal(q.author)">{{ q.author }}</span> <span style="color: grey;">{{ q.desc[1] }}</span></p>
+                    <p><span>{{ q.title }}</span></p>
                 </div>
             </div>
             <div class="question-tabs clear">
@@ -39,244 +39,46 @@
                         <div class="com-avatar"></div>
                         <div class="question-com-footer">
                             <hr class="grey" />
-                            <span>ASKED</span>
+                            <span>{{ q.desc[0] }}</span>
                         </div>
                         <div class="question-dot-empty">&#8226;</div>
                     </div>
                 </div>
-                <div class="question-count" *ngIf="count[0]>0">
+                <div class="question-count" *ngIf="questionComCount[_i]>0">
                     <div class="question-count-content">
                         <div class="count-desc">
-                            <span>{{count[0]}}</span>
+                            <span>{{questionComCount[_i]}}</span>
                         </div>
                         <div class="question-count-footer">
-                            <span>more</span>
-                            <span>activities</span>
+                            <span>{{ data.countDesc }}</span>
                         </div>
                         <div class="count-dot-empty">&#8226;</div>
                     </div>
                 </div>
-                <div class="question-com com-4">
+                <div class="question-com" 
+                     *ngFor="let c of q.comments | slice:0:visCom; index as _j;"
+                     [class.col-1]="_j === 0" [class.col-2]="_j === 1" [class.col-3]="_j === 2" [class.col-4]="_j === 3"
+                     >
                     <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Tom Hanks')">
+                        <div class="com-avatar" (click)="openModal(getComment(c).author)">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
                         <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
+                            <hr [class.black]="getComment(c).type === 'ANSWERED'" [class.grey]="getComment(c).type !== 'ANSWERED'" />
+                            <span>{{ getComment(c).type }}</span>
                         </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-3">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Bill Gates')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-2">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Frank')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-1" (click)="openModal('Paulina')">
-                    <div class="question-com-content">
-                        <div class="com-avatar">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="black" />
-                            <span>ANSWERED</span>
-                        </div>
-                        <div class="question-dot">&#8226;</div>
+                        <div [class.question-dot]="getComment(c).type === 'ANSWERED'" [class.question-dot-empty]="getComment(c).type !== 'ANSWERED'" >&#8226;</div>
                     </div>
                 </div>
                 <div class="question-info">
-                    <p class="question-info-top"><span class="number">1</span> related discusion</p>
-                    <p class="question-info-mid"><span class="number">6</span> peers involved</p>
-                    <p class="question-info-bottom"><span class="number">3</span> conversations</p>
-                </div>
-            </div>
-        </div>
-        <div class="question">
-            <div class="question-row-title">
-                <div class="question-avatar" (click)="openModal('Andrew')">
-                    <span class="glyphicon glyphicon-user"></span>
-                </div>
-                <div class="question-author">
-                    <p><span class="question-author-name" (click)="openModal('Andrew')">Andrew</span> <span style="color: grey;">IS ASKING:</span></p>
-                    <p><span>Vegan diet in diabetes treatment?</span></p>
-                </div>
-            </div>
-            <div class="question-tabs clear">
-                <div class="question-asked">
-                    <div class="question-asked-content">
-                        <div class="com-avatar"></div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>ASKED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-count" *ngIf="count[1]>0">
-                    <div class="question-count-content">
-                        <div class="count-desc">
-                            <span>{{count[1]}}</span>
-                        </div>
-                        <div class="question-count-footer">
-                            <span>more</span>
-                            <span>activities</span>
-                        </div>
-                        <div class="count-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-4">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Tom Cruise')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-3">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Brad Pitt')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-2">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Johny Depp')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-1">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Ed')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="black" />
-                            <span>ANSWERED</span>
-                        </div>
-                        <div class="question-dot">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-info">
-                    <p class="question-info-top"><span class="number">2</span> related discusion</p>
-                    <p class="question-info-mid"><span class="number">9</span> peers involved</p>
-                    <p class="question-info-bottom"><span class="number">5</span> conversations</p>
-                </div>
-            </div>
-        </div>
-        <div class="question">
-            <div class="question-row-title">
-                <div class="question-avatar" (click)="openModal('Joseph')">
-                    <span class="glyphicon glyphicon-user"></span>
-                </div>
-                <div class="question-author">
-                    <p><span class="question-author-name" (click)="openModal('Joseph')">Joseph</span> <span style="color: grey;">IS ASKING:</span></p>
-                    <p><span>Vegan diet to stop diabetes progress</span></p>
-                </div>
-            </div>
-            <div class="question-tabs clear">
-                <div class="question-asked">
-                    <div class="question-asked-content">
-                        <div class="com-avatar"></div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>ASKED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-count" *ngIf="count[2]>0">
-                    <div class="question-count-content">
-                        <div class="count-desc">
-                            <span>{{count[2]}}</span>
-                        </div>
-                        <div class="question-count-footer">
-                            <span>more</span>
-                            <span>activities</span>
-                        </div>
-                        <div class="count-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-3" [class.com-3]="true">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Bruce Willis')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-2">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Arnold Schwarzenegger')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="grey" />
-                            <span>COMMENTED</span>
-                        </div>
-                        <div class="question-dot-empty">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-com com-1">
-                    <div class="question-com-content">
-                        <div class="com-avatar" (click)="openModal('Sylvia')">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="question-com-footer">
-                            <hr class="black" />
-                            <span>ANSWERED</span>
-                        </div>
-                        <div class="question-dot">&#8226;</div>
-                    </div>
-                </div>
-                <div class="question-info">
-                    <p class="question-info-top"><span class="number">5</span> related discusion</p>
-                    <p class="question-info-mid"><span class="number">4</span> peers involved</p>
-                    <p class="question-info-bottom"><span class="number">0</span> conversations</p>
+                    <p class="question-info-top"><span class="number">{{ q.relDis }}</span> related discusion</p>
+                    <p class="question-info-mid"><span class="number">{{ q.peerInv }}</span> peers involved</p>
+                    <p class="question-info-bottom"><span class="number">{{ q.conv }}</span> conversations</p>
                 </div>
             </div>
         </div>
         <div class="question-load-more">
-            <button class="button-link">load more questions</button>
+            <button class="button-link" (click)="showMoreQ()">load more questions</button>
         </div>
     </div>
 </div>

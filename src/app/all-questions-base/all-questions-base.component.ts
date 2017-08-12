@@ -203,6 +203,7 @@ export class AllQuestionsBaseComponent implements OnInit {
         this.getQData();
         this.getComData();
         this.countItForMe();
+        this.sortQ();
     }
 
     // Show modal dialog with injected data
@@ -215,6 +216,17 @@ export class AllQuestionsBaseComponent implements OnInit {
     // Sort trigger: recent or hot
     click(event: any): void {
         this.selected = event.target.innerText;
+        this.sortQ();
+    }
+    
+    // Sort questions by hot or recent
+    sortQ(): void {
+        if (this.selected === 'recent') {
+            this.qData = _.sortBy(this.qData, 'lastTimeDiscusedDays');
+        }
+        else {
+            this.qData = _.sortByOrder(this.qData, 'peerInv', 'desc');
+        }
     }
     
     // count comments and answers

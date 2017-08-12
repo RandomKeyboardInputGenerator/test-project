@@ -167,8 +167,6 @@ export class AllQuestionsBaseComponent implements OnInit {
         ]
     };
     
-    // Counted answers and comments not visiable by default
-    questionComCount: number[] = [];
     // Limit of visable comments
     visCom = 4;
     // Limit of displayed questions
@@ -185,12 +183,10 @@ export class AllQuestionsBaseComponent implements OnInit {
         // phone and tablet mode (<830px)
         if (event.target.innerWidth < 830) {
             this.visCom = 1;
-            this.countItForMe();
         }
         // Full view mode
         else {
             this.visCom = 4;
-            this.countItForMe();
         }
     }
     constructor(
@@ -202,7 +198,6 @@ export class AllQuestionsBaseComponent implements OnInit {
         this.getDictionary();
         this.getQData();
         this.getComData();
-        this.countItForMe();
         this.sortQ();
     }
 
@@ -226,17 +221,6 @@ export class AllQuestionsBaseComponent implements OnInit {
         }
         else {
             this.qData = _.sortByOrder(this.qData, 'peerInv', 'desc');
-        }
-    }
-    
-    // count comments and answers
-    countItForMe(): void {
-        // Lets clean first
-        this.questionComCount = [];
-        // lets do the magic
-        for (let q of this.qData) {
-            let buf = q.comments.length - this.visCom;
-            (buf >= 0) ? this.questionComCount.push(buf) : this.questionComCount.push(0);
         }
     }
     

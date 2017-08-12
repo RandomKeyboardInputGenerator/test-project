@@ -44,10 +44,10 @@
                         <div class="question-dot-empty">&#8226;</div>
                     </div>
                 </div>
-                <div class="question-count" *ngIf="questionComCount[_i]>0">
+                <div class="question-count" *ngIf="q.comments.length - this.visCom > 0">
                     <div class="question-count-content">
                         <div class="count-desc">
-                            <span>{{questionComCount[_i]}}</span>
+                            <span>{{q.comments.length - this.visCom}}</span>
                         </div>
                         <div class="question-count-footer">
                             <span>{{ dic.countComDesc }}</span>

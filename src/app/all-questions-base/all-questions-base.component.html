@@ -19,11 +19,11 @@
         </div>
         <div class="top-search-row clear">
             <input class="q-search" type="text" name="search" title="search" placeholder="Search questions" [(ngModel)]="searchQuery"/>
-            <button class="q-search-btn">{{ dic.searchBtn }}</button>
+            <button class="q-search-btn" (click)="searchQ()">{{ dic.searchBtn }}</button>
         </div>   
     </div>
     <div class="body" (window:resize)="onResize($event)">
-        <div class="question" *ngFor="let q of qData | slice:0:maxQ | limitQTo:questions:me; index as _i;">
+        <div class="question" *ngFor="let q of qData | slice:0:maxQ | limitQTo:questions:me | search:term; index as _i;">
              <div class="question-row-title">
                 <div class="question-avatar" (click)="openModal(q.author)">
                     <span class="glyphicon glyphicon-user"></span>

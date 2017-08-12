@@ -5,6 +5,7 @@ import { ProfileBaseModalComponent } from '../profile-base-modal/profile-base-mo
 import { InMemoryDataService }  from '../in-memory-data.service';
 
 import { LimitQToPipe } from '../limit-qto.pipe';
+import { SearchPipe } from '../search.pipe';
 
 import _ from "lodash"
 
@@ -16,6 +17,8 @@ import _ from "lodash"
 export class AllQuestionsBaseComponent implements OnInit {
     questions: string = 'all';
     selected: string = 'recent';
+    searchQuery: string = '';
+    term: string = '';
     
     // Simulated user
     me: string = 'Eva';
@@ -248,5 +251,9 @@ export class AllQuestionsBaseComponent implements OnInit {
     // Get comments data
     getComData() {
         this.comData = this.data.comments;
+    }
+    
+    searchQ(): void {
+        this.term = this.searchQuery;
     }
 }

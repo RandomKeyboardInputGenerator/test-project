@@ -20,6 +20,7 @@ import { ProfileBaseModalComponent } from './profile-base-modal/profile-base-mod
 
 import { LimitComToPipe } from './limit-com-to.pipe';
 import { AbsPipe } from './abs.pipe';
+import { LimitQToPipe } from './limit-qto.pipe';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { AbsPipe } from './abs.pipe';
         IndexComponent,
         ProfileBaseModalComponent,
         LimitComToPipe,
-        AbsPipe
+        AbsPipe,
+        LimitQToPipe
     ],
     imports: [
         BrowserModule,

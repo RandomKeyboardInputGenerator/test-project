@@ -6,7 +6,7 @@
             <button class="add-button">&#43;</button>
             <div class="q-radio">
                 <form #f="ngForm">
-                    <input class="q-radio-input" type="radio" value="my" name="questions" id="myself" [(ngModel)]="questions" /> <label for="myself">{{ dic.radioMyself }}</label>
+                    <input class="q-radio-input" type="radio" value="me" name="questions" id="myself" [(ngModel)]="questions" /> <label for="myself">{{ dic.radioMyself }}</label>
                     <input class="q-radio-input" type="radio" value="all" name="questions" id="allquestions" [(ngModel)]="questions" /> <label for="allquestions">{{ dic.radioAll }}</label>
                 </form>
             </div>
@@ -23,7 +23,7 @@
         </div>   
     </div>
     <div class="body" (window:resize)="onResize($event)">
-        <div class="question" *ngFor="let q of qData | slice:0:3; index as _i;">
+        <div class="question" *ngFor="let q of qData | slice:0:maxQ | limitQTo:questions:me; index as _i;">
              <div class="question-row-title">
                 <div class="question-avatar" (click)="openModal(q.author)">
                     <span class="glyphicon glyphicon-user"></span>

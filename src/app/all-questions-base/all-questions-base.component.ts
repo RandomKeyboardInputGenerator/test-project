@@ -4,6 +4,8 @@ import { ProfileBaseModalComponent } from '../profile-base-modal/profile-base-mo
 
 import { InMemoryDataService }  from '../in-memory-data.service';
 
+import { LimitQToPipe } from '../limit-qto.pipe';
+
 import _ from "lodash"
 
 @Component({
@@ -12,8 +14,11 @@ import _ from "lodash"
     styleUrls: ['./all-questions-base.component.css']
 })
 export class AllQuestionsBaseComponent implements OnInit {
-    questions: string = 'my';
+    questions: string = 'all';
     selected: string = 'recent';
+    
+    // Simulated user
+    me: string = 'Eva';
     
     // Simulated Db
     data = {
@@ -55,6 +60,7 @@ export class AllQuestionsBaseComponent implements OnInit {
                 "content": "Fusce convallis, mauris imperdiet gravida bibendum, nisl turpis suscipit mauris, sed placerat ipsum urna sed risus. In convallis tellus a mauris.",
                 "downvotes": 0, "upvotes": 19,
                 "peerAnsw": 3,
+                "lastTimeDiscusedDays": 1,
             },
             {
                 "id": 1,
@@ -65,6 +71,7 @@ export class AllQuestionsBaseComponent implements OnInit {
                 "peerInv": 9,
                 "conv": 5,
                 "comments": [7,8,9,10,11,12,13,14,15,16],
+                "lastTimeDiscusedDays": 1,
             },
             {
                 "id": 2,
@@ -75,6 +82,43 @@ export class AllQuestionsBaseComponent implements OnInit {
                 "peerInv": 4,
                 "conv": 0,
                 "comments": [17,18,19],
+                "lastTimeDiscusedDays": 1,
+            }, // below questions are totaly random
+            {
+                "id": 3,
+                "author": "Eva",
+                "desc": ["ASKED","IS ASKING:"],
+                "title": "What would a world populated by clones of you be like?",
+                "relDis": 5,
+                "peerInv": 11,
+                "conv": 2,
+                "comments": [0,1,2,3,4,5,6],
+                "content": "Fusce convallis, mauris imperdiet gravida bibendum, nisl turpis suscipit mauris, sed placerat ipsum urna sed risus. In convallis tellus a mauris.",
+                "downvotes": 0, "upvotes": 19,
+                "peerAnsw": 3,
+                "lastTimeDiscusedDays": 2,
+            },
+            {
+                "id": 4,
+                "author": "Tom",
+                "desc": ["ASKED","IS ASKING:"],
+                "title": "If someone narrated your life, who would you want to be the narrator?",
+                "relDis": 6,
+                "peerInv": 1,
+                "conv": 8,
+                "comments": [7,8,9,10,11,12,13,14,15,16],
+                "lastTimeDiscusedDays": 3,
+            },
+            {
+                "id": 5,
+                "author": "Anna",
+                "desc": ["ASKED","IS ASKING:"],
+                "title": "What’s the funniest joke you know by heart?",
+                "relDis": 12,
+                "peerInv": 11,
+                "conv": 13,
+                "comments": [17,18,19],
+                "lastTimeDiscusedDays": 4,
             },
         ],
         "comments": [

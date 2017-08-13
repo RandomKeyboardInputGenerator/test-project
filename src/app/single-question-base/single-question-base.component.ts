@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { ProfileBaseModalComponent } from '../profile-base-modal/profile-base-modal.component';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location }                 from '@angular/common';
 
 import { DbService }  from '../db.service';
 
@@ -33,13 +35,18 @@ export class SingleQuestionBaseComponent implements OnInit {
 
     constructor(
         public dialog: MdDialog,
-        private dataService: DbService
+        private dataService: DbService,
+        private route: ActivatedRoute,
+        private location: Location
     ) { }
 
     ngOnInit() {
-        this.getDictionary();
+        this.loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false } };
+        this.qId = +this.route.snapshot.paramMap.get('id') || 0;
+        
         this.getQData(this.qId);
         this.findRelComm(this.qId);
+        this.getDictionary();
         this.getUser(this.userId);
     }
 
@@ -202,5 +209,10 @@ export class SingleQuestionBaseComponent implements OnInit {
     // Find out if user already voted on this question
     isQVoted(id: number): boolean {
         return (_.indexOf(this.user.votedQ, id) === -1) ? false : true;
+    }
+    
+    // Go back btn
+    goBack(): void {
+        this.location.back();
     }
 }

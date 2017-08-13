@@ -39,7 +39,7 @@
                 </div>
                 <div class="question-author">
                     <p><span class="question-author-name" (click)="openModal(q.author)">{{ q.author }}</span> <span style="color: grey;">{{ q.desc[1] }}</span></p>
-                    <p><span>{{ q.title }}</span></p>
+                    <p class="title-link" routerLink="/question/{{ q.id }}" routerLinkActive="active" ><span>{{ q.title }}</span></p>
                 </div>
             </div>
             <div class="question-tabs clear">

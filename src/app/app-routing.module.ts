@@ -11,6 +11,7 @@ const routes: Routes = [
     { path: 'index', component: IndexComponent },
     { path: 'allqbase', component: AllQuestionsBaseComponent },
     { path: 'singleqbase', component: SingleQuestionBaseComponent },
+    { path: 'question/:id', component: SingleQuestionBaseComponent },
     { path: 'profilebase', component: ProfileBaseComponent }
 ];
 

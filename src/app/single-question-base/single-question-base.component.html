@@ -9,7 +9,7 @@
 
 <div class="layout" *ngIf="loading.status.dic && loading.status.q && loading.status.com && loading.status.user">
     <div class="top nowrap">
-        <div class="back-button"><button class="back-button">&lt;</button></div>
+        <div class="back-button"><button class="back-button" (click)="goBack()">&lt;</button></div>
         <div class="q-title">{{ dic.questionTitle }}</div>
         <div class="add-button"><button class="add-button">&#43;</button></div>
         <span class="q-last-time-dis">

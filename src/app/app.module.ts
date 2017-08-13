@@ -48,7 +48,7 @@ import { SearchPipe } from './search.pipe';
         MdDialogModule,
         HttpModule,
         // Simulate connection to Db with delay
-        InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 3000 })
+        InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 })
     ],
     entryComponents: [
         ProfileBaseModalComponent

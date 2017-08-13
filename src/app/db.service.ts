@@ -94,6 +94,23 @@ export class DbService {
             .then(response => response.json())
             .catch(this.handleError);
     }
+    
+    // Get user data
+    getUser(userId: number): Promise<any>  {
+        return this.http.get(this.dbUrl + '/authors/' + userId)
+            .toPromise()
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
+    
+    // Save user data
+    saveUser(user: any): Promise<any>  {
+        return this.http
+            .put(this.dbUrl + '/authors/' + user.id, user, { headers: this.headers })
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
 
     // Simple error handler
     private handleError(error: any): Promise<any> {

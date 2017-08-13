@@ -1,0 +1,75 @@
+
+<div *ngif="!(loading.status.dic &amp;&amp; loading.status.q &amp;&amp; loading.status.com)" class="alert alert-info">
+  <div class="alert-box">
+    <div class="loader"></div>
+  </div>
+  <div class="alert-box">{{ loading.text }}</div>
+</div>
+<div *ngif="loading.status.dic &amp;&amp; loading.status.q &amp;&amp; loading.status.com" class="layout">
+  <div class="top">
+    <div class="top-nav-row clear">
+      <button class="back-button"><</button>
+      <div class="q-title">{{ dic.questionsTitle }}</div>
+      <button class="add-button">+</button>
+      <div class="q-radio">
+        <form #f="ngForm">
+          <input id="myself" type="radio" value="me" name="questions" [(ngmodel)]="questions" class="q-radio-input"/>
+          <label for="myself">{{ dic.radioMyself }}</label>
+          <input id="allquestions" type="radio" value="all" name="questions" [(ngmodel)]="questions" class="q-radio-input"/>
+          <label for="allquestions">{{ dic.radioAll }}</label>
+        </form>
+      </div>
+      <div class="q-sort">{{ dic.sortByDesc[0] }}<span [class.q-sort-link]="selected !== 'recent'" [class.q-sort-link-active]="selected === 'recent'" (click)="click($event)">{{ dic.sortByRecent }}</span>                {{ dic.sortByDesc[1] }}<span [class.q-sort-link]="selected !== 'hot'" [class.q-sort-link-active]="selected === 'hot'" (click)="click($event)">{{ dic.sortByHot }}</span></div>
+    </div>
+    <div class="top-search-row clear">
+      <input type="text" name="search" title="search" placeholder="Search questions" [(ngmodel)]="searchQuery" class="q-search"/>
+      <button (click)="searchQ()" class="q-search-btn">{{ dic.searchBtn }}</button>
+    </div>
+  </div>
+  <div (window:resize)="onResize($event)" class="body">
+    <div *ngfor="let q of qData | slice:0:maxQ | limitQTo:questions:me | search:term; index as _i;" class="question">
+      <div class="question-row-title">
+        <div (click)="openModal(q.author)" class="question-avatar"><span class="glyphicon glyphicon-user"></span></div>
+        <div class="question-author">
+          <p><span (click)="openModal(q.author)" class="question-author-name">{{ q.author }}</span><span style="color: grey;">{{ q.desc[1] }}</span></p>
+          <p routerlink="/question/{{ q.id }}" routerlinkactive="active" class="title-link"><span>{{ q.title }}</span></p>
+        </div>
+      </div>
+      <div class="question-tabs clear">
+        <div class="question-asked">
+          <div class="question-asked-content">
+            <div class="com-avatar"></div>
+            <div class="question-com-footer">
+              <hr class="grey"/><span>{{ q.desc[0] }}</span>
+            </div>
+            <div class="question-dot-empty">•</div>
+          </div>
+        </div>
+        <div *ngif="q.comments.length - this.visCom &gt; 0" class="question-count">
+          <div class="question-count-content">
+            <div class="count-desc"><span>{{q.comments.length - this.visCom}}</span></div>
+            <div class="question-count-footer"><span>{{ dic.countComDesc }}</span></div>
+            <div class="count-dot-empty">•</div>
+          </div>
+        </div>
+        <div *ngfor="let c of q.comments | slice:0:visCom; index as _j;" [class.col-1]="_j === 0" [class.col-2]="_j === 1" [class.col-3]="_j === 2" [class.col-4]="_j === 3" class="question-com">
+          <div class="question-com-content">
+            <div (click)="openModal(getComment(c).author)" class="com-avatar"><span class="glyphicon glyphicon-user"></span></div>
+            <div class="question-com-footer">
+              <hr [class.black]="getComment(c).type === 'ANSWERED'" [class.grey]="getComment(c).type !== 'ANSWERED'"/><span>{{ getComment(c).type }}</span>
+            </div>
+            <div [class.question-dot]="getComment(c).type === 'ANSWERED'" [class.question-dot-empty]="getComment(c).type !== 'ANSWERED'">•</div>
+          </div>
+        </div>
+        <div class="question-info">
+          <p class="question-info-top"><span class="number">{{ q.relDis }}</span> {{ dic.relDis }}</p>
+          <p class="question-info-mid"><span class="number">{{ q.peerInv }}</span> {{ dic.peerInv }}</p>
+          <p class="question-info-bottom"><span class="number">{{ q.conv }}</span> {{ dic.conv }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="question-load-more">
+      <button (click)="showMoreQ()" class="button-link">{{ dic.loadMoreBtn }}</button>
+    </div>
+  </div>
+</div>

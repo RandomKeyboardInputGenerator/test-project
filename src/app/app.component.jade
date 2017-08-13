@@ -1,0 +1,16 @@
+router-outlet
+.container
+  .row
+    .col-xs-12.col-md-12
+      .panel.panel-default
+        .panel-heading
+          h1.panel-title
+            | Menu
+        .panel-body
+          ul
+            li
+              a(routerlink='/allqbase', routerlinkactive='active') All Questions Base
+            li
+              a(routerlink='/singleqbase', routerlinkactive='active') Single Question Base
+            li
+              a(routerlink='/profilebase', routerlinkactive='active') Profile Base

@@ -13,7 +13,6 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { DbService }  from './db.service';
 
 import { AppComponent } from './app.component';
-import { IndexComponent } from './index/index.component';
 import { AllQuestionsBaseComponent } from './all-questions-base/all-questions-base.component';
 import { SingleQuestionBaseComponent } from './single-question-base/single-question-base.component';
 import { ProfileBaseComponent } from './profile-base/profile-base.component';
@@ -30,7 +29,6 @@ import { SearchPipe } from './search.pipe';
         AllQuestionsBaseComponent,
         SingleQuestionBaseComponent,
         ProfileBaseComponent,
-        IndexComponent,
         ProfileBaseModalComponent,
         LimitComToPipe,
         AbsPipe,

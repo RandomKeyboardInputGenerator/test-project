@@ -1,4 +1,13 @@
-<div class="layout">
+<div *ngIf="!(loading.status.dic && loading.status.q && loading.status.com)" class="alert alert-info">
+    <div class="alert-box">
+        <div class="loader"></div>
+    </div>
+    <div class="alert-box">
+        {{ loading.text }}
+    </div>
+</div>
+
+<div class="layout" *ngIf="loading.status.dic && loading.status.q && loading.status.com">
     <div class="top">
         <div class="top-nav-row clear">
             <button class="back-button">&lt;</button>

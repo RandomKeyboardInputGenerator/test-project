@@ -1,4 +1,13 @@
-<div class="layout">
+<div *ngIf="!(loading.status.dic && loading.status.q && loading.status.com)" class="alert alert-info">
+    <div class="alert-box">
+        <div class="loader"></div>
+    </div>
+    <div class="alert-box">
+        {{ loading.text }}
+    </div>
+</div>
+
+<div class="layout" *ngIf="loading.status.dic && loading.status.q && loading.status.com">
     <div class="top nowrap">
         <div class="back-button"><button class="back-button">&lt;</button></div>
         <div class="q-title">{{ dic.questionTitle }}</div>
@@ -42,10 +51,10 @@
                     <div class="question-vote">
                         <ul class="vote">
                             <li class="vote-up">
-                                <span>&#9652;</span>
+                                <span (click)="qUpVote(question)">&#9652;</span>
                             </li>
                             <li class="vote-down">
-                                <span>&#9662;</span>
+                                <span (click)="qDownVote(question)">&#9662;</span>
                             </li>
                         </ul>
                     </div>
@@ -85,10 +94,10 @@
                         <div class="comment-vote">
                             <ul class="vote">
                                 <li class="vote-up">
-                                    <span>&#9652;</span>
+                                    <span (click)="comUpVote(com)">&#9652;</span>
                                 </li>
                                 <li class="vote-down">
-                                    <span>&#9662;</span>
+                                    <span (click)="comDownVote(com)">&#9662;</span>
                                 </li>
                             </ul>
                         </div>
@@ -126,10 +135,10 @@
                                 <div class="subcomment-vote">
                                     <ul class="vote">
                                         <li class="vote-up">
-                                            <span>&#9652;</span>
+                                            <span (click)="comUpVote(sub)">&#9652;</span>
                                         </li>
                                         <li class="vote-down">
-                                            <span>&#9662;</span>
+                                            <span (click)="comDownVote(sub)">&#9662;</span>
                                         </li>
                                     </ul>
                                 </div>

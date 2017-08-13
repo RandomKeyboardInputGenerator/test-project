@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
+import { DbService }  from './db.service';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -47,12 +48,12 @@ import { SearchPipe } from './search.pipe';
         MdDialogModule,
         HttpModule,
         // Simulate connection to Db with delay
-        InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 })
+        InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 3000 })
     ],
     entryComponents: [
         ProfileBaseModalComponent
     ],
-    providers: [InMemoryDataService],
+    providers: [DbService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

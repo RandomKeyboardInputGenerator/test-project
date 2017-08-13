@@ -771,3 +771,7 @@ button.subcomment-btn {
         bottom: 10px;
     }
 }
+
+li.disabled {
+    color: lightblue;
+}

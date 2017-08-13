@@ -53,7 +53,23 @@ export class InMemoryDataService implements InMemoryDbService {
                 "discussions": 29,
                 "findings": 19,
                 "questions": 10,
-                "otherAutorsStatic": ["S.E.N Waveru", "Patricia", "Joseph Aluoch"]
+                "otherAutorsStatic": ["S.E.N Waveru", "Patricia", "Joseph Aluoch"],
+                "votedComs": [],
+                "votedQ": [],
+
+            },
+            {
+                "id": 1,
+                "name": "Eva",
+                "memberTime": "5 months",
+                "lastLogTime": "Saturday afternoon",
+                "peers": 46,
+                "discussions": 29,
+                "findings": 19,
+                "questions": 10,
+                "otherAutorsStatic": ["S.E.N Waveru", "Patricia", "Joseph Aluoch"],
+                "votedComs": [],
+                "votedQ": [0,3], // The user is the author of the questions id: 0 and 3
 
             }
         ];

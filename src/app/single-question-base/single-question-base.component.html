@@ -42,18 +42,18 @@
                 </div>
                 <div class="question-row-votes">
                     <div class="question-votes-couter">
-                        <span>{{ question.downvotes + question.upvotes | abs }}</span>
+                        <span>{{ question.upvotes - question.downvotes | abs }}</span>
                     </div>
                     <div class="question-votes-couter-desc">
-                        <span *ngIf="question.downvotes + question.upvotes < 0">{{ dic.downVote }}</span>
-                        <span *ngIf="question.downvotes + question.upvotes >= 0">{{ dic.upVote }}</span>
+                        <span *ngIf="question.upvotes - question.downvotes < 0">{{ dic.downVote }}</span>
+                        <span *ngIf="question.upvotes - question.downvotes >= 0">{{ dic.upVote }}</span>
                     </div>
                     <div class="question-vote">
                         <ul class="vote">
-                            <li class="vote-up">
+                            <li class="vote-up" [class.disabled]="!voteEnable">
                                 <span (click)="qUpVote(question)">&#9652;</span>
                             </li>
-                            <li class="vote-down">
+                            <li class="vote-down" [class.disabled]="!voteEnable">
                                 <span (click)="qDownVote(question)">&#9662;</span>
                             </li>
                         </ul>
@@ -85,18 +85,18 @@
                 <div class="comment-col-right">
                     <div class="comment-row-votes">
                         <div class="comment-votes-couter">
-                            <span>{{ com.downvotes + com.upvotes | abs }}</span>
+                            <span>{{ com.upvotes - com.downvotes | abs }}</span>
                         </div>
                         <div class="comment-votes-couter-desc">
-                            <span *ngIf="com.downvotes + com.upvotes < 0">{{ dic.downVote }}</span>
-                            <span *ngIf="com.downvotes + com.upvotes >= 0">{{ dic.upVote }}</span>
+                            <span *ngIf="com.upvotes - com.downvotes < 0">{{ dic.downVote }}</span>
+                            <span *ngIf="com.upvotes - com.downvotes >= 0">{{ dic.upVote }}</span>
                         </div>
                         <div class="comment-vote">
                             <ul class="vote">
-                                <li class="vote-up">
+                                <li class="vote-up" [class.disabled]="!voteEnable">
                                     <span (click)="comUpVote(com)">&#9652;</span>
                                 </li>
-                                <li class="vote-down">
+                                <li class="vote-down" [class.disabled]="!voteEnable">
                                     <span (click)="comDownVote(com)">&#9662;</span>
                                 </li>
                             </ul>
@@ -126,18 +126,18 @@
                         <div class="subcomment-col-right">
                             <div class="subcomment-row-votes">
                                 <div class="subcomment-votes-couter">
-                                    <span>{{ sub.downvotes + sub.upvotes | abs }}</span>
+                                    <span>{{ sub.upvotes - sub.downvotes | abs }}</span>
                                 </div>
                                 <div class="subcomment-votes-couter-desc">
-                                    <span *ngIf="sub.downvotes + sub.upvotes < 0">{{ dic.downVote }}</span>
-                                    <span *ngIf="sub.downvotes + sub.upvotes >= 0">{{ dic.upVote }}</span>
+                                    <span *ngIf="sub.upvotes - sub.downvotes < 0">{{ dic.downVote }}</span>
+                                    <span *ngIf="sub.upvotes - sub.downvotes >= 0">{{ dic.upVote }}</span>
                                 </div>
                                 <div class="subcomment-vote">
                                     <ul class="vote">
-                                        <li class="vote-up">
+                                        <li class="vote-up" [class.disabled]="!voteEnable">
                                             <span (click)="comUpVote(sub)">&#9652;</span>
                                         </li>
-                                        <li class="vote-down">
+                                        <li class="vote-down" [class.disabled]="!voteEnable">
                                             <span (click)="comDownVote(sub)">&#9662;</span>
                                         </li>
                                     </ul>

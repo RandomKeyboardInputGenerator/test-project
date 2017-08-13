@@ -19,6 +19,8 @@ export class SingleQuestionBaseComponent implements OnInit {
     
     // Question Id
     qId = 0;
+    // Logged user id - for voting
+    userId = 0;
     // Buffors for data from db
     relComments = [];
     question = {};
@@ -50,6 +52,7 @@ export class SingleQuestionBaseComponent implements OnInit {
                 comments => {
                     this.relComments = comments;
                     this.loading.status.com = true;
+                    this.voteEnable = true;
                 }
             );
     }
@@ -61,6 +64,7 @@ export class SingleQuestionBaseComponent implements OnInit {
                 question => {
                     this.question = question;
                     this.loading.status.q = true;
+                    this.voteEnable = true;
                 }
             );
     }
@@ -76,29 +80,42 @@ export class SingleQuestionBaseComponent implements OnInit {
             );
     }
     
-    comUpVote(comment: any): void {
-        //comment.upvotes += 1; // the value must be increased on database
-        
-        // Take from Db current values
-        this.findRelComm(this.qId);
+    // disable voting during waiting for response from service
+    voteEnable = true;
+    // upVote for comment
+    comUpVote(com: any): void {
+        if(this.voteEnable) {
+            this.voteEnable = false;
+            this.dataService
+                .comUpVote(com)
+                .then(response => { this.findRelComm(this.qId); });
+        }
     }
-    
-    comDownVote(comment: any): void {
-        
-        // Take from Db current values
-        this.findRelComm(this.qId);
+    // downVote for comment
+    comDownVote(com: any): void {
+        if(this.voteEnable) {
+            this.voteEnable = false;
+            this.dataService
+                .comDownVote(com)
+                .then(response => { this.findRelComm(this.qId); });
+        }
     }
-    
+    // upVote for question
     qUpVote(question: any): void {
-        
-        
-        // Take from Db current values
-        this.getQData(this.qId);
+        if(this.voteEnable) {
+            this.voteEnable = false;
+            this.dataService
+                .qUpVote(question)
+                .then(response => { this.getQData(this.qId); });
+        }
     }
-    
+    // downVote for question
     qDownVote(question: any): void {
-        
-        // Take from Db current values
-        this.getQData(this.qId);
+        if(this.voteEnable) {
+            this.voteEnable = false;
+            this.dataService
+                .qDownVote(question)
+                .then(response => { this.getQData(this.qId); });
+        }
     }
 }

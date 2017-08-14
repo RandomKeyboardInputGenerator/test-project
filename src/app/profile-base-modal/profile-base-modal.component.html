@@ -1,136 +1,105 @@
+
 <md-dialog-content>
-    <div class="modal-content">
-        <div class="modal-exit-btn" (click)="closeModal()">&#10799;</div>
-        <div class="modal-avatar">
-            <h1>
-                <span class="glyphicon glyphicon-user"></span>
-            </h1>
-        </div>
-        <div class="modal-user-name">
-            <h3>{{data}}</h3>
-        </div>
-        <div class="modal-user-info">
-            <div class="modal-user-info-left">
-                <span style="color: grey;">{{ dic.memberTime }}</span> <div class="nowrap"><b>{{ author.memberTime }}</b></div>
-            </div>
-            <div class="modal-user-info-center">
-                <span style="color: grey;">{{ dic.lastLogTime }}</span> <div class="nowrap"><b>{{ author.lastLogTime }}</b></div>
-            </div>
-            <div class="modal-user-info-right">
-                <span style="color: grey;">{{ dic.activityLvl }}</span> <div class="nowrap"><span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star-empty"></span></div>
-            </div>
-        </div>
-        <hr class="modal-hr"/>
-        <div class="modal-user-menu">
-            <div class="modal-user-menu-left">
-                <button class="grey"><span>&lt;</span></button>
-            </div>
-            <div class="modal-user-menu-name">
-                {{ dic.modalTitles[0] }}
-            </div>
-            <div class="modal-user-menu-right">
-                <button class="blue"><span>&gt;</span></button>
-            </div>
-        </div>
-        <div class="modal-profile-info">
-            <div class="modal-profile-info-row">
-                <div class="modal-profile-info-title">
-                    <span class="nowrap">{{ dic.modalTitles[1] }}</span> <span class="nowrap">{{ dic.modalTitles[2] }}</span>
-                </div>
-            </div>
-            <div class="modal-profile-info-row">
-                <div class="modal-profile-info-peers">
-                    <div class="modal-profile-info-peers-unrotate">
-                        <h1>{{ author.peers}}</h1> 
-                        <p>{{ dic.peers}}</p>
-                    </div>
-                </div>
-                <div class="modal-profile-info-dis">
-                    <div class="modal-profile-info-dis-unrotate">
-                        <h1>{{ author.discussions}}</h1> 
-                        <p>{{ dic.discussions}}</p>
-                    </div>
-                </div>
-                <div class="modal-profile-info-find">
-                    <div class="modal-profile-info-find-unrotate">
-                        <h1>{{ author.findings}}</h1> 
-                        <p>{{ dic.findings}}</p>
-                    </div>
-                </div>
-                <div class="modal-profile-info-q">
-                    <div class="modal-profile-info-q-unrotate">
-                        <h1>{{ author.questions}}</h1> 
-                        <p>{{ dic.questions}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-other-profiles">
-            <div class="modal-other-profiles-title">
-                <span class="nowrap">{{ dic.modalTitles[3] }}</span> <span class="nowrap">{{ dic.modalTitles[4] }}</span>
-            </div>
-            <div class="modal-other-profiles-row">
-                <div class="modal-other-profiles-profile">
-                    <div class="modal-other-profiles-profile-ico">
-                        <h1>
-                            <span class="glyphicon glyphicon-user"></span>
-                        </h1>
-                    </div>
-                    <div class="modal-other-profiles-profile-name">
-                        {{ author.otherAutorsStatic[0] }}
-                    </div>
-                </div>
-                <div class="modal-other-profiles-profile">
-                    <div class="modal-other-profiles-profile-ico">
-                        <h1>
-                            <span class="glyphicon glyphicon-user"></span>
-                        </h1>
-                    </div>
-                    <div class="modal-other-profiles-profile-name">
-                        {{ author.otherAutorsStatic[1] }}
-                    </div>
-                </div>
-                <div class="modal-other-profiles-profile">
-                    <div class="modal-other-profiles-profile-ico">
-                        <h1>
-                            <span class="glyphicon glyphicon-user"></span>
-                        </h1>
-                    </div>
-                    <div class="modal-other-profiles-profile-name">
-                        {{ author.otherAutorsStatic[2] }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-hottest-discussion">
-            <div class="modal-hottest-discussion-title">
-                {{ dic.modalTitles[5] }}
-            </div>
-            <div class="modal-hottest-discussion-row">
-                <div class="modal-hottest-discussion-avatar">
-                    <h1>
-                        <span class="glyphicon glyphicon-user"></span>
-                    </h1>
-                </div>
-                <div class="modal-hottest-discussion-desc">
-                    <p>{{ staticFinding.author }} <span style="color: grey; font-style: normal; font-weight: normal;">{{ staticFinding.desc }}</span></p>
-                    <h4>{{ staticFinding.title }}</h4>
-                </div>
-                <div class="modal-hottest-discussion-info-row">
-                    <div class="modal-hottest-discussion-info">
-                        <span class="modal-hottest-discussion-info-nr">{{ staticFinding.peerInv }}</span> <span>{{ dic.peerInv }}</span>
-                    </div>
-                    <div class="modal-hottest-discussion-info">
-                        <span class="modal-hottest-discussion-info-nr">{{ staticFinding.relDis }}</span> <span>{{ dic.relDis }}</span>
-                    </div>
-                    <div class="modal-hottest-discussion-info">
-                        <span class="modal-hottest-discussion-info-nr">{{ staticFinding.conv }}</span> <span>{{ dic.conv }}</span>
-                    </div>
-                    <div class="modal-hottest-discussion-info">
-                        <span class="modal-hottest-discussion-info-nr">{{ staticFinding.upvotes }}</span> <span>{{ dic.upVote }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="modal-content">
+    <div (click)="closeModal()" class="modal-exit-btn">&#10799;</div>
+    <div class="modal-avatar">
+      <h1><span class="glyphicon glyphicon-user"></span></h1>
     </div>
+    <div class="modal-user-name">
+      <h3>{{data}}</h3>
+    </div>
+    <div class="modal-user-info">
+      <div class="modal-user-info-left"><span style="color: grey;">{{ dic.memberTime }}</span>
+        <div class="nowrap"><b>{{ author.memberTime }}</b></div>
+      </div>
+      <div class="modal-user-info-center"><span style="color: grey;">{{ dic.lastLogTime }}</span>
+        <div class="nowrap"><b>{{ author.lastLogTime }}</b></div>
+      </div>
+      <div class="modal-user-info-right"><span style="color: grey;">{{ dic.activityLvl }}</span>
+        <div class="nowrap"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+      </div>
+    </div>
+    <hr class="modal-hr"/>
+    <div class="modal-user-menu">
+      <div class="modal-user-menu-left">
+        <button class="grey"><span>&lt;</span></button>
+      </div>
+      <div class="modal-user-menu-name">{{ dic.modalTitles[0] }}</div>
+      <div class="modal-user-menu-right">
+        <button class="blue"><span>&gt;</span></button>
+      </div>
+    </div>
+    <div class="modal-profile-info">
+      <div class="modal-profile-info-row">
+        <div class="modal-profile-info-title"><span class="nowrap">{{ dic.modalTitles[1] }}</span><span class="nowrap">{{ dic.modalTitles[2] }}</span></div>
+      </div>
+      <div class="modal-profile-info-row">
+        <div class="modal-profile-info-peers">
+          <div class="modal-profile-info-peers-unrotate">
+            <h1>{{ author.peers}}</h1>
+            <p>{{ dic.peers}}</p>
+          </div>
+        </div>
+        <div class="modal-profile-info-dis">
+          <div class="modal-profile-info-dis-unrotate">
+            <h1>{{ author.discussions}}</h1>
+            <p>{{ dic.discussions}}</p>
+          </div>
+        </div>
+        <div class="modal-profile-info-find">
+          <div class="modal-profile-info-find-unrotate">
+            <h1>{{ author.findings}}</h1>
+            <p>{{ dic.findings}}</p>
+          </div>
+        </div>
+        <div class="modal-profile-info-q">
+          <div class="modal-profile-info-q-unrotate">
+            <h1>{{ author.questions}}</h1>
+            <p>{{ dic.questions}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-other-profiles">
+      <div class="modal-other-profiles-title"><span class="nowrap">{{ dic.modalTitles[3] }}</span><span class="nowrap">{{ dic.modalTitles[4] }}</span></div>
+      <div class="modal-other-profiles-row">
+        <div class="modal-other-profiles-profile">
+          <div class="modal-other-profiles-profile-ico">
+            <h1><span class="glyphicon glyphicon-user"></span></h1>
+          </div>
+          <div class="modal-other-profiles-profile-name">{{ author.otherAutorsStatic[0] }}</div>
+        </div>
+        <div class="modal-other-profiles-profile">
+          <div class="modal-other-profiles-profile-ico">
+            <h1><span class="glyphicon glyphicon-user"></span></h1>
+          </div>
+          <div class="modal-other-profiles-profile-name">{{ author.otherAutorsStatic[1] }}</div>
+        </div>
+        <div class="modal-other-profiles-profile">
+          <div class="modal-other-profiles-profile-ico">
+            <h1><span class="glyphicon glyphicon-user"></span></h1>
+          </div>
+          <div class="modal-other-profiles-profile-name">{{ author.otherAutorsStatic[2] }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-hottest-discussion">
+      <div class="modal-hottest-discussion-title">{{ dic.modalTitles[5] }}</div>
+      <div class="modal-hottest-discussion-row">
+        <div class="modal-hottest-discussion-avatar">
+          <h1><span class="glyphicon glyphicon-user"></span></h1>
+        </div>
+        <div class="modal-hottest-discussion-desc">
+          <p>{{ staticFinding.author }} <span style="color: grey; font-style: normal; font-weight: normal;">{{ staticFinding.desc }}</span></p>
+          <h4>{{ staticFinding.title }}</h4>
+        </div>
+        <div class="modal-hottest-discussion-info-row">
+          <div class="modal-hottest-discussion-info"><span class="modal-hottest-discussion-info-nr">{{ staticFinding.peerInv }}</span><span>{{ dic.peerInv }}</span></div>
+          <div class="modal-hottest-discussion-info"><span class="modal-hottest-discussion-info-nr">{{ staticFinding.relDis }}</span><span>{{ dic.relDis }}</span></div>
+          <div class="modal-hottest-discussion-info"><span class="modal-hottest-discussion-info-nr">{{ staticFinding.conv }}</span><span>{{ dic.conv }}</span></div>
+          <div class="modal-hottest-discussion-info"><span class="modal-hottest-discussion-info-nr">{{ staticFinding.upvotes }}</span><span>{{ dic.upVote }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </md-dialog-content>

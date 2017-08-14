@@ -1,154 +1,103 @@
-<div *ngIf="!(loading.status.dic && loading.status.q && loading.status.com && loading.status.user)" class="alert alert-info">
-    <div class="alert-box">
-        <div class="loader"></div>
-    </div>
-    <div class="alert-box">
-        {{ loading.text }}
-    </div>
+
+<div *ngIf="!(loading.status.dic &amp;&amp; loading.status.q &amp;&amp; loading.status.com &amp;&amp; loading.status.user)" class="alert alert-info">
+  <div class="alert-box">
+    <div class="loader"></div>
+  </div>
+  <div class="alert-box">{{ loading.text }}</div>
 </div>
-
-<div class="layout" *ngIf="loading.status.dic && loading.status.q && loading.status.com && loading.status.user">
-    <div class="top nowrap">
-        <div class="back-button"><button class="back-button" (click)="goBack()">&lt;</button></div>
-        <div class="q-title">{{ dic.questionTitle }}</div>
-        <div class="add-button"><button class="add-button">&#43;</button></div>
-        <span class="q-last-time-dis">
-            <span>{{ dic.lastDisTime }} {{ dic.lastDisTimeStatic }}</span>
-        </span>
+<div *ngIf="loading.status.dic &amp;&amp; loading.status.q &amp;&amp; loading.status.com &amp;&amp; loading.status.user" class="layout">
+  <div class="top nowrap">
+    <div class="back-button">
+      <button (click)="goBack()" class="back-button">&lt;</button>
     </div>
-    <div class="body">
-        <div class="question clear">
-            <div class="question-col-left">
-                <div class="question-row-title">
-                    <div class="question-avatar" (click)="openModal(question.author)">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </div>
-                    <div class="question-author" (click)="openModal(question.author)">
-                        <span class="question-author-name">{{ question.author }}</span> <span style="color: grey;">{{ question.desc[1] }}</span>
-                    </div>
-                    <div class="question-title nowrap">
-                        <span>{{ question.title }}</span>
-                    </div>
-                </div>
-                <div class="question-row-content">
-                    <div class="question-desc">
-                        <span>{{ question.content }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="question-col-right">
-                <div class="question-row-options">
-                    <button class="button-link">{{ dic.unfollowBtn }}</button>
-                </div>
-                <div class="question-row-votes">
-                    <div class="question-votes-couter">
-                        <span>{{ question.upvotes - question.downvotes | abs }}</span>
-                    </div>
-                    <div class="question-votes-couter-desc">
-                        <span *ngIf="question.upvotes - question.downvotes < 0">{{ dic.downVote }}</span>
-                        <span *ngIf="question.upvotes - question.downvotes >= 0">{{ dic.upVote }}</span>
-                    </div>
-                    <div class="question-vote">
-                        <ul class="vote">
-                            <li class="vote-up" [class.disabled]="!voteEnable || isQVoted(question.id)">
-                                <span (click)="qUpVote(question)">&#9652;</span>
-                            </li>
-                            <li class="vote-down" [class.disabled]="!voteEnable || isQVoted(question.id)">
-                                <span (click)="qDownVote(question)">&#9662;</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="q-title">{{ dic.questionTitle }}</div>
+    <div class="add-button">
+      <button class="add-button">&#43;</button>
+    </div><span class="q-last-time-dis"><span>{{ dic.lastDisTime }} {{ dic.lastDisTimeStatic }}</span></span>
+  </div>
+  <div class="body">
+    <div class="question clear">
+      <div class="question-col-left">
+        <div class="question-row-title">
+          <div (click)="openModal(question.author)" class="question-avatar"><span class="glyphicon glyphicon-user"></span></div>
+          <div (click)="openModal(question.author)" class="question-author"><span class="question-author-name">{{ question.author }}&nbsp;</span><span style="color: grey;">{{ question.desc[1] }}</span></div>
+          <div class="question-title nowrap"><span>{{ question.title }}</span></div>
         </div>
-        <div class="question-footer">
-            <button class="question-btn">{{ dic.newAnswBtn }}</button>
+        <div class="question-row-content">
+          <div class="question-desc"><span>{{ question.content }}</span></div>
         </div>
-        <div class="comments-count">
-            <span class="comments-count-number">{{ question.peerAnsw }}</span> <span>{{ dic.peerAnsw }} {{ question.author }}</span>
+      </div>
+      <div class="question-col-right">
+        <div class="question-row-options">
+          <button class="button-link">{{ dic.unfollowBtn }}</button>
         </div>
-        <div *ngFor="let com of relComments | limitComTo:'ANSWERED'; index as _i;">
-            <div class="comment clear">
-                <div class="comment-col-left">
-                    <div class="comment-row-title">
-                        <div class="comment-avatar" (click)="openModal(com.author)">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </div>
-                        <div class="comment-author" (click)="openModal(com.author)">
-                            <span class="comment-author-name">{{ com.author }}</span> <span style="color: grey;">{{ dic.comDesc }} &#8226;</span> <span class="comment-author-time">{{ com.time }}</span>
-                        </div>
-                        <div class="comment-desc">
-                            <span>{{ com.content }}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-col-right">
-                    <div class="comment-row-votes">
-                        <div class="comment-votes-couter">
-                            <span>{{ com.upvotes - com.downvotes | abs }}</span>
-                        </div>
-                        <div class="comment-votes-couter-desc">
-                            <span *ngIf="com.upvotes - com.downvotes < 0">{{ dic.downVote }}</span>
-                            <span *ngIf="com.upvotes - com.downvotes >= 0">{{ dic.upVote }}</span>
-                        </div>
-                        <div class="comment-vote">
-                            <ul class="vote">
-                                <li class="vote-up" [class.disabled]="!voteEnable || isComVoted(com.id)">
-                                    <span (click)="comUpVote(com)">&#9652;</span>
-                                </li>
-                                <li class="vote-down" [class.disabled]="!voteEnable || isComVoted(com.id)">
-                                    <span (click)="comDownVote(com)">&#9662;</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="comment-footer" *ngIf="!com.relDis">
-                <button class="comment-btn">{{ dic.comBtn }}</button>
-            </div>
-                <div *ngFor="let sub of relComments | limitComTo:'COMMENTED':com.id; index as _i; last as _end;">
-                    <div class="subcomment clear">
-                        <div class="subcomment-col-left">
-                            <div class="subcomment-row-title">
-                                <div class="subcomment-avatar" (click)="openModal(sub.author)">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                </div>
-                                <div class="subcomment-author" (click)="openModal(sub.author)">
-                                    <span class="subcomment-author-name">{{ sub.author }}</span> <span style="color: grey;">{{ dic.comDesc }} &#8226;</span> <span class="subcomment-author-time">{{ sub.time }}</span>
-                                </div>
-                                <div class="subcomment-desc">
-                                    <span>{{ sub.content }}</span>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subcomment-col-right">
-                            <div class="subcomment-row-votes">
-                                <div class="subcomment-votes-couter">
-                                    <span>{{ sub.upvotes - sub.downvotes | abs }}</span>
-                                </div>
-                                <div class="subcomment-votes-couter-desc">
-                                    <span *ngIf="sub.upvotes - sub.downvotes < 0">{{ dic.downVote }}</span>
-                                    <span *ngIf="sub.upvotes - sub.downvotes >= 0">{{ dic.upVote }}</span>
-                                </div>
-                                <div class="subcomment-vote">
-                                    <ul class="vote">
-                                        <li class="vote-up" [class.disabled]="!voteEnable || isComVoted(sub.id)">
-                                            <span (click)="comUpVote(sub)">&#9652;</span>
-                                        </li>
-                                        <li class="vote-down" [class.disabled]="!voteEnable || isComVoted(sub.id)">
-                                            <span (click)="comDownVote(sub)">&#9662;</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subcomment-footer" *ngIf="_end">
-                        <button class="subcomment-btn">{{ dic.contDisBtn }}</button>
-                    </div>
-                </div>
+        <div class="question-row-votes">
+          <div class="question-votes-couter"><span>{{ question.upvotes - question.downvotes | abs }}</span></div>
+          <div class="question-votes-couter-desc"><span *ngIf="question.upvotes - question.downvotes &lt; 0">{{ dic.downVote }}</span><span *ngIf="question.upvotes - question.downvotes &gt;= 0">{{ dic.upVote }}</span></div>
+          <div class="question-vote">
+            <ul class="vote">
+              <li [class.disabled]="!voteEnable || isQVoted(question.id)" class="vote-up"><span (click)="qUpVote(question)">&#9652;</span></li>
+              <li [class.disabled]="!voteEnable || isQVoted(question.id)" class="vote-down"><span (click)="qDownVote(question)">&#9662;</span></li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="question-footer">
+      <button class="question-btn">{{ dic.newAnswBtn }}</button>
+    </div>
+    <div class="comments-count"><span class="comments-count-number">{{ question.peerAnsw }}&nbsp;</span><span>{{ dic.peerAnsw }} {{ question.author }}</span></div>
+    <div *ngFor="let com of relComments | limitComTo:'ANSWERED'; index as _i;">
+      <div class="comment clear">
+        <div class="comment-col-left">
+          <div class="comment-row-title">
+            <div (click)="openModal(com.author)" class="comment-avatar"><span class="glyphicon glyphicon-user"></span></div>
+            <div (click)="openModal(com.author)" class="comment-author"><span class="comment-author-name">{{ com.author }}&nbsp;</span><span style="color: grey;">{{ dic.comDesc }} &#8226;&nbsp;</span><span class="comment-author-time">{{ com.time }}</span></div>
+            <div class="comment-desc"><span>{{ com.content }}</span></div>
+          </div>
+        </div>
+        <div class="comment-col-right">
+          <div class="comment-row-votes">
+            <div class="comment-votes-couter"><span>{{ com.upvotes - com.downvotes | abs }}</span></div>
+            <div class="comment-votes-couter-desc"><span *ngIf="com.upvotes - com.downvotes &lt; 0">{{ dic.downVote }}</span><span *ngIf="com.upvotes - com.downvotes &gt;= 0">{{ dic.upVote }}</span></div>
+            <div class="comment-vote">
+              <ul class="vote">
+                <li [class.disabled]="!voteEnable || isComVoted(com.id)" class="vote-up"><span (click)="comUpVote(com)">&#9652;</span></li>
+                <li [class.disabled]="!voteEnable || isComVoted(com.id)" class="vote-down"><span (click)="comDownVote(com)">&#9662;</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!com.relDis" class="comment-footer">
+        <button class="comment-btn">{{ dic.comBtn }}</button>
+      </div>
+      <div *ngFor="let sub of relComments | limitComTo:'COMMENTED':com.id; index as _i; last as _end;">
+        <div class="subcomment clear">
+          <div class="subcomment-col-left">
+            <div class="subcomment-row-title">
+              <div (click)="openModal(sub.author)" class="subcomment-avatar"><span class="glyphicon glyphicon-user"></span></div>
+              <div (click)="openModal(sub.author)" class="subcomment-author"><span class="subcomment-author-name">{{ sub.author }}&nbsp;</span><span style="color: grey;">{{ dic.comDesc }} &#8226;&nbsp;</span><span class="subcomment-author-time">{{ sub.time }}</span></div>
+              <div class="subcomment-desc"><span>{{ sub.content }}</span></div>
+            </div>
+          </div>
+          <div class="subcomment-col-right">
+            <div class="subcomment-row-votes">
+              <div class="subcomment-votes-couter"><span>{{ sub.upvotes - sub.downvotes | abs }}</span></div>
+              <div class="subcomment-votes-couter-desc"><span *ngIf="sub.upvotes - sub.downvotes &lt; 0">{{ dic.downVote }}</span><span *ngIf="sub.upvotes - sub.downvotes &gt;= 0">{{ dic.upVote }}</span></div>
+              <div class="subcomment-vote">
+                <ul class="vote">
+                  <li [class.disabled]="!voteEnable || isComVoted(sub.id)" class="vote-up"><span (click)="comUpVote(sub)">&#9652;</span></li>
+                  <li [class.disabled]="!voteEnable || isComVoted(sub.id)" class="vote-down"><span (click)="comDownVote(sub)">&#9662;</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="_end" class="subcomment-footer">
+          <button class="subcomment-btn">{{ dic.contDisBtn }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

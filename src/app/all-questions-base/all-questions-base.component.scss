@@ -1,9 +1,11 @@
+$width-full: 100%;
+
 div {
   &.top-nav-row {
     display: table;
     margin: auto;
     padding: 0;
-    width: 100%;
+    width: $width-full;
     text-align: center;
   }
   &.back-button {
@@ -163,7 +165,7 @@ div.q-radio {
   margin: auto;
   text-align: center;
   vertical-align: middle;
-  width: 100%;
+  width;
 }
 
 input.q-radio-input {
@@ -175,7 +177,7 @@ div {
     display: inline-block;
     margin: auto;
     padding: 5px;
-    width: 100%;
+    width: $width-full;
     text-align: center;
   }
   &.q-sort {
@@ -188,7 +190,7 @@ div {
     margin: auto;
     text-align: center;
     vertical-align: middle;
-    width: 100%;
+    width: $width-full;
   }
 }
 
@@ -203,7 +205,7 @@ div {
       width: calc(50% - 10px);
     }
     &.title-row {
-      width: 100%;
+      width: $width-full;
       text-align: center;
     }
   }
@@ -251,6 +253,7 @@ span {
     cursor: pointer;
   }
   &.q-sort-link-active {
+    margin: 5px;
     text-decoration: underline;
     color: gray;
     font-weight: bold;
@@ -263,7 +266,7 @@ div.top-search-row {
   margin: auto;
   padding: 0;
   max-width: 810px;
-  width: 100%;
+  width: $width-full;
   overflow: auto;
 }
 
@@ -273,7 +276,7 @@ input.q-search {
   background-color: #fbfbfb;
   border: 1px solid lightgray;
   margin: 5px;
-  width: 100%;
+  width: $width-full;
 }
 
 button.q-search-btn {
@@ -284,7 +287,7 @@ button.q-search-btn {
   font-weight: bold;
   height: 30px;
   margin: 5px;
-  width: 100%;
+  width: $width-full;
 }
 
 @media screen and (min-width: 530px) {
@@ -318,14 +321,14 @@ div {
     border-left-width: 1px;
     max-width: 800px;
     min-width: 320px;
-    width: 100%;
+    width: $width-full;
   }
   &.question-row-title {
     overflow: auto;
     min-height: 50px;
     background-color: #dff3fd;
     color: darkblue;
-    width: 100%;
+    width: $width-full;
   }
   &.question-avatar {
     font-size: 25px;
@@ -355,7 +358,7 @@ span.question-author-name {
 div {
   &.question-title {
     display: table;
-    width: 100%;
+    width: $width-full;
     border-top: 1px solid white;
     padding: 10px;
     text-align: center;
@@ -366,7 +369,7 @@ div {
     padding-top: 20px;
     float: left;
     font-size: 45px;
-    width: 100%;
+    width: $width-full;
     height: 115px;
     margin: auto;
     cursor: pointer;
@@ -376,7 +379,7 @@ div {
     padding-top: 20px;
     float: left;
     font-size: 45px;
-    width: 100%;
+    width: $width-full;
     height: 109px;
     margin: auto;
     cursor: pointer;
@@ -476,7 +479,7 @@ div {
   }
   &.question-tabs {
     display: table;
-    width: 100%;
+    width: $width-full;
   }
   &.question-desc-footer {
     position: relative;
@@ -506,14 +509,14 @@ div {
   }
   &.question-com-content {
     margin-top: 0px;
-    width: 100%;
+    width: $width-full;
     height: 150px;
     background-color: #eeeeee;
   }
   &.question-count-content {
     margin-top: 0px;
     padding: 0 10px;
-    width: 100%;
+    width: $width-full;
     height: 150px;
     background-color: #eeeeee;
   }
@@ -524,13 +527,13 @@ div {
     background-color: #dff3fd;
   }
   &.question-com-footer {
-    width: 100%;
+    width: $width-full;
     float: left;
     text-align: center;
     color: #a7a9ac;
   }
   &.question-count-footer {
-    width: 100%;
+    width: $width-full;
     float: left;
     text-align: center;
     color: black;
@@ -664,7 +667,7 @@ div.question-load-more {
   padding: 30px;
   max-width: 800px;
   min-width: 320px;
-  width: 100%;
+  width: $width-full;
   text-align: left;
 }
 

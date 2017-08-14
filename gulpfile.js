@@ -11,7 +11,7 @@ gulp.task('all-questions-base-template', function(done){
             jade: jade,
             pretty: true
         }))
-        .pipe(gulp.dest('src/app/all-questions-base/html'));
+        .pipe(gulp.dest('src/app/all-questions-base'));
 });
 gulp.task('profile-base-modal-template', function(done){  
     return gulp.src('src/app/profile-base-modal/*.jade')
@@ -19,7 +19,7 @@ gulp.task('profile-base-modal-template', function(done){
             jade: jade,
             pretty: true
         }))
-        .pipe(gulp.dest('src/app/profile-base-modal/html'));
+        .pipe(gulp.dest('src/app/profile-base-modal'));
 });
 gulp.task('single-question-base-template', function(done){  
     return gulp.src('src/app/single-question-base/*.jade')
@@ -27,7 +27,7 @@ gulp.task('single-question-base-template', function(done){
             jade: jade,
             pretty: true
         }))
-        .pipe(gulp.dest('src/app/single-question-base/html'));
+        .pipe(gulp.dest('src/app/single-question-base'));
 });
 gulp.task('app-template', function(done){  
     return gulp.src('src/app/*.jade')
@@ -35,7 +35,7 @@ gulp.task('app-template', function(done){
             jade: jade,
             pretty: true
         }))
-        .pipe(gulp.dest('src/app/html'));
+        .pipe(gulp.dest('src/app'));
 });
 
 // Watch the jade templates
@@ -51,25 +51,25 @@ gulp.task('all-questions-base-style', function() {
     return gulp.src('src/app/all-questions-base/*.scss')
 		.pipe(sass())
 		.pipe(autoprefixer('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-		.pipe(gulp.dest('src/app/all-questions-base/css'));
+		.pipe(gulp.dest('src/app/all-questions-base'));
 });
 gulp.task('profile-base-modal-style', function(done){  
     return gulp.src('src/app/profile-base-modal/*.scss')
 		.pipe(sass())
 		.pipe(autoprefixer('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-		.pipe(gulp.dest('src/app/profile-base-modal/css'));
+		.pipe(gulp.dest('src/app/profile-base-modal'));
 });
 gulp.task('single-question-base-style', function(done){  
     return gulp.src('src/app/single-question-base/*.scss')
 		.pipe(sass())
 		.pipe(autoprefixer('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-		.pipe(gulp.dest('src/app/single-question-base/css'));
+		.pipe(gulp.dest('src/app/single-question-base'));
 });
 gulp.task('app-style', function(done){  
     return gulp.src('src/app/*.scss')
 		.pipe(sass())
 		.pipe(autoprefixer('last 1 version', '> 1%', 'ie 8', 'ie 7'))
-		.pipe(gulp.dest('src/app/css'));
+		.pipe(gulp.dest('src/app'));
 });
 
 // Watch the sass files

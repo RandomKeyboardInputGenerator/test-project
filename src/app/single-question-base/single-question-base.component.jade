@@ -1,15 +1,15 @@
-.alert.alert-info(*ngif='!(loading.status.dic && loading.status.q && loading.status.com && loading.status.user)')
+.alert.alert-info(*ngIf='!(loading.status.dic && loading.status.q && loading.status.com && loading.status.user)')
 	.alert-box
 		.loader
 	.alert-box
 		| {{ loading.text }}
-.layout(*ngif='loading.status.dic && loading.status.q && loading.status.com && loading.status.user')
+.layout(*ngIf='loading.status.dic && loading.status.q && loading.status.com && loading.status.user')
 	.top.nowrap
 		.back-button
-			button.back-button((click)='goBack()') <
+			button.back-button((click)='goBack()') &lt;
 		.q-title {{ dic.questionTitle }}
 		.add-button
-			button.add-button +
+			button.add-button &#43;
 		span.q-last-time-dis
 			span {{ dic.lastDisTime }} {{ dic.lastDisTimeStatic }}
 	.body
@@ -19,7 +19,7 @@
 					.question-avatar((click)='openModal(question.author)')
 						span.glyphicon.glyphicon-user
 					.question-author((click)='openModal(question.author)')
-						span.question-author-name {{ question.author }}
+						span.question-author-name {{ question.author }}&nbsp;
 						span(style='color: grey;') {{ question.desc[1] }}
 					.question-title.nowrap
 						span {{ question.title }}
@@ -33,28 +33,28 @@
 					.question-votes-couter
 						span {{ question.upvotes - question.downvotes | abs }}
 					.question-votes-couter-desc
-						span(*ngif='question.upvotes - question.downvotes < 0') {{ dic.downVote }}
-						span(*ngif='question.upvotes - question.downvotes >= 0') {{ dic.upVote }}
+						span(*ngIf='question.upvotes - question.downvotes < 0') {{ dic.downVote }}
+						span(*ngIf='question.upvotes - question.downvotes >= 0') {{ dic.upVote }}
 					.question-vote
 						ul.vote
 							li.vote-up([class.disabled]='!voteEnable || isQVoted(question.id)')
-								span((click)='qUpVote(question)') ▴
+								span((click)='qUpVote(question)') &#9652;
 							li.vote-down([class.disabled]='!voteEnable || isQVoted(question.id)')
-								span((click)='qDownVote(question)') ▾
+								span((click)='qDownVote(question)') &#9662;
 		.question-footer
 			button.question-btn {{ dic.newAnswBtn }}
 		.comments-count
-			span.comments-count-number {{ question.peerAnsw }}
+			span.comments-count-number {{ question.peerAnsw }}&nbsp;
 			span {{ dic.peerAnsw }} {{ question.author }}
-		div(*ngfor="let com of relComments | limitComTo:'ANSWERED'; index as _i;")
+		div(*ngFor="let com of relComments | limitComTo:'ANSWERED'; index as _i;")
 			.comment.clear
 				.comment-col-left
 					.comment-row-title
 						.comment-avatar((click)='openModal(com.author)')
 							span.glyphicon.glyphicon-user
 						.comment-author((click)='openModal(com.author)')
-							span.comment-author-name {{ com.author }}
-							span(style='color: grey;') {{ dic.comDesc }} •
+							span.comment-author-name {{ com.author }}&nbsp;
+							span(style='color: grey;') {{ dic.comDesc }} &#8226;&nbsp;
 							span.comment-author-time {{ com.time }}
 						.comment-desc
 							span {{ com.content }}
@@ -63,25 +63,25 @@
 						.comment-votes-couter
 							span {{ com.upvotes - com.downvotes | abs }}
 						.comment-votes-couter-desc
-							span(*ngif='com.upvotes - com.downvotes < 0') {{ dic.downVote }}
-							span(*ngif='com.upvotes - com.downvotes >= 0') {{ dic.upVote }}
+							span(*ngIf='com.upvotes - com.downvotes < 0') {{ dic.downVote }}
+							span(*ngIf='com.upvotes - com.downvotes >= 0') {{ dic.upVote }}
 						.comment-vote
 							ul.vote
 								li.vote-up([class.disabled]='!voteEnable || isComVoted(com.id)')
-									span((click)='comUpVote(com)') ▴
+									span((click)='comUpVote(com)') &#9652;
 								li.vote-down([class.disabled]='!voteEnable || isComVoted(com.id)')
-									span((click)='comDownVote(com)') ▾
-			.comment-footer(*ngif='!com.relDis')
+									span((click)='comDownVote(com)') &#9662;
+			.comment-footer(*ngIf='!com.relDis')
 				button.comment-btn {{ dic.comBtn }}
-			div(*ngfor="let sub of relComments | limitComTo:'COMMENTED':com.id; index as _i; last as _end;")
+			div(*ngFor="let sub of relComments | limitComTo:'COMMENTED':com.id; index as _i; last as _end;")
 				.subcomment.clear
 					.subcomment-col-left
 						.subcomment-row-title
 							.subcomment-avatar((click)='openModal(sub.author)')
 								span.glyphicon.glyphicon-user
 							.subcomment-author((click)='openModal(sub.author)')
-								span.subcomment-author-name {{ sub.author }}
-								span(style='color: grey;') {{ dic.comDesc }} •
+								span.subcomment-author-name {{ sub.author }}&nbsp;
+								span(style='color: grey;') {{ dic.comDesc }} &#8226;&nbsp;
 								span.subcomment-author-time {{ sub.time }}
 							.subcomment-desc
 								span {{ sub.content }}
@@ -90,13 +90,13 @@
 							.subcomment-votes-couter
 								span {{ sub.upvotes - sub.downvotes | abs }}
 							.subcomment-votes-couter-desc
-								span(*ngif='sub.upvotes - sub.downvotes < 0') {{ dic.downVote }}
-								span(*ngif='sub.upvotes - sub.downvotes >= 0') {{ dic.upVote }}
+								span(*ngIf='sub.upvotes - sub.downvotes < 0') {{ dic.downVote }}
+								span(*ngIf='sub.upvotes - sub.downvotes >= 0') {{ dic.upVote }}
 							.subcomment-vote
 								ul.vote
 									li.vote-up([class.disabled]='!voteEnable || isComVoted(sub.id)')
-										span((click)='comUpVote(sub)') ▴
+										span((click)='comUpVote(sub)') &#9652;
 									li.vote-down([class.disabled]='!voteEnable || isComVoted(sub.id)')
-										span((click)='comDownVote(sub)') ▾
-				.subcomment-footer(*ngif='_end')
+										span((click)='comDownVote(sub)') &#9662;
+				.subcomment-footer(*ngIf='_end')
 					button.subcomment-btn {{ dic.contDisBtn }}

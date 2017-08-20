@@ -9,80 +9,16 @@ import _ from "lodash"
     styleUrls: ['./profile-base-modal.component.css']
 })
 export class ProfileBaseModalComponent implements OnInit {
-    data: string = '';
-    
-    staticDb = {
-        "dictionary": {
-            "peerAnsw":             "peers already answered",
-            "newAnswBtn":           "GIVE new answer",
-            "comBtn":               "COMMENT",
-            "contDisBtn":           "CONTINUE discussion",
-            "upVote":               "upvotes",
-            "downVote":             "downvotes",
-            "comDesc":              "COMMENTED IT",
-            "unfollowBtn":          "unfollow",
-            "lastDisTime":          "Last time discussed",
-            "lastDisTimeStatic":    "1 day ago", // To do...
-            "questionTitle":        "QUESTION",
-            "questionsTitle":       "QUESTIONS",
-            "countComDesc":         "more activities",
-            "sortByRecent":         "recent",
-            "sortByHot":            "hot",
-            "sortByDesc":           ["Sort by:","or"],
-            "searchBtn":            "SEARCH",
-            "radioMyself":          "My shelf",
-            "radioAll":             "All questions",
-            "relDis":               "related discusion",
-            "peerInv":              "peers involved",
-            "conv":                 "conversations",
-            "loadMoreBtn":          "load more questions",
-            "memberTime":           "MEMBER FOR",
-            "lastLogTime":          "LAST SEEN",
-            "activityLvl":          "ACTIVITY LEVEL",
-            "modalTitles":          [
-                                        "How it all started",
-                                        "THAT'S WHERE WE HAVE BEEN",
-                                        "THESE 5 MONTHS AGO",
-                                        "WHO JOINED THE PLATFORM",
-                                        "THAT SAME PERIOD",
-                                        "THE HOTTEST DISCUSSION THESE DAYS",
-                                    ],
-            "peers":                "peers",
-            "discussions":          "discussions",
-            "findings":             "findings",
-            "questions":            "questions",
-        },
-        "authors": [
-            {
-                "id": 0,
-                "name": "Dr. Halima",
-                "memberTime": "5 months",
-                "lastLogTime": "Saturday afternoon",
-                "peers": 46,
-                "discussions": 29,
-                "findings": 19,
-                "questions": 10,
-                "otherAutorsStatic": ["S.E.N Waveru","Patricia","Joseph Aluoch"]
-                
-            }
-        ]
-    };
-
     aId = 0;
-    dic = {};
-    author = {};
+    dic = {};   
+    author = {
+        'id': 0,
+        'memberTime': ''
+        };
+    users = {};
+    others = {};
+    hottestQ = {};
     
-    staticFinding = {
-        "id": 0,
-        "author": "Andrew",
-        "desc": "FOUND THE GUARDIAN ARTICLE",
-        "title": "Vegan diet to stop diabetes progress",
-        "relDis": 3,
-        "peerInv": 6,
-        "conv": 3,
-        "content": "Fusce convallis, mauris imperdiet gravida bibendum, nisl turpis suscipit mauris, sed placerat ipsum urna sed risus. In convallis tellus a mauris.",
-        "downvotes": 0, "upvotes": 19,
-    };
 
     constructor(
         @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
@@ -91,23 +27,42 @@ export class ProfileBaseModalComponent implements OnInit {
 
     ngOnInit() {
         // Write injected data to local variable
-        this.data = this.dialogData;
+        this.aId = this.dialogData.userId;
+        this.users = this.dialogData.users;
+        this.dic = this.dialogData.dic;
+        let qData = this.dialogData.qData;
         
-        this.getDictionary();
-        this.getAuthor(this.aId);
+        this.getUsers();
+        this.getHotestDis(qData);
     }
 
     closeModal(): void {
         this.dialogRef.close();
     }
     
-    // Get dictionary with static strings
-    getDictionary() {
-        this.dic = this.staticDb.dictionary;
+    // Get avatar's src
+    getAvatar(userId: number): string {
+        let users = this.users;
+        let src = _.find(users, function(o) { return o.id == userId }) || 'adelaide_hanscom1.png';
+        _.isObject(src) ? src = src.avatarSrc : src;
+        return 'assets/img/portraits/' + src;
     }
     
-    // Get author data
-    getAuthor(aId: number) {
-        this.author = _.find(this.staticDb.authors, function(o) { return o.id === aId; });
+    // Get others users 'WHO JOINED THE PLATFORM THAT SAME PERIOD' and the author
+    getUsers(): void {
+        let _aId = this.aId;
+        this.author = _.find(this.users, function(o) { return o.id == _aId });
+        let memberTime = this.author.memberTime;
+        // Get max 3 users and exclude the author 
+        this.others = _.slice(
+                        _.filter(this.users, function(o) { 
+                            return ( ( o.memberTime == memberTime ) && ( o.id !== _aId ) )
+                            }),
+                        0, 3
+                        );
+    }
+    //Get 'THE HOTTEST DISCUSSION THESE DAYS'
+    getHotestDis(qData: any): void {
+        this.hottestQ = _.max(qData, function(o) { return o.peerInv });
     }
 }

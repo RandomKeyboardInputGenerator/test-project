@@ -12,10 +12,10 @@ export class LimitComToPipe implements PipeTransform {
         
         let comments = []; 
         if (_.isUndefined(answerId)) {
-            comments = _.filter(value, function(o) { return o.type === type; });
+            comments = _.filter(value, function(o) { return o.type == type; });
         }
         else {
-            comments = _.filter(value, function(o) { return o.answerId === answerId; });
+            comments = _.filter(value, function(o) { return o.answerId == answerId; });
         }
         return comments;
     }

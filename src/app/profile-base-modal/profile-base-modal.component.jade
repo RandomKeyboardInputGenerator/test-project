@@ -3,9 +3,9 @@ md-dialog-content
 		.modal-exit-btn((click)='closeModal()') &#10799;
 		.modal-avatar
 			h1
-				span.glyphicon.glyphicon-user
+				img.img-circle(src='{{ getAvatar(author.id) }}', alt='...')
 		.modal-user-name
-			h3 {{data}}
+			h3 {{ author.name }}
 		.modal-user-info
 			.modal-user-info-left
 				span(style='color: grey;') {{ dic.memberTime }}
@@ -34,7 +34,7 @@ md-dialog-content
 		.modal-profile-info
 			.modal-profile-info-row
 				.modal-profile-info-title
-					span.nowrap {{ dic.modalTitles[1] }}
+					span.nowrap {{ dic.modalTitles[1] }}&nbsp;
 					span.nowrap {{ dic.modalTitles[2] }}
 			.modal-profile-info-row
 				.modal-profile-info-peers
@@ -55,49 +55,35 @@ md-dialog-content
 						p {{ dic.questions}}
 		.modal-other-profiles
 			.modal-other-profiles-title
-				span.nowrap {{ dic.modalTitles[3] }}
+				span.nowrap {{ dic.modalTitles[3] }}&nbsp;
 				span.nowrap {{ dic.modalTitles[4] }}
 			.modal-other-profiles-row
-				.modal-other-profiles-profile
+				.modal-other-profiles-profile(*ngFor='let o of others; index as _i;')
 					.modal-other-profiles-profile-ico
-						h1
-							span.glyphicon.glyphicon-user
+						img.img-circle-small(src='{{ getAvatar(o.id) }}', alt='...')
 					.modal-other-profiles-profile-name
-						| {{ author.otherAutorsStatic[0] }}
-				.modal-other-profiles-profile
-					.modal-other-profiles-profile-ico
-						h1
-							span.glyphicon.glyphicon-user
-					.modal-other-profiles-profile-name
-						| {{ author.otherAutorsStatic[1] }}
-				.modal-other-profiles-profile
-					.modal-other-profiles-profile-ico
-						h1
-							span.glyphicon.glyphicon-user
-					.modal-other-profiles-profile-name
-						| {{ author.otherAutorsStatic[2] }}
+						| {{ o.name }}
 		.modal-hottest-discussion
 			.modal-hottest-discussion-title
 				| {{ dic.modalTitles[5] }}
 			.modal-hottest-discussion-row
 				.modal-hottest-discussion-avatar
-					h1
-						span.glyphicon.glyphicon-user
+					img.img-circle-small(src='{{ getAvatar(hottestQ.authorId) }}', alt='...')
 				.modal-hottest-discussion-desc
 					p
-						| {{ staticFinding.author }} 
-						span(style='color: grey; font-style: normal; font-weight: normal;') {{ staticFinding.desc }}
-					h4 {{ staticFinding.title }}
+						| {{ hottestQ.author }} 
+						span(style='color: grey; font-style: normal; font-weight: normal;') {{ dic.qDesc[0] }}
+					h4 {{ hottestQ.title }}
 				.modal-hottest-discussion-info-row
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ staticFinding.peerInv }}
+						span.modal-hottest-discussion-info-nr {{ hottestQ.peerInv }}&nbsp;
 						span {{ dic.peerInv }}
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ staticFinding.relDis }}
+						span.modal-hottest-discussion-info-nr {{ hottestQ.relDis }}&nbsp;
 						span {{ dic.relDis }}
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ staticFinding.conv }}
+						span.modal-hottest-discussion-info-nr {{ hottestQ.conv }}&nbsp;
 						span {{ dic.conv }}
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ staticFinding.upvotes }}
+						span.modal-hottest-discussion-info-nr {{ hottestQ.upvotes }}&nbsp;
 						span {{ dic.upVote }}

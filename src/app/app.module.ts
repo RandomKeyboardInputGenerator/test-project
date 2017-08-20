@@ -15,7 +15,6 @@ import { DbService }  from './db.service';
 import { AppComponent } from './app.component';
 import { AllQuestionsBaseComponent } from './all-questions-base/all-questions-base.component';
 import { SingleQuestionBaseComponent } from './single-question-base/single-question-base.component';
-import { ProfileBaseComponent } from './profile-base/profile-base.component';
 import { ProfileBaseModalComponent } from './profile-base-modal/profile-base-modal.component';
 
 import { LimitComToPipe } from './limit-com-to.pipe';
@@ -28,7 +27,6 @@ import { SearchPipe } from './search.pipe';
         AppComponent,
         AllQuestionsBaseComponent,
         SingleQuestionBaseComponent,
-        ProfileBaseComponent,
         ProfileBaseModalComponent,
         LimitComToPipe,
         AbsPipe,

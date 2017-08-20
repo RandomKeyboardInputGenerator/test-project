@@ -16,11 +16,11 @@
 		.question.clear
 			.question-col-left
 				.question-row-title
-					.question-avatar((click)='openModal(question.author)')
-						span.glyphicon.glyphicon-user
-					.question-author((click)='openModal(question.author)')
-						span.question-author-name {{ question.author }}&nbsp;
-						span(style='color: grey;') {{ question.desc[1] }}
+					.question-avatar((click)='openModal(question.authorId)')
+						img.img-circle(src='{{ getAvatar(question.authorId) }}', alt='...')
+					.question-author((click)='openModal(question.authorId)')
+						span.question-author-name {{ getUserName(question.authorId) }}&nbsp;
+						span(style='color: grey;') {{ dic.qDesc[1] }}
 					.question-title.nowrap
 						span {{ question.title }}
 				.question-row-content
@@ -45,15 +45,15 @@
 			button.question-btn {{ dic.newAnswBtn }}
 		.comments-count
 			span.comments-count-number {{ question.peerAnsw }}&nbsp;
-			span {{ dic.peerAnsw }} {{ question.author }}
+			span {{ dic.peerAnsw }} {{ getUserName(question.authorId) }}
 		div(*ngFor="let com of relComments | limitComTo:'ANSWERED'; index as _i;")
 			.comment.clear
 				.comment-col-left
 					.comment-row-title
-						.comment-avatar((click)='openModal(com.author)')
-							span.glyphicon.glyphicon-user
-						.comment-author((click)='openModal(com.author)')
-							span.comment-author-name {{ com.author }}&nbsp;
+						.comment-avatar((click)='openModal(com.authorId)')
+							img.img-circle(src='{{ getAvatar(com.authorId) }}', alt='...')
+						.comment-author((click)='openModal(com.authorId)')
+							span.comment-author-name {{ getUserName(com.authorId) }}&nbsp;
 							span(style='color: grey;') {{ dic.comDesc }} &#8226;&nbsp;
 							span.comment-author-time {{ com.time }}
 						.comment-desc
@@ -77,10 +77,10 @@
 				.subcomment.clear
 					.subcomment-col-left
 						.subcomment-row-title
-							.subcomment-avatar((click)='openModal(sub.author)')
-								span.glyphicon.glyphicon-user
-							.subcomment-author((click)='openModal(sub.author)')
-								span.subcomment-author-name {{ sub.author }}&nbsp;
+							.subcomment-avatar((click)='openModal(sub.authorId)')
+								img.img-circle(src='{{ getAvatar(sub.authorId) }}', alt='...')
+							.subcomment-author((click)='openModal(sub.authorId)')
+								span.subcomment-author-name {{ getUserName(sub.authorId) }}&nbsp;
 								span(style='color: grey;') {{ dic.comDesc }} &#8226;&nbsp;
 								span.subcomment-author-time {{ sub.time }}
 							.subcomment-desc

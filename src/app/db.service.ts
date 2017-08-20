@@ -111,6 +111,30 @@ export class DbService {
             .then(response => response.json())
             .catch(this.handleError);
     }
+    
+    // Get avatar
+    getAvatar(avatarId: number): Promise<any>  {
+        return this.http.get(this.dbUrl + '/avatars/' + avatarId)
+            .toPromise()
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
+    
+    // Get avatars
+    getAvatars(): Promise<any>  {
+        return this.http.get(this.dbUrl + '/avatars')
+            .toPromise()
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
+    
+    // Get users
+    getUsers(): Promise<any>  {
+        return this.http.get(this.dbUrl + '/authors')
+            .toPromise()
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
 
     // Simple error handler
     private handleError(error: any): Promise<any> {

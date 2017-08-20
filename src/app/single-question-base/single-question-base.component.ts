@@ -17,7 +17,7 @@ import _ from "lodash"
     styleUrls: ['./single-question-base.component.css']
 })
 export class SingleQuestionBaseComponent implements OnInit {
-    loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false } };
+    loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
     
     // Question Id
     qId = 0;
@@ -28,10 +28,12 @@ export class SingleQuestionBaseComponent implements OnInit {
         "votedComs": [],
         "votedQ": [],
     };
+    users = [];
     // Buffors for data from db
     relComments = [];
     question = {};
     dic = {};
+    qData = {};
 
     constructor(
         public dialog: MdDialog,
@@ -41,19 +43,19 @@ export class SingleQuestionBaseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false } };
+        this.loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
         this.qId = +this.route.snapshot.paramMap.get('id') || 0;
         
         this.getQData(this.qId);
         this.findRelComm(this.qId);
         this.getDictionary();
-        this.getUser(this.userId);
+        this.getUsers();
     }
 
     // Show modal dialog with injected data
-    openModal(name: string): void {
+    openModal(userId: number): void {
         this.dialog.open(ProfileBaseModalComponent, {
-            data: name
+            data: { 'userId': userId, 'users': this.users, 'dic': this.dic, 'qData': this.qData }
         });
     }
     
@@ -68,13 +70,14 @@ export class SingleQuestionBaseComponent implements OnInit {
                 }
             );
     }
-    // Get question data
+    // Get questions data from database
     getQData(qId: number): void {
         this.dataService
-            .getQData(qId)
+            .getQData()
             .then(
-                question => {
-                    this.question = question;
+                questions => {
+                    this.qData = questions;
+                    this.question = _.find(this.qData, function(o) { return o.id == qId });
                     this.loading.status.q = true;
                 }
             );
@@ -107,12 +110,7 @@ export class SingleQuestionBaseComponent implements OnInit {
                         // Save vote
                         this.user.votedComs.push(com.id);
                         // Save also the user data
-                        this.dataService
-                            .saveUser(this.user)
-                            .then(() => { 
-                                // Enable voting when all data is successfully saved
-                                this.voteEnable = true; 
-                            });
+                        this.saveUser();
                     });
             }
         }
@@ -131,12 +129,7 @@ export class SingleQuestionBaseComponent implements OnInit {
                         // Save vote
                         this.user.votedComs.push(com.id);
                         // Save also the user data
-                        this.dataService
-                            .saveUser(this.user)
-                            .then(() => { 
-                                // Enable voting when all data is successfully saved
-                                this.voteEnable = true; 
-                            });
+                        this.saveUser();
                     });
             }
         }
@@ -155,12 +148,7 @@ export class SingleQuestionBaseComponent implements OnInit {
                         // Save vote
                         this.user.votedQ.push(question.id);
                         // Save also the user data
-                        this.dataService
-                            .saveUser(this.user)
-                            .then(() => { 
-                                // Enable voting when all data is successfully saved
-                                this.voteEnable = true; 
-                            });
+                        this.saveUser();
                     });
             }
         }
@@ -179,26 +167,70 @@ export class SingleQuestionBaseComponent implements OnInit {
                         // Save vote
                         this.user.votedQ.push(question.id);
                         // Save also the user data
-                        this.dataService
-                            .saveUser(this.user)
-                            .then(() => { 
-                                // Enable voting when all data is successfully saved
-                                this.voteEnable = true; 
-                            });
+                        this.saveUser();
                     });
             }
         }
     }
     // Get user data
     getUser(userId: number): void {
+        this.user = _.find(this.users, function(a) { return a.id == userId });
+        this.loading.status.user = true;
+    }
+    
+    // Save user data
+    saveUser(): void {
         this.dataService
-            .getUser(userId)
+            .saveUser(this.user)
+            .then(() => { 
+                // Enable voting when all data is successfully saved
+                this.voteEnable = true; 
+            });
+    }
+    
+    // Get avatars data
+    getAvatars(): void {
+        this.dataService
+            .getAvatars()
             .then(
-                user => {
-                    this.user = user;
-                    this.loading.status.user = true;
-                }
+                avatars => {
+                        let avatar = {};
+                        // For each user
+                        _.forEach(this.users, function(u, i, users) {
+                            // Find related avatar
+                            avatar = _.find(avatars, function(a) { return a.id == u.avatarId });
+                            // Remove needless keys and merge the objects
+                            users[i] = _.assign(_.omit(u, "avatarId"), _.omit(avatar, "id"));
+                        });
+                        // Get data of logged user
+                        this.getUser(this.userId);
+                    }
             );
+    }
+    
+    // Get avatar's src
+    getAvatar(userId: number): string {
+        let users = this.users;
+        let src = _.find(users, function(o) { return o.id == userId }) || 'adelaide_hanscom1.png';
+        _.isObject(src) ? src = src.avatarSrc : src;
+        return 'assets/img/portraits/' + src;
+    }
+    
+    // Get users data
+    getUsers(): void {
+        this.dataService
+            .getUsers()
+            .then(
+                users => {
+                        this.users = users;
+                        this.getAvatars();
+                    }
+            );
+    }
+    
+    getUserName(userId: number): string {
+        let users = this.users;
+        return _.find(users, function(o) { return o.id == userId }).name;
     }
     
     // Find out if user already voted on this comment

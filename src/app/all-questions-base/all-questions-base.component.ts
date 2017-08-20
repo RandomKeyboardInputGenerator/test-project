@@ -19,10 +19,10 @@ export class AllQuestionsBaseComponent implements OnInit {
     selected: string = 'recent'; // another trigger
     searchQuery: string = ''; // bufor for searching query connected with search input
     term: string = '';  // This one is sent to Search Pipe when user clicks search btn
-    loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false } };
+    loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'users': false } };
     
-    // Simulated user
-    me: string = 'Eva';
+    // Simulated user - userId
+    me: number = 1;
     
     // Limit of visable comments
     visCom = 4;
@@ -34,6 +34,9 @@ export class AllQuestionsBaseComponent implements OnInit {
     qData = [];
     // Comments data from Db
     comData = [];
+    // Users data
+    users = [];
+    hottestQ = {};
     
     // Listen for resizing window
     @HostListener('window:resize', ['$event']) onResize(event: any) {
@@ -52,16 +55,26 @@ export class AllQuestionsBaseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        // phone and tablet mode (<830px)
+        if (window.innerWidth < 830) {
+            this.visCom = 1;
+        }
+        // Full view mode
+        else {
+            this.visCom = 4;
+        }
+        
         this.getDictionary();
         this.getQData();
         this.getComData();
         this.sortQ();
+        this.getUsers();
     }
 
     // Show modal dialog with injected data
-    openModal(name: string): void {
+    openModal(userId: number): void {
         this.dialog.open(ProfileBaseModalComponent, {
-            data: name
+            data: { 'userId': userId, 'users': this.users, 'dic': this.dic, 'qData': this.qData }
         });
     }
     
@@ -83,7 +96,7 @@ export class AllQuestionsBaseComponent implements OnInit {
     
     // Needs optimisation... but later
     getComment(id: number): any {
-        let index = _.findIndex(this.comData, function(o) { return o.id === id; });
+        let index = _.findIndex(this.comData, function(o) { return o.id == id; });
         return this.comData[index];
     }
     
@@ -126,6 +139,50 @@ export class AllQuestionsBaseComponent implements OnInit {
                     this.loading.status.com = true;
                 }
             );
+    }
+    
+    // Get avatars data
+    getAvatars(): void {
+        this.dataService
+            .getAvatars()
+            .then(
+                avatars => {
+                        let avatar = {};
+                        // For each user
+                        _.forEach(this.users, function(u, i, users) {
+                            // Find related avatar
+                            avatar = _.find(avatars, function(a) { return a.id == u.avatarId });
+                            // Remove needless keys and merge the objects
+                            users[i] = _.assign(_.omit(u, "avatarId"), _.omit(avatar, "id"));
+                        });
+                        this.loading.status.users = true;
+                    }
+            );
+    }
+    
+    // Get avatar's src
+    getAvatar(userId: number): string {
+        let users = this.users;
+        let src = _.find(users, function(o) { return o.id == userId }) || 'adelaide_hanscom1.png';
+        _.isObject(src) ? src = src.avatarSrc : src;
+        return 'assets/img/portraits/' + src;
+    }
+    
+    // Get users data
+    getUsers(): void {
+        this.dataService
+            .getUsers()
+            .then(
+                users => {
+                        this.users = users;
+                        this.getAvatars();
+                    }
+            );
+    }
+    
+    getUserName(userId: number): string {
+        let users = this.users;
+        return _.find(users, function(o) { return o.id == userId }).name;
     }
 
     searchQ(): void {

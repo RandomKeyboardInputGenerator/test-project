@@ -7,14 +7,14 @@ import _ from "lodash"
 })
 export class LimitQToPipe implements PipeTransform {
 
-    transform(value: any, mode: string, name: string, args?: any): any {
+    transform(value: any, mode: string, id: number, args?: any): any {
         if (value == null) return value;
         
         if (mode === 'all') {
             return value;
         }
         else {
-            return _.filter(value, function(o) { return o.author === name; });
+            return _.filter(value, function(o) { return o.authorId == id; });
         }
     }
 

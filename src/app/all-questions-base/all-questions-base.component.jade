@@ -1,9 +1,9 @@
-.alert.alert-info(*ngIf='!(loading.status.dic && loading.status.q && loading.status.com)')
+.alert.alert-info(*ngIf='!(loading.status.dic && loading.status.q && loading.status.com && loading.status.users)')
 	.alert-box
 		.loader
 	.alert-box
 		| {{ loading.text }}
-.layout(*ngIf='loading.status.dic && loading.status.q && loading.status.com')
+.layout(*ngIf='loading.status.dic && loading.status.q && loading.status.com && loading.status.users')
 	.top
 		.top-nav-row.clear
 			button.back-button &lt;
@@ -26,12 +26,12 @@
 	.body((window:resize)='onResize($event)')
 		.question(*ngFor='let q of qData | slice:0:maxQ | limitQTo:questions:me | search:term; index as _i;')
 			.question-row-title
-				.question-avatar((click)='openModal(q.author)')
-					span.glyphicon.glyphicon-user
+				.question-avatar((click)='openModal(q.authorId)')
+					img.img-circle(src='{{ getAvatar(q.authorId) }}', alt='...')
 				.question-author
 					p
-						span.question-author-name((click)='openModal(q.author)') {{ q.author }}&nbsp;
-						span(style='color: grey;') {{ q.desc[1] }}
+						span.question-author-name((click)='openModal(q.authorId)') {{ getUserName(q.authorId) }}&nbsp;
+						span(style='color: grey;') {{ dic.qDesc[1] }}
 					p.title-link(routerLink='/question/{{ q.id }}', routerLinkactive='active')
 						span {{ q.title }}
 			.question-tabs.clear
@@ -40,7 +40,7 @@
 						.com-avatar
 						.question-com-footer
 							hr.grey
-							span {{ q.desc[0] }}
+							span {{ dic.qDesc[0] }}
 						.question-dot-empty &#8226;
 				.question-count(*ngIf='q.comments.length - this.visCom > 0')
 					.question-count-content
@@ -51,8 +51,8 @@
 						.count-dot-empty &#8226;
 				.question-com(*ngFor='let c of q.comments | slice:0:visCom; index as _j;', [class.col-1]='_j === 0', [class.col-2]='_j === 1', [class.col-3]='_j === 2', [class.col-4]='_j === 3')
 					.question-com-content
-						.com-avatar((click)='openModal(getComment(c).author)')
-							span.glyphicon.glyphicon-user
+						.com-avatar((click)='openModal(getComment(c).authorId)')
+							img.img-circle(src='{{ getAvatar(getComment(c).authorId) }}', alt='...')
 						.question-com-footer
 							hr([class.black]="getComment(c).type === 'ANSWERED'", [class.grey]="getComment(c).type !== 'ANSWERED'")
 							span {{ getComment(c).type }}

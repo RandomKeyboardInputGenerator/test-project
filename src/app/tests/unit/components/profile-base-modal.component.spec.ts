@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllQuestionsBaseComponent } from './all-questions-base.component';
+import { ProfileBaseModalComponent } from '../../../components/profile-base-modal.component';
 
-describe('AllQuestionsBaseComponent', () => {
-    let component: AllQuestionsBaseComponent;
-    let fixture: ComponentFixture<AllQuestionsBaseComponent>;
+describe('ProfileBaseModalComponent', () => {
+    let component: ProfileBaseModalComponent;
+    let fixture: ComponentFixture<ProfileBaseModalComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AllQuestionsBaseComponent]
+            declarations: [ProfileBaseModalComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AllQuestionsBaseComponent);
+        fixture = TestBed.createComponent(ProfileBaseModalComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

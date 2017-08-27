@@ -1,4 +1,4 @@
-import { LimitQToPipe } from './limit-qto.pipe';
+import { LimitQToPipe } from '../../../pipes/limit-qto.pipe';
 
 describe('LimitQToPipe', () => {
   it('create an instance', () => {

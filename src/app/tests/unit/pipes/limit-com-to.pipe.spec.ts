@@ -1,4 +1,4 @@
-import { LimitComToPipe } from './limit-com-to.pipe';
+import { LimitComToPipe } from '../../../pipes/limit-com-to.pipe';
 
 describe('LimitComToPipe', () => {
   it('create an instance', () => {

@@ -1,4 +1,4 @@
-import { AbsPipe } from './abs.pipe';
+import { AbsPipe } from '../../../pipes/abs.pipe';
 
 describe('AbsPipe', () => {
   it('create an instance', () => {

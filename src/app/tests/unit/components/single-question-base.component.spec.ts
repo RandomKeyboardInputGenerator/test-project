@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingleQuestionBaseComponent } from './single-question-base.component';
+import { SingleQuestionBaseComponent } from '../../../components/single-question-base.component';
 
 describe('SingleQuestionBaseComponent', () => {
     let component: SingleQuestionBaseComponent;

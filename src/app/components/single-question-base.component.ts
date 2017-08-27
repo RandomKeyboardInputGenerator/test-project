@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { ProfileBaseModalComponent } from '../profile-base-modal/profile-base-modal.component';
+import { ProfileBaseModalComponent } from './profile-base-modal.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
 
-import { DbService }  from '../db.service';
+import { DbService }  from '../services/db.service';
 
-import { LimitComToPipe } from '../limit-com-to.pipe';
-import { AbsPipe } from '../abs.pipe';
+import { LimitComToPipe } from '../pipes/limit-com-to.pipe';
+import { AbsPipe } from '../pipes/abs.pipe';
 
 import _ from "lodash"
 
 @Component({
     selector: 'app-single-question-base',
-    templateUrl: './single-question-base.component.html',
-    styleUrls: ['./single-question-base.component.css']
+    templateUrl: '../templates/html/single-question-base.component.html',
+    styleUrls: ['../styles/css/single-question-base.component.css']
 })
 export class SingleQuestionBaseComponent implements OnInit {
     loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false} };

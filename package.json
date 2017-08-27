@@ -1,6 +1,8 @@
 {
   "name": "test-project",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "An Angular project",
+  "author": "RandomKeyboardInputGenerator <piotr.adrian.konopka@gmail.com>",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

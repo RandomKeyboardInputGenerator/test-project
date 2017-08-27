@@ -1,8 +1,8 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AllQuestionsBaseComponent } from './all-questions-base/all-questions-base.component';
-import { SingleQuestionBaseComponent } from './single-question-base/single-question-base.component';
+import { AllQuestionsBaseComponent } from '../components/all-questions-base.component';
+import { SingleQuestionBaseComponent } from '../components/single-question-base.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/allqbase', pathMatch: 'full' },

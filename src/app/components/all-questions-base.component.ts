@@ -1,18 +1,18 @@
 import { Component, OnInit, HostListener  } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { ProfileBaseModalComponent } from '../profile-base-modal/profile-base-modal.component';
+import { ProfileBaseModalComponent } from '../components/profile-base-modal.component';
 
-import { DbService }  from '../db.service';
+import { DbService }  from '../services/db.service';
 
-import { LimitQToPipe } from '../limit-qto.pipe';
-import { SearchPipe } from '../search.pipe';
+import { LimitQToPipe } from '../pipes/limit-qto.pipe';
+import { SearchPipe } from '../pipes/search.pipe';
 
 import _ from "lodash"
 
 @Component({
     selector: 'app-all-questions-base',
-    templateUrl: './all-questions-base.component.html',
-    styleUrls: ['./all-questions-base.component.css']
+    templateUrl: '../templates/html/all-questions-base.component.html',
+    styleUrls: ['../styles/css/all-questions-base.component.css']
 })
 export class AllQuestionsBaseComponent implements OnInit {
     questions: string = 'all'; // radio btn

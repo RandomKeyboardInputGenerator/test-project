@@ -9,18 +9,18 @@ import { MdButtonModule, MdCheckboxModule, MaterialModule, MdDialogModule } from
 import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
-import { DbService }  from './db.service';
+import { InMemoryDataService }  from '../services/in-memory-data.service';
+import { DbService }  from '../services/db.service';
 
-import { AppComponent } from './app.component';
-import { AllQuestionsBaseComponent } from './all-questions-base/all-questions-base.component';
-import { SingleQuestionBaseComponent } from './single-question-base/single-question-base.component';
-import { ProfileBaseModalComponent } from './profile-base-modal/profile-base-modal.component';
+import { AppComponent } from '../components/app.component';
+import { AllQuestionsBaseComponent } from '../components/all-questions-base.component';
+import { SingleQuestionBaseComponent } from '../components/single-question-base.component';
+import { ProfileBaseModalComponent } from '../components/profile-base-modal.component';
 
-import { LimitComToPipe } from './limit-com-to.pipe';
-import { AbsPipe } from './abs.pipe';
-import { LimitQToPipe } from './limit-qto.pipe';
-import { SearchPipe } from './search.pipe';
+import { LimitComToPipe } from '../pipes/limit-com-to.pipe';
+import { AbsPipe } from '../pipes/abs.pipe';
+import { LimitQToPipe } from '../pipes/limit-qto.pipe';
+import { SearchPipe } from '../pipes/search.pipe';
 
 @NgModule({
     declarations: [

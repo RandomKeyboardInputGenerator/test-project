@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject, Optional } from '@angular/core';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
-import _ from "lodash"
+import _ from 'lodash'
 
 @Component({
     selector: 'app-profile-base-modal',

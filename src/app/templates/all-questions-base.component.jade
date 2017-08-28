@@ -17,9 +17,9 @@
 					label(for='allquestions') {{ dic.radioAll }}
 			.q-sort
 				| {{ dic.sortByDesc[0] }}
-				span([class.q-sort-link]="selected !== 'recent'", [class.q-sort-link-active]="selected === 'recent'", (click)='click($event)') {{ dic.sortByRecent }}
+				span([class.q-sort-link]='selected !== \'recent\'', [class.q-sort-link-active]='selected === \'recent\'', (click)='click($event)') {{ dic.sortByRecent }}
 				| {{ dic.sortByDesc[1] }}
-				span([class.q-sort-link]="selected !== 'hot'", [class.q-sort-link-active]="selected === 'hot'", (click)='click($event)') {{ dic.sortByHot }}
+				span([class.q-sort-link]='selected !== \'hot\'', [class.q-sort-link-active]='selected === \'hot\'', (click)='click($event)') {{ dic.sortByHot }}
 		.top-search-row.clear
 			input.q-search(type='text', name='search', title='search', placeholder='Search questions', [(ngModel)]='searchQuery')
 			button.q-search-btn((click)='searchQ()') {{ dic.searchBtn }}
@@ -54,9 +54,9 @@
 						.com-avatar((click)='openModal(getComment(c).authorId)')
 							img.img-circle(src='{{ getAvatar(getComment(c).authorId) }}', alt='...')
 						.question-com-footer
-							hr([class.black]="getComment(c).type === 'ANSWERED'", [class.grey]="getComment(c).type !== 'ANSWERED'")
+							hr([class.black]='getComment(c).type === \'ANSWERED\'', [class.grey]='getComment(c).type !== \'ANSWERED\'')
 							span {{ getComment(c).type }}
-						div([class.question-dot]="getComment(c).type === 'ANSWERED'", [class.question-dot-empty]="getComment(c).type !== 'ANSWERED'") &#8226;
+						div([class.question-dot]='getComment(c).type === \'ANSWERED\'', [class.question-dot-empty]='getComment(c).type !== \'ANSWERED\'') &#8226;
 				.question-info
 					p.question-info-top
 						span.number {{ q.relDis }}

@@ -9,7 +9,7 @@ import { DbService }  from '../services/db.service';
 import { LimitComToPipe } from '../pipes/limit-com-to.pipe';
 import { AbsPipe } from '../pipes/abs.pipe';
 
-import _ from "lodash"
+import _ from 'lodash'
 
 @Component({
     selector: 'app-single-question-base',
@@ -17,7 +17,7 @@ import _ from "lodash"
     styleUrls: ['../styles/single-question-base.component.scss']
 })
 export class SingleQuestionBaseComponent implements OnInit {
-    loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
+    loading = { text: 'Please wait. I\'m loading data...', status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
     
     // Question Id
     qId = 0;
@@ -25,8 +25,8 @@ export class SingleQuestionBaseComponent implements OnInit {
     userId = 0;
     // User data
     user = {
-        "votedComs": [],
-        "votedQ": [],
+        'votedComs': [],
+        'votedQ': [],
     };
     users = [];
     // Buffors for data from db
@@ -43,7 +43,7 @@ export class SingleQuestionBaseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
+        this.loading = { text: 'Please wait. I\'m loading data...', status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
         this.qId = +this.route.snapshot.paramMap.get('id') || 0;
         
         this.getQData(this.qId);
@@ -200,7 +200,7 @@ export class SingleQuestionBaseComponent implements OnInit {
                             // Find related avatar
                             avatar = _.find(avatars, function(a) { return a.id == u.avatarId });
                             // Remove needless keys and merge the objects
-                            users[i] = _.assign(_.omit(u, "avatarId"), _.omit(avatar, "id"));
+                            users[i] = _.assign(_.omit(u, 'avatarId'), _.omit(avatar, 'id'));
                         });
                         // Get data of logged user
                         this.getUser(this.userId);

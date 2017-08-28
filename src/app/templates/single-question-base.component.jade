@@ -46,7 +46,7 @@
 		.comments-count
 			span.comments-count-number {{ question.peerAnsw }}&nbsp;
 			span {{ dic.peerAnsw }} {{ getUserName(question.authorId) }}
-		div(*ngFor="let com of relComments | limitComTo:'ANSWERED'; index as _i;")
+		div(*ngFor='let com of relComments | limitComTo:\'ANSWERED\'; index as _i;')
 			.comment.clear
 				.comment-col-left
 					.comment-row-title
@@ -73,7 +73,7 @@
 									span((click)='comDownVote(com)') &#9662;
 			.comment-footer(*ngIf='!com.relDis')
 				button.comment-btn {{ dic.comBtn }}
-			div(*ngFor="let sub of relComments | limitComTo:'COMMENTED':com.id; index as _i; last as _end;")
+			div(*ngFor='let sub of relComments | limitComTo:\'COMMENTED\':com.id; index as _i; last as _end;')
 				.subcomment.clear
 					.subcomment-col-left
 						.subcomment-row-title

@@ -7,7 +7,7 @@ import { DbService }  from '../services/db.service';
 import { LimitQToPipe } from '../pipes/limit-qto.pipe';
 import { SearchPipe } from '../pipes/search.pipe';
 
-import _ from "lodash"
+import _ from 'lodash'
 
 @Component({
     selector: 'app-all-questions-base',
@@ -19,7 +19,7 @@ export class AllQuestionsBaseComponent implements OnInit {
     selected: string = 'recent'; // another trigger
     searchQuery: string = ''; // bufor for searching query connected with search input
     term: string = '';  // This one is sent to Search Pipe when user clicks search btn
-    loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'users': false } };
+    loading = { text: 'Please wait. I\'m loading data...', status: { 'dic': false, 'q': false, 'com': false, 'users': false } };
     
     // Simulated user - userId
     me: number = 1;
@@ -153,7 +153,7 @@ export class AllQuestionsBaseComponent implements OnInit {
                             // Find related avatar
                             avatar = _.find(avatars, function(a) { return a.id == u.avatarId });
                             // Remove needless keys and merge the objects
-                            users[i] = _.assign(_.omit(u, "avatarId"), _.omit(avatar, "id"));
+                            users[i] = _.assign(_.omit(u, 'avatarId'), _.omit(avatar, 'id'));
                         });
                         this.loading.status.users = true;
                     }

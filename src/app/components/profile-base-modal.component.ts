@@ -6,7 +6,7 @@ import _ from "lodash"
 @Component({
     selector: 'app-profile-base-modal',
     templateUrl: '../templates/html/profile-base-modal.component.html',
-    styleUrls: ['../styles/css/profile-base-modal.component.css']
+    styleUrls: ['../styles/profile-base-modal.component.scss']
 })
 export class ProfileBaseModalComponent implements OnInit {
     aId = 0;

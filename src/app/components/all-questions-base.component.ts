@@ -12,7 +12,7 @@ import _ from "lodash"
 @Component({
     selector: 'app-all-questions-base',
     templateUrl: '../templates/html/all-questions-base.component.html',
-    styleUrls: ['../styles/css/all-questions-base.component.css']
+    styleUrls: ['../styles/all-questions-base.component.scss']
 })
 export class AllQuestionsBaseComponent implements OnInit {
     questions: string = 'all'; // radio btn

@@ -14,7 +14,7 @@ import _ from "lodash"
 @Component({
     selector: 'app-single-question-base',
     templateUrl: '../templates/html/single-question-base.component.html',
-    styleUrls: ['../styles/css/single-question-base.component.css']
+    styleUrls: ['../styles/single-question-base.component.scss']
 })
 export class SingleQuestionBaseComponent implements OnInit {
     loading = { text: "Please wait. I'm loading data...", status: { 'dic': false, 'q': false, 'com': false, 'user': false} };

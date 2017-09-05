@@ -1,17 +1,21 @@
-.alert.alert-info(*ngIf='!(loading.status.dic && loading.status.q && loading.status.com && loading.status.user)')
+.alert.alert-info(*ngIf='appSettings.isDataNotLoaded()')
 	.alert-box
 		.loader
 	.alert-box
-		| {{ loading.text }}
-.layout(*ngIf='loading.status.dic && loading.status.q && loading.status.com && loading.status.user')
+		| {{ appSettings.getLoaderText() }}
+                
+.layout(*ngIf='appSettings.isDataLoaded()')
 	.top.nowrap
 		.back-button
-			button.back-button((click)='goBack()') &lt;
-		.q-title {{ dic.questionTitle }}
+			button.back-button((click)='goBackButton()')
+				span.left-pointing-angle
+		.q-title {{ dictionary.questionTitle }}
 		.add-button
-			button.add-button &#43;
+			button.add-button
+				span.plus-sign
 		span.q-last-time-dis
-			span {{ dic.lastDisTime }} {{ dic.lastDisTimeStatic }}
+			span {{ dictionary.lastDiscussionTimeDescription }} {{ dictionary.lastDiscussionTimeStatic }}
+                        
 	.body
 		.question.clear
 			.question-col-left
@@ -19,8 +23,8 @@
 					.question-avatar((click)='openModal(question.authorId)')
 						img.img-circle(src='{{ getAvatar(question.authorId) }}', alt='...')
 					.question-author((click)='openModal(question.authorId)')
-						span.question-author-name {{ getUserName(question.authorId) }}&nbsp;
-						span(style='color: grey;') {{ dic.qDesc[1] }}
+						span.question-author-name {{ getUserName(question.authorId) }}
+						span.description {{ dictionary.questionAuthorDescription[1] }}
 					.question-title.nowrap
 						span {{ question.title }}
 				.question-row-content
@@ -28,75 +32,78 @@
 						span {{ question.content }}
 			.question-col-right
 				.question-row-options
-					button.button-link {{ dic.unfollowBtn }}
+					button.button-link {{ dictionary.unfollowButton }}
 				.question-row-votes
 					.question-votes-couter
 						span {{ question.upvotes - question.downvotes | abs }}
 					.question-votes-couter-desc
-						span(*ngIf='question.upvotes - question.downvotes < 0') {{ dic.downVote }}
-						span(*ngIf='question.upvotes - question.downvotes >= 0') {{ dic.upVote }}
+						span(*ngIf='countVotes(question) < 0') {{ dictionary.downVote }}
+						span(*ngIf='countVotes(question) >= 0') {{ dictionary.upVote }}
 					.question-vote
 						ul.vote
-							li.vote-up([class.disabled]='!voteEnable || isQVoted(question.id)')
-								span((click)='qUpVote(question)') &#9652;
-							li.vote-down([class.disabled]='!voteEnable || isQVoted(question.id)')
-								span((click)='qDownVote(question)') &#9662;
+							li.vote-up([class.disabled]='isQuestionVotingDisabled(question.id)')
+								span.up-pointing-triangle((click)='questionUpVote(question)')
+							li.vote-down([class.disabled]='isQuestionVotingDisabled(question.id)')
+								span.down-pointing-triangle((click)='questionDownVote(question)')
 		.question-footer
-			button.question-btn {{ dic.newAnswBtn }}
+			button.question-btn {{ dictionary.newAnswerButton }}
+                        
 		.comments-count
-			span.comments-count-number {{ question.peerAnsw }}&nbsp;
-			span {{ dic.peerAnsw }} {{ getUserName(question.authorId) }}
-		div(*ngFor='let com of relComments | limitComTo:\'ANSWERED\'; index as _i;')
+			span.comments-count-number {{ question.peersAnswered }}
+			span {{ dictionary.peersAnswered }} {{ getUserName(question.authorId) }}
+                        
+		div(*ngFor='let relatedComment of relatedComments; index as _i;')
 			.comment.clear
 				.comment-col-left
 					.comment-row-title
-						.comment-avatar((click)='openModal(com.authorId)')
-							img.img-circle(src='{{ getAvatar(com.authorId) }}', alt='...')
-						.comment-author((click)='openModal(com.authorId)')
-							span.comment-author-name {{ getUserName(com.authorId) }}&nbsp;
-							span(style='color: grey;') {{ dic.comDesc }} &#8226;&nbsp;
-							span.comment-author-time {{ com.time }}
+						.comment-avatar((click)='openModal(relatedComment.authorId)')
+							img.img-circle(src='{{ getAvatar(relatedComment.authorId) }}', alt='...')
+						.comment-author((click)='openModal(relatedComment.authorId)')
+							span.comment-author-name {{ getUserName(relatedComment.authorId) }}
+							span.description.space.dot {{ dictionary.commentAuthorDescription }}
+							span.comment-author-time {{ relatedComment.time }}
 						.comment-desc
-							span {{ com.content }}
+							span {{ relatedComment.content }}
 				.comment-col-right
 					.comment-row-votes
 						.comment-votes-couter
-							span {{ com.upvotes - com.downvotes | abs }}
+							span {{ relatedComment.upvotes - relatedComment.downvotes | abs }}
 						.comment-votes-couter-desc
-							span(*ngIf='com.upvotes - com.downvotes < 0') {{ dic.downVote }}
-							span(*ngIf='com.upvotes - com.downvotes >= 0') {{ dic.upVote }}
+							span(*ngIf='countVotes(relatedComment) < 0') {{ dictionary.downVote }}
+							span(*ngIf='countVotes(relatedComment) >= 0') {{ dictionary.upVote }}
 						.comment-vote
 							ul.vote
-								li.vote-up([class.disabled]='!voteEnable || isComVoted(com.id)')
-									span((click)='comUpVote(com)') &#9652;
-								li.vote-down([class.disabled]='!voteEnable || isComVoted(com.id)')
-									span((click)='comDownVote(com)') &#9662;
-			.comment-footer(*ngIf='!com.relDis')
-				button.comment-btn {{ dic.comBtn }}
-			div(*ngFor='let sub of relComments | limitComTo:\'COMMENTED\':com.id; index as _i; last as _end;')
+								li.vote-up([class.disabled]='isCommentVotingDisabled(relatedComment.id)')
+									span.up-pointing-triangle((click)='commentUpVote(relatedComment)')
+								li.vote-down([class.disabled]='isCommentVotingDisabled(relatedComment.id)')
+									span.down-pointing-triangle((click)='commentDownVote(relatedComment)')
+			.comment-footer(*ngIf='!relatedComment.relatedDiscussion')
+				button.comment-btn {{ dictionary.commentButton }}
+                                
+			div(*ngFor='let subRelatedComment of subRelatedComments | limitCommentsByAnswer:relatedComment.id; index as _i; last as _end;')
 				.subcomment.clear
 					.subcomment-col-left
 						.subcomment-row-title
-							.subcomment-avatar((click)='openModal(sub.authorId)')
-								img.img-circle(src='{{ getAvatar(sub.authorId) }}', alt='...')
-							.subcomment-author((click)='openModal(sub.authorId)')
-								span.subcomment-author-name {{ getUserName(sub.authorId) }}&nbsp;
-								span(style='color: grey;') {{ dic.comDesc }} &#8226;&nbsp;
-								span.subcomment-author-time {{ sub.time }}
+							.subcomment-avatar((click)='openModal(subRelatedComment.authorId)')
+								img.img-circle(src='{{ getAvatar(subRelatedComment.authorId) }}', alt='...')
+							.subcomment-author((click)='openModal(subRelatedComment.authorId)')
+								span.subcomment-author-name {{ getUserName(subRelatedComment.authorId) }}
+								span.description.space.dot {{ dictionary.commentAuthorDescription }}
+								span.subcomment-author-time {{ subRelatedComment.time }}
 							.subcomment-desc
-								span {{ sub.content }}
+								span {{ subRelatedComment.content }}
 					.subcomment-col-right
 						.subcomment-row-votes
 							.subcomment-votes-couter
-								span {{ sub.upvotes - sub.downvotes | abs }}
+								span {{ subRelatedComment.upvotes - subRelatedComment.downvotes | abs }}
 							.subcomment-votes-couter-desc
-								span(*ngIf='sub.upvotes - sub.downvotes < 0') {{ dic.downVote }}
-								span(*ngIf='sub.upvotes - sub.downvotes >= 0') {{ dic.upVote }}
+								span(*ngIf='countVotes(subRelatedComment) < 0') {{ dictionary.downVote }}
+								span(*ngIf='countVotes(subRelatedComment) >= 0') {{ dictionary.upVote }}
 							.subcomment-vote
 								ul.vote
-									li.vote-up([class.disabled]='!voteEnable || isComVoted(sub.id)')
-										span((click)='comUpVote(sub)') &#9652;
-									li.vote-down([class.disabled]='!voteEnable || isComVoted(sub.id)')
-										span((click)='comDownVote(sub)') &#9662;
+									li.vote-up([class.disabled]='isCommentVotingDisabled(subRelatedComment.id)')
+										span.up-pointing-triangle((click)='commentUpVote(subRelatedComment)')
+									li.vote-down([class.disabled]='isCommentVotingDisabled(subRelatedComment.id)')
+										span.down-pointing-triangle((click)='commentDownVote(subRelatedComment)')
 				.subcomment-footer(*ngIf='_end')
-					button.subcomment-btn {{ dic.contDisBtn }}
+					button.subcomment-btn {{ dictionary.continueDiscussionButton }}

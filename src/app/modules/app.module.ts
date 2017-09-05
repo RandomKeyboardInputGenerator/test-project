@@ -17,9 +17,9 @@ import { AllQuestionsBaseComponent } from '../components/all-questions-base.comp
 import { SingleQuestionBaseComponent } from '../components/single-question-base.component';
 import { ProfileBaseModalComponent } from '../components/profile-base-modal.component';
 
-import { LimitComToPipe } from '../pipes/limit-com-to.pipe';
+import { LimitCommentsByAnswerPipe } from '../pipes/limit-comments-by-answer.pipe';
 import { AbsPipe } from '../pipes/abs.pipe';
-import { LimitQToPipe } from '../pipes/limit-qto.pipe';
+import { LimitQuestionsByAuthorPipe } from '../pipes/limit-questions-by-author.pipe';
 import { SearchPipe } from '../pipes/search.pipe';
 
 @NgModule({
@@ -28,9 +28,9 @@ import { SearchPipe } from '../pipes/search.pipe';
         AllQuestionsBaseComponent,
         SingleQuestionBaseComponent,
         ProfileBaseModalComponent,
-        LimitComToPipe,
+        LimitCommentsByAnswerPipe,
         AbsPipe,
-        LimitQToPipe,
+        LimitQuestionsByAuthorPipe,
         SearchPipe
     ],
     imports: [

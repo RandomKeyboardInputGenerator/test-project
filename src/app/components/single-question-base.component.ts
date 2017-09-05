@@ -5,8 +5,9 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import { DbService }  from '../services/db.service';
+import { AppSettings } from '../config/app-settings';
 
-import { LimitComToPipe } from '../pipes/limit-com-to.pipe';
+import { LimitCommentsByAnswerPipe } from '../pipes/limit-comments-by-answer.pipe';
 import { AbsPipe } from '../pipes/abs.pipe';
 
 import _ from 'lodash'
@@ -17,23 +18,20 @@ import _ from 'lodash'
     styleUrls: ['../styles/single-question-base.component.scss']
 })
 export class SingleQuestionBaseComponent implements OnInit {
-    loading = { text: 'Please wait. I\'m loading data...', status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
-    
-    // Question Id
-    qId = 0;
-    // Logged user id - for voting
-    userId = 0;
-    // User data
+    appSettings = new AppSettings();
+    userId = AppSettings.DEFAULT_USER_ID;
+    questionId = 0;
     user = {
-        'votedComs': [],
-        'votedQ': [],
+        'votedComments': [],
+        'votedQuestions': [],
     };
     users = [];
-    // Buffors for data from db
-    relComments = [];
     question = {};
-    dic = {};
-    qData = {};
+    relatedComments = [];
+    subRelatedComments = [];
+    dictionary = {};
+    questions = {};
+    voteEnable = true;
 
     constructor(
         public dialog: MdDialog,
@@ -43,208 +41,178 @@ export class SingleQuestionBaseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.loading = { text: 'Please wait. I\'m loading data...', status: { 'dic': false, 'q': false, 'com': false, 'user': false} };
-        this.qId = +this.route.snapshot.paramMap.get('id') || 0;
-        
-        this.getQData(this.qId);
-        this.findRelComm(this.qId);
+        this.appSettings = new AppSettings();
+        this.questionId = +this.route.snapshot.paramMap.get('id') || 0;
+
         this.getDictionary();
+        this.getRelatedComments(this.questionId);
         this.getUsers();
     }
 
-    // Show modal dialog with injected data
     openModal(userId: number): void {
         this.dialog.open(ProfileBaseModalComponent, {
-            data: { 'userId': userId, 'users': this.users, 'dic': this.dic, 'qData': this.qData }
+            data: {
+                'userId': userId,
+                'users': this.users,
+                'dictionary': this.dictionary,
+                'questions': this.questions
+            }
         });
     }
-    
-    // Find related comments
-    findRelComm(qId: number): void {
-        this.dataService
-            .getComData(qId)
-            .then(
-                comments => {
-                    this.relComments = comments;
-                    this.loading.status.com = true;
-                }
-            );
+
+    getRelatedComments(questionId: number): void {
+        this.dataService.getCommmentsOnTheQuestion(questionId).then(
+            comments => {
+                this.relatedComments = _.filter(comments, comment => comment.type === 'ANSWERED');
+                this.subRelatedComments = _.filter(comments, comment => comment.type === 'COMMENTED');
+                this.appSettings.setLoadedStatus('comments');
+            }
+        );
     }
-    // Get questions data from database
-    getQData(qId: number): void {
-        this.dataService
-            .getQData()
-            .then(
-                questions => {
-                    this.qData = questions;
-                    this.question = _.find(this.qData, function(o) { return o.id == qId });
-                    this.loading.status.q = true;
-                }
-            );
+
+    getQuestions(questionId: number): void {
+        this.dataService.getQuestions().then(
+            questions => {
+                this.questions = questions;
+                this.question = _.find(this.questions, question => question.id === questionId);
+                this.appSettings.setLoadedStatus('questions');
+            }
+        );
     }
-    // Get dictionary with static strings
+
     getDictionary(): void {
-        this.dataService
-            .getDictionary()
-            .then(
-                dictionary => {
-                    this.dic = dictionary;
-                    this.loading.status.dic = true;
+        this.dataService.getDictionary().then(
+            dictionary => {
+                this.dictionary = dictionary;
+                this.appSettings.setLoadedStatus('dictionary');
+            }
+        );
+    }
+
+    isUserNotVoteOnComment(commentId: number): boolean {
+        return _.indexOf(this.user.votedComments, commentId) === -1;
+    }
+
+    isCommentVotingEnabled(commentId: number): boolean {
+        return this.voteEnable && this.isUserNotVoteOnComment(commentId);
+    }
+
+    isCommentVotingDisabled(commentId: number): boolean {
+        return !this.isCommentVotingEnabled(commentId);
+    }
+
+    commentUpVote(comment: any): void {
+        if (this.isCommentVotingEnabled(comment.id)) {
+            this.voteEnable = false;
+            this.dataService.commmentUpVote(comment).then(
+                () => {
+                    this.user.votedComments.push(comment.id);
+                    this.saveUser();
                 }
             );
-    }
-    
-    // disable voting during waiting for response from service
-    voteEnable = true;
-    // upVote for comment
-    comUpVote(com: any): void {
-        if(this.voteEnable) {
-             // Vote for specific comment only if you not voted on it already
-            if (_.indexOf(this.user.votedComs, com.id) === -1) {
-                // Disable voting
-                this.voteEnable = false;
-                // Send data to service
-                this.dataService
-                    .comUpVote(com)
-                    .then(() => { 
-                        // Save vote
-                        this.user.votedComs.push(com.id);
-                        // Save also the user data
-                        this.saveUser();
-                    });
-            }
         }
     }
-    // downVote for comment
-    comDownVote(com: any): void {
-        if(this.voteEnable) {
-            // Vote for specific comment only if you not voted on it already
-            if (_.indexOf(this.user.votedComs, com.id) === -1) {
-                // Disable voting
-                this.voteEnable = false;
-                // Send data to service
-                this.dataService
-                    .comDownVote(com)
-                    .then(() => { 
-                        // Save vote
-                        this.user.votedComs.push(com.id);
-                        // Save also the user data
-                        this.saveUser();
-                    });
-            }
+
+    commentDownVote(comment: any): void {
+        if (this.isCommentVotingEnabled(comment.id)) {
+            this.voteEnable = false;
+            this.dataService.commentDownVote(comment).then(
+                () => {
+                    this.user.votedComments.push(comment.id);
+                    this.saveUser();
+                }
+            );
         }
     }
-    // upVote for question
-    qUpVote(question: any): void {
-        if(this.voteEnable) {
-            // Vote for specific comment only if you not voted on it already
-            if (_.indexOf(this.user.votedQ, question.id) === -1) { 
-                // Disable voting
-                this.voteEnable = false;
-                // Send data to service
-                this.dataService
-                    .qUpVote(question)
-                    .then(() => { 
-                        // Save vote
-                        this.user.votedQ.push(question.id);
-                        // Save also the user data
-                        this.saveUser();
-                    });
-            }
+
+    isUserNotVoteOnQuestion(questionId: number): boolean {
+        return _.indexOf(this.user.votedQuestions, questionId) === -1;
+    }
+
+    isQuestionVotingEnabled(questionId: number): boolean {
+        return this.voteEnable && this.isUserNotVoteOnQuestion(questionId);
+    }
+
+    isQuestionVotingDisabled(questionId: number): boolean {
+        return !this.isQuestionVotingEnabled(questionId);
+    }
+
+    questionUpVote(question: any): void {
+        if (this.isQuestionVotingEnabled(question.id)) {
+            this.voteEnable = false;
+            this.dataService.questionUpVote(question).then(
+                () => {
+                    this.user.votedQuestions.push(question.id);
+                    this.saveUser();
+                }
+            );
         }
     }
-    // downVote for question
-    qDownVote(question: any): void {
-        if(this.voteEnable) {
-            // Vote for specific comment only if you not voted on it already
-            if (_.indexOf(this.user.votedQ, question.id) === -1) { 
-                // Disable voting
-                this.voteEnable = false;
-                // Send data to service
-                this.dataService
-                    .qDownVote(question)
-                    .then(() => { 
-                        // Save vote
-                        this.user.votedQ.push(question.id);
-                        // Save also the user data
-                        this.saveUser();
-                    });
-            }
+
+    questionDownVote(question: any): void {
+        if (this.isQuestionVotingEnabled(question.id)) {
+            this.voteEnable = false;
+            this.dataService.questionDownVote(question).then(
+                () => {
+                    this.user.votedQuestions.push(question.id);
+                    this.saveUser();
+                }
+            );
         }
     }
-    // Get user data
+
+    countVotes(target: any): number {
+        return target.upvotes - target.downvotes;
+    }
+
     getUser(userId: number): void {
-        this.user = _.find(this.users, function(a) { return a.id == userId });
-        this.loading.status.user = true;
+        this.user = this.findUser(userId);
+        this.appSettings.setLoadedStatus('users');
     }
-    
-    // Save user data
+
     saveUser(): void {
-        this.dataService
-            .saveUser(this.user)
-            .then(() => { 
-                // Enable voting when all data is successfully saved
-                this.voteEnable = true; 
-            });
+        this.dataService.saveUser(this.user).then(() => this.voteEnable = true);
     }
-    
-    // Get avatars data
+
     getAvatars(): void {
-        this.dataService
-            .getAvatars()
-            .then(
-                avatars => {
-                        let avatar = {};
-                        // For each user
-                        _.forEach(this.users, function(u, i, users) {
-                            // Find related avatar
-                            avatar = _.find(avatars, function(a) { return a.id == u.avatarId });
-                            // Remove needless keys and merge the objects
-                            users[i] = _.assign(_.omit(u, 'avatarId'), _.omit(avatar, 'id'));
-                        });
-                        // Get data of logged user
-                        this.getUser(this.userId);
-                    }
-            );
+        this.dataService.getAvatars().then(
+            avatars => {
+                let avatar = {};
+                _.forEach(this.users, (user, iindex, users) => {
+                    avatar = _.find(avatars, avatar => avatar.id === user.avatarId);
+                    // Remove needless keys and merge the objects
+                    users[iindex] = _.assign(_.omit(user, 'avatarId'), _.omit(avatar, 'id'));
+                });
+                this.getUser(this.userId);
+            }
+        );
+    }
+
+    findUser(userId: number): any {
+        return _.find(this.users, 'id', userId);
     }
     
-    // Get avatar's src
     getAvatar(userId: number): string {
-        let users = this.users;
-        let src = _.find(users, function(o) { return o.id == userId }) || 'adelaide_hanscom1.png';
+        let src = this.findUser(userId) || AppSettings.DEFAULT_AVATAR;
         _.isObject(src) ? src = src.avatarSrc : src;
-        return 'assets/img/portraits/' + src;
+        return AppSettings.PORTRAITS_DIRECTORY + src;
     }
-    
-    // Get users data
+
     getUsers(): void {
-        this.dataService
-            .getUsers()
-            .then(
-                users => {
-                        this.users = users;
-                        this.getAvatars();
-                    }
-            );
+        this.dataService.getUsers().then(
+            users => {
+                this.users = users;
+                this.getAvatars();
+                this.getQuestions(this.questionId);
+            }
+        );
     }
-    
+
     getUserName(userId: number): string {
-        let users = this.users;
-        return _.find(users, function(o) { return o.id == userId }).name;
+        return this.findUser(userId).name;
     }
-    
-    // Find out if user already voted on this comment
-    isComVoted(id: number): boolean {
-        return (_.indexOf(this.user.votedComs, id) === -1) ? false : true;
-    }
-    
-    // Find out if user already voted on this question
-    isQVoted(id: number): boolean {
-        return (_.indexOf(this.user.votedQ, id) === -1) ? false : true;
-    }
-    
-    // Go back btn
-    goBack(): void {
+
+    goBackButton(): void {
         this.location.back();
     }
 }

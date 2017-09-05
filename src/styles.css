@@ -41,6 +41,12 @@ div.body {
     text-align: center;
 }
 
+span.description {
+    color: grey; 
+    font-style: normal; 
+    font-weight: normal;
+}
+
 [class*="nowrap"] {
     white-space: nowrap;
 }

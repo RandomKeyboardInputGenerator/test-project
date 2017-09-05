@@ -7,20 +7,17 @@ import _ from 'lodash'
 })
 export class SearchPipe implements PipeTransform {
 
-    transform(value: any, term: string, args?: any): any {
-        if (value == null) return value;
+    transform(questions: any, term: string): any {
+        if (questions == null) return questions;
         
-        if (term === '') {
-            return value;
-        }
-        else {
-            // To improve efficiency remove capitalization
-            let _term = term.toLowerCase();
-            return _.filter(value, function(o) { 
-                // Search by title and author name
-                return ( _.includes(o.author.toLowerCase(), _term) || _.includes(o.title.toLowerCase(), _term) ); 
-            });
-        }
+        if (term === '') return questions;
+        
+        // To improve efficiency remove capitalization
+        let _term = term.toLowerCase();
+        return _.filter(questions, question => { 
+            // Search by title and author name
+            return ( _.includes(question.author.toLowerCase(), _term) || _.includes(question.title.toLowerCase(), _term) ); 
+        });
     }
 
 }

@@ -1,71 +1,74 @@
-.alert.alert-info(*ngIf='!(loading.status.dic && loading.status.q && loading.status.com && loading.status.users)')
+.alert.alert-info(*ngIf='appSettings.isDataNotLoaded()')
 	.alert-box
 		.loader
 	.alert-box
-		| {{ loading.text }}
-.layout(*ngIf='loading.status.dic && loading.status.q && loading.status.com && loading.status.users')
+		| {{ appSettings.getLoaderText() }}
+                
+.layout(*ngIf='appSettings.isDataLoaded()')
 	.top
 		.top-nav-row.clear
-			button.back-button &lt;
-			.q-title {{ dic.questionsTitle }}
-			button.add-button &#43;
+			button.back-button
+				span.left-pointing-angle
+			.q-title {{ dictionary.questionsTitle }}
+			button.add-button
+				span.plus-sign
 			.q-radio
 				form(#f='ngForm')
-					input#myself.q-radio-input(type='radio', value='me', name='questions', [(ngModel)]='questions')
-					label(for='myself') {{ dic.radioMyself }}
-					input#allquestions.q-radio-input(type='radio', value='all', name='questions', [(ngModel)]='questions')
-					label(for='allquestions') {{ dic.radioAll }}
+					input#myself.q-radio-input(type='radio', value='me', name='questions', [(ngModel)]='radioFilter')
+					label(for='myself') {{ dictionary.radioMyself }}
+					input#allquestions.q-radio-input(type='radio', value='all', name='questions', [(ngModel)]='radioFilter')
+					label(for='allquestions') {{ dictionary.radioAll }}
 			.q-sort
-				| {{ dic.sortByDesc[0] }}
-				span([class.q-sort-link]='selected !== \'recent\'', [class.q-sort-link-active]='selected === \'recent\'', (click)='click($event)') {{ dic.sortByRecent }}
-				| {{ dic.sortByDesc[1] }}
-				span([class.q-sort-link]='selected !== \'hot\'', [class.q-sort-link-active]='selected === \'hot\'', (click)='click($event)') {{ dic.sortByHot }}
+				| {{ dictionary.sortingDescription[0] }}
+				span([class.q-sort-link]='sortOrder !== \'recent\'', [class.q-sort-link-active]='sortOrder === \'recent\'', (click)='changeQuestionsSortOrder($event)') {{ dictionary.sortByRecent }}
+				| {{ dictionary.sortingDescription[1] }}
+				span([class.q-sort-link]='sortOrder !== \'hot\'', [class.q-sort-link-active]='sortOrder === \'hot\'', (click)='changeQuestionsSortOrder($event)') {{ dictionary.sortByHot }}
 		.top-search-row.clear
-			input.q-search(type='text', name='search', title='search', placeholder='Search questions', [(ngModel)]='searchQuery')
-			button.q-search-btn((click)='searchQ()') {{ dic.searchBtn }}
+			input.q-search(type='text', name='search', title='search', placeholder='Search questions', [(ngModel)]='searchQueryBuffor')
+			button.q-search-btn((click)='searchQuestions()') {{ dictionary.searchButton }}
+                        
 	.body((window:resize)='onResize($event)')
-		.question(*ngFor='let q of qData | slice:0:maxQ | limitQTo:questions:me | search:term; index as _i;')
+		.question(*ngFor='let question of questions | slice:0:visableQuestions | limitQuestionsByAuthor:radioFilter:userId | search:searchQuery; index as _i;')
 			.question-row-title
-				.question-avatar((click)='openModal(q.authorId)')
-					img.img-circle(src='{{ getAvatar(q.authorId) }}', alt='...')
+				.question-avatar((click)='openModal(question.authorId)')
+					img.img-circle(src='{{ getAvatar(question.authorId) }}', alt='...')
 				.question-author
 					p
-						span.question-author-name((click)='openModal(q.authorId)') {{ getUserName(q.authorId) }}&nbsp;
-						span(style='color: grey;') {{ dic.qDesc[1] }}
-					p.title-link(routerLink='/question/{{ q.id }}', routerLinkactive='active')
-						span {{ q.title }}
+						span.question-author-name((click)='openModal(question.authorId)') {{ getUserName(question.authorId) }}
+						span.description {{ dictionary.questionAuthorDescription[1] }}
+					p.title-link([routerLink]="['/question/', question.id]", routerLinkactive='active')
+						span {{ question.title }}
 			.question-tabs.clear
 				.question-asked
 					.question-asked-content
 						.com-avatar
 						.question-com-footer
 							hr.grey
-							span {{ dic.qDesc[0] }}
-						.question-dot-empty &#8226;
-				.question-count(*ngIf='q.comments.length - this.visCom > 0')
+							span {{ dictionary.questionAuthorDescription[0] }}
+				.question-count(*ngIf='question.comments.length - this.visableComments > 0')
 					.question-count-content
 						.count-desc
-							span {{q.comments.length - this.visCom}}
+							span {{question.comments.length - this.visableComments}}
 						.question-count-footer
-							span {{ dic.countComDesc }}
-						.count-dot-empty &#8226;
-				.question-com(*ngFor='let c of q.comments | slice:0:visCom; index as _j;', [class.col-1]='_j === 0', [class.col-2]='_j === 1', [class.col-3]='_j === 2', [class.col-4]='_j === 3')
+							span {{ dictionary.countCommentsDescription }}
+						.count-dot-empty
+				.question-com(*ngFor='let questionComment of question.comments | slice:0:visableComments; index as _j;', [class.col-1]='_j === 0', [class.col-2]='_j === 1', [class.col-3]='_j === 2', [class.col-4]='_j === 3')
 					.question-com-content
-						.com-avatar((click)='openModal(getComment(c).authorId)')
-							img.img-circle(src='{{ getAvatar(getComment(c).authorId) }}', alt='...')
+						.com-avatar((click)='openModal(getComment(questionComment).authorId)')
+							img.img-circle(src='{{ getAvatar(getComment(questionComment).authorId) }}', alt='...')
 						.question-com-footer
-							hr([class.black]='getComment(c).type === \'ANSWERED\'', [class.grey]='getComment(c).type !== \'ANSWERED\'')
-							span {{ getComment(c).type }}
-						div([class.question-dot]='getComment(c).type === \'ANSWERED\'', [class.question-dot-empty]='getComment(c).type !== \'ANSWERED\'') &#8226;
+							hr([class.black]='getComment(questionComment).type === \'ANSWERED\'', [class.grey]='getComment(questionComment).type !== \'ANSWERED\'')
+							span {{ getComment(questionComment).type }}
+						div([class.question-dot]='getComment(questionComment).type === \'ANSWERED\'', [class.question-dot-empty]='getComment(questionComment).type !== \'ANSWERED\'')
 				.question-info
 					p.question-info-top
-						span.number {{ q.relDis }}
-						|  {{ dic.relDis }}
+						span.number {{ question.relatedDiscussion }}
+						|  {{ dictionary.relatedDiscussion }}
 					p.question-info-mid
-						span.number {{ q.peerInv }}
-						|  {{ dic.peerInv }}
+						span.number {{ question.peersInvolved }}
+						|  {{ dictionary.peersInvolved }}
 					p.question-info-bottom
-						span.number {{ q.conv }}
-						|  {{ dic.conv }}
+						span.number {{ question.conversations }}
+						|  {{ dictionary.conversations }}
 		.question-load-more
-			button.button-link((click)='showMoreQ()') {{ dic.loadMoreBtn }}
+			button.button-link((click)='showMoreQuestions()') {{ dictionary.loadMoreButton }}

@@ -3,32 +3,32 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
         const dictionary = {
-            'peerAnsw': 'peers already answered',
-            'newAnswBtn': 'GIVE new answer',
-            'comBtn': 'COMMENT',
-            'contDisBtn': 'CONTINUE discussion',
+            'peersAnswered': 'peers already answered',
+            'newAnswerButton': 'GIVE new answer',
+            'commentButton': 'COMMENT',
+            'continueDiscussionButton': 'CONTINUE discussion',
             'upVote': 'upvotes',
             'downVote': 'downvotes',
-            'comDesc': 'COMMENTED IT',
-            'unfollowBtn': 'unfollow',
-            'lastDisTime': 'Last time discussed',
-            'lastDisTimeStatic': '1 day ago', // To do...
+            'commentAuthorDescription': 'COMMENTED IT',
+            'unfollowButton': 'unfollow',
+            'lastDiscussionTimeDescription': 'Last time discussed',
+            'lastDiscussionTimeStatic': '1 day ago',
             'questionTitle': 'QUESTION',
             'questionsTitle': 'QUESTIONS',
-            'countComDesc': 'more activities',
+            'countCommentsDescription': 'more activities',
             'sortByRecent': 'recent',
             'sortByHot': 'hot',
-            'sortByDesc': ['Sort by:', 'or'],
-            'searchBtn': 'SEARCH',
+            'sortingDescription': ['Sort by:', 'or'],
+            'searchButton': 'SEARCH',
             'radioMyself': 'My shelf',
             'radioAll': 'All questions',
-            'relDis': 'related discusion',
-            'peerInv': 'peers involved',
-            'conv': 'conversations',
-            'loadMoreBtn': 'load more questions',
+            'relatedDiscussion': 'related discusion',
+            'peersInvolved': 'peers involved',
+            'conversations': 'conversations',
+            'loadMoreButton': 'load more questions',
             'memberTime': 'MEMBER FOR',
             'lastLogTime': 'LAST SEEN',
-            'activityLvl': 'ACTIVITY LEVEL',
+            'activityLevel': 'ACTIVITY LEVEL',
             'modalTitles': [
                 'How it all started',
                 'THAT\'S WHERE WE HAVE BEEN',
@@ -41,7 +41,7 @@ export class InMemoryDataService implements InMemoryDbService {
             'discussions': 'discussions',
             'findings': 'findings',
             'questions': 'questions',
-            'qDesc': ['ASKED', 'IS ASKING:']
+            'questionAuthorDescription': ['ASKED', 'IS ASKING:']
         };
 
         let authors = [
@@ -55,8 +55,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 1,
@@ -68,8 +68,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [0,3], // The user is an author of questions ids: 0 and 3
+                'votedComments': [],
+                'votedQuestions': [0,3], // The user is an author of questions ids: 0 and 3
             },
             {
                 'id': 2,
@@ -81,8 +81,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 3,
@@ -94,8 +94,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 4,
@@ -107,8 +107,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 5,
@@ -120,8 +120,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 6,
@@ -133,8 +133,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 7,
@@ -146,8 +146,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 8,
@@ -159,8 +159,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 9,
@@ -172,8 +172,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 10,
@@ -185,8 +185,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 11,
@@ -198,8 +198,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 12,
@@ -211,8 +211,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 13,
@@ -224,8 +224,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 14,
@@ -237,8 +237,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 15,
@@ -250,8 +250,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 16,
@@ -263,8 +263,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 17,
@@ -276,8 +276,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 18,
@@ -289,8 +289,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 19,
@@ -302,8 +302,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 20,
@@ -315,8 +315,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 21,
@@ -328,8 +328,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 22,
@@ -341,8 +341,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 23,
@@ -354,8 +354,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 24,
@@ -367,8 +367,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             },
             {
                 'id': 25,
@@ -380,8 +380,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 'discussions': 29,
                 'findings': 19,
                 'questions': 10,
-                'votedComs': [],
-                'votedQ': [],
+                'votedComments': [],
+                'votedQuestions': [],
             }
         ];
         
@@ -420,85 +420,85 @@ export class InMemoryDataService implements InMemoryDbService {
                 'id': 0,
                 'authorId': 1,
                 'title': 'Will insulin make my patient gain weight?',
-                'relDis': 2,
-                'peerInv': 7,
-                'conv': 3,
+                'relatedDiscussion': 2,
+                'peersInvolved': 7,
+                'conversations': 3,
                 'comments': [0, 1, 2, 3, 4, 5, 6],
                 'content': 'Fusce convallis, mauris imperdiet gravida bibendum, nisl turpis suscipit mauris, sed placerat ipsum urna sed risus. In convallis tellus a mauris.',
                 'downvotes': 0, 'upvotes': 19,
-                'peerAnsw': 3,
+                'peersAnswered': 3,
                 'lastTimeDiscusedDays': 1,
             },
             {
                 'id': 1,
                 'authorId': 2,
                 'title': 'Vegan diet in diabetes treatment?',
-                'relDis': 2,
-                'peerInv': 9,
-                'conv': 5,
+                'relatedDiscussion': 2,
+                'peersInvolved': 9,
+                'conversations': 5,
                 'comments': [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
                 'content': 'Suspendisse tincidunt suscipit felis ut egestas. Quisque luctus, justo nec tristique condimentum, felis enim tempor ipsum, vel molestie erat justo sed enim. Duis sit amet ipsum justo. Vestibulum tempus nisi velit, in rutrum lorem sollicitudin id. Curabitur a congue tortor. ',
                 'downvotes': 10, 'upvotes': 21,
-                'peerAnsw': 4,
+                'peersAnswered': 4,
                 'lastTimeDiscusedDays': 1,
             },
             {
                 'id': 2,
                 'authorId': 3,
                 'title': 'Vegan diet to stop diabetes progress',
-                'relDis': 5,
-                'peerInv': 4,
-                'conv': 0,
+                'relatedDiscussion': 5,
+                'peersInvolved': 4,
+                'conversations': 0,
                 'comments': [17, 18, 19],
                 'content': 'Pellentesque id interdum turpis. Maecenas vestibulum augue sapien, et auctor nibh tincidunt sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
                 'downvotes': 5, 'upvotes': 12,
-                'peerAnsw': 2,
+                'peersAnswered': 2,
                 'lastTimeDiscusedDays': 1,
-            }, // questions below are totaly random and untested
+            }, 
             {
                 'id': 3,
                 'authorId': 1,
                 'title': 'How do you do?',
-                'relDis': 5,
-                'peerInv': 11,
-                'conv': 2,
+                'relatedDiscussion': 5,
+                'peersInvolved': 11,
+                'conversations': 2,
                 'comments': [20, 21, 22, 23, 24, 25, 26],
                 'content': 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur auctor tristique tellus non vulputate.',
                 'downvotes': 10, 'upvotes': 19,
-                'peerAnsw': 3,
+                'peersAnswered': 3,
                 'lastTimeDiscusedDays': 2,
             },
             {
                 'id': 4,
                 'authorId': 4,
                 'title': 'Do you like eat pizza?',
-                'relDis': 6,
-                'peerInv': 1,
-                'conv': 8,
+                'relatedDiscussion': 6,
+                'peersInvolved': 1,
+                'conversations': 8,
                 'comments': [27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
                 'content': 'Cras malesuada sollicitudin risus. Nullam aliquam, lectus sit amet tincidunt pharetra, libero urna rhoncus nisl, non rutrum metus magna a ante. Ut malesuada metus et lacinia aliquet.',
                 'downvotes': 10, 'upvotes': 31,
-                'peerAnsw': 4,
+                'peersAnswered': 4,
                 'lastTimeDiscusedDays': 3,
             },
             {
                 'id': 5,
                 'authorId': 5,
                 'title': 'What’s the funniest joke you know?',
-                'relDis': 12,
-                'peerInv': 11,
-                'conv': 13,
+                'relatedDiscussion': 12,
+                'peersInvolved': 11,
+                'conversations': 13,
                 'comments': [37, 38, 39],
                 'content': 'Vivamus feugiat porttitor tellus ut dictum. Aenean pulvinar mauris ut eros commodo, sit amet bibendum lectus fringilla. Nullam arcu est, maximus a ipsum nec, molestie pellentesque velit.',
                 'downvotes': 2, 'upvotes': 12,
-                'peerAnsw': 2,
+                'peersAnswered': 2,
                 'lastTimeDiscusedDays': 4,
             },
         ];
 
         let comments = [
             {
-                'id': 0, 'qId': 0, 'authorId': 6, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 19, 'type': 'ANSWERED', 'relDis': true,
+                'id': 0, 'qId': 0, 'authorId': 6, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 19, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.',
             },
             {
@@ -510,11 +510,11 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             },
             {
-                'id': 3, 'qId': 0, 'authorId': 9, 'time': 'two days', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relDis': false,
+                'id': 3, 'qId': 0, 'authorId': 9, 'time': 'two days', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Quisque tincidunt purus ipsum, at elementum arcu consectetur vitae. Fusce nec arcu arcu.',
             },
             {
-                'id': 4, 'qId': 0, 'authorId': 10, 'time': 'three days', 'downvotes': 9, 'upvotes': 7, 'type': 'ANSWERED', 'relDis': true,
+                'id': 4, 'qId': 0, 'authorId': 10, 'time': 'three days', 'downvotes': 9, 'upvotes': 7, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Quisque dapibus convallis metus. Praesent at dui ac tellus facilisis pulvinar vitae non ex. Vestibulum facilisis, massa vel aliquet ultrices, erat tellus pellentesque sapien, a consequat erat sem sit amet lacus.',
             },
             {
@@ -526,7 +526,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Praesent eget commodo nibh, vitae vehicula mauris. Morbi id arcu lacinia, congue est nec, posuere orci.',
             },
             {
-                'id': 7, 'qId': 1, 'authorId': 13, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 2, 'type': 'ANSWERED', 'relDis': true,
+                'id': 7, 'qId': 1, 'authorId': 13, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 2, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Donec elementum, justo at sagittis dignissim, est metus blandit neque, et maximus tortor diam sit amet massa.',
             },
             {
@@ -538,7 +538,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Sed euismod lorem dolor, sed ornare sapien consectetur ut. Proin dui dui, lobortis sed felis id, condimentum ultricies velit.',
             },
             {
-                'id': 10, 'qId': 1, 'authorId': 16, 'time': 'three days', 'downvotes': 1, 'upvotes': 8, 'type': 'ANSWERED', 'relDis': true,
+                'id': 10, 'qId': 1, 'authorId': 16, 'time': 'three days', 'downvotes': 1, 'upvotes': 8, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Maecenas quis mauris vel nisi faucibus eleifend sit amet nec orci. Donec vulputate, sapien ac ornare efficitur, dui lectus molestie odio, nec gravida mauris eros in purus.',
             },
             {
@@ -558,19 +558,19 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Suspendisse tincidunt massa justo, sed tincidunt neque accumsan et. Fusce venenatis dolor sed blandit vestibulum.',
             },
             {
-                'id': 15, 'qId': 1, 'authorId': 21, 'time': 'two days', 'downvotes': 11, 'upvotes': 15, 'type': 'ANSWERED', 'relDis': false,
+                'id': 15, 'qId': 1, 'authorId': 21, 'time': 'two days', 'downvotes': 11, 'upvotes': 15, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Suspendisse finibus, odio non varius feugiat, diam nisi lacinia lacus, et tempus orci est sed ex.',
             },
             {
-                'id': 16, 'qId': 1, 'authorId': 22, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relDis': true,
+                'id': 16, 'qId': 1, 'authorId': 22, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Vivamus malesuada erat lacinia, eleifend enim non, faucibus nibh. Donec porta, magna quis finibus varius, orci justo dapibus orci, vel dapibus risus nulla at elit.',
             },
             {
-                'id': 17, 'qId': 2, 'authorId': 23, 'time': 'two days', 'downvotes': 8, 'upvotes': 4, 'type': 'ANSWERED', 'relDis': false,
+                'id': 17, 'qId': 2, 'authorId': 23, 'time': 'two days', 'downvotes': 8, 'upvotes': 4, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Nullam lacinia dolor nunc. Mauris dignissim nisl viverra tellus fermentum molestie. Duis maximus in odio vel posuere.',
             },
             {
-                'id': 18, 'qId': 2, 'authorId': 24, 'time': 'yesterday', 'downvotes': 4, 'upvotes': 18, 'type': 'ANSWERED', 'relDis': true,
+                'id': 18, 'qId': 2, 'authorId': 24, 'time': 'yesterday', 'downvotes': 4, 'upvotes': 18, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'In consequat metus eros, a ullamcorper nibh ultrices vitae. Praesent et ligula arcu. Aliquam tincidunt dapibus lacus eu mollis.',
             },
             {
@@ -579,7 +579,7 @@ export class InMemoryDataService implements InMemoryDbService {
             },
             // Untested data for questions id > 2
             {
-                'id': 20, 'qId': 3, 'authorId': 6, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 19, 'type': 'ANSWERED', 'relDis': true,
+                'id': 20, 'qId': 3, 'authorId': 6, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 19, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.',
             },
             {
@@ -591,11 +591,11 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             },
             {
-                'id': 23, 'qId': 3, 'authorId': 9, 'time': 'two days', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relDis': false,
+                'id': 23, 'qId': 3, 'authorId': 9, 'time': 'two days', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Quisque tincidunt purus ipsum, at elementum arcu consectetur vitae. Fusce nec arcu arcu.',
             },
             {
-                'id': 24, 'qId': 3, 'authorId': 10, 'time': 'three days', 'downvotes': 9, 'upvotes': 7, 'type': 'ANSWERED', 'relDis': true,
+                'id': 24, 'qId': 3, 'authorId': 10, 'time': 'three days', 'downvotes': 9, 'upvotes': 7, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Quisque dapibus convallis metus. Praesent at dui ac tellus facilisis pulvinar vitae non ex. Vestibulum facilisis, massa vel aliquet ultrices, erat tellus pellentesque sapien, a consequat erat sem sit amet lacus.',
             },
             {
@@ -607,7 +607,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Praesent eget commodo nibh, vitae vehicula mauris. Morbi id arcu lacinia, congue est nec, posuere orci.',
             },
             {
-                'id': 27, 'qId': 4, 'authorId': 13, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 2, 'type': 'ANSWERED', 'relDis': true,
+                'id': 27, 'qId': 4, 'authorId': 13, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 2, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Donec elementum, justo at sagittis dignissim, est metus blandit neque, et maximus tortor diam sit amet massa.',
             },
             {
@@ -619,7 +619,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Sed euismod lorem dolor, sed ornare sapien consectetur ut. Proin dui dui, lobortis sed felis id, condimentum ultricies velit.',
             },
             {
-                'id': 30, 'qId': 4, 'authorId': 16, 'time': 'three days', 'downvotes': 1, 'upvotes': 8, 'type': 'ANSWERED', 'relDis': true,
+                'id': 30, 'qId': 4, 'authorId': 16, 'time': 'three days', 'downvotes': 1, 'upvotes': 8, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'Maecenas quis mauris vel nisi faucibus eleifend sit amet nec orci. Donec vulputate, sapien ac ornare efficitur, dui lectus molestie odio, nec gravida mauris eros in purus.',
             },
             {
@@ -639,19 +639,19 @@ export class InMemoryDataService implements InMemoryDbService {
                 'content': 'Suspendisse tincidunt massa justo, sed tincidunt neque accumsan et. Fusce venenatis dolor sed blandit vestibulum.',
             },
             {
-                'id': 35, 'qId': 4, 'authorId': 21, 'time': 'two days', 'downvotes': 11, 'upvotes': 15, 'type': 'ANSWERED', 'relDis': false,
+                'id': 35, 'qId': 4, 'authorId': 21, 'time': 'two days', 'downvotes': 11, 'upvotes': 15, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Suspendisse finibus, odio non varius feugiat, diam nisi lacinia lacus, et tempus orci est sed ex.',
             },
             {
-                'id': 36, 'qId': 4, 'authorId': 22, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relDis': true,
+                'id': 36, 'qId': 4, 'authorId': 22, 'time': 'yesterday', 'downvotes': 0, 'upvotes': 6, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Vivamus malesuada erat lacinia, eleifend enim non, faucibus nibh. Donec porta, magna quis finibus varius, orci justo dapibus orci, vel dapibus risus nulla at elit.',
             },
             {
-                'id': 37, 'qId': 5, 'authorId': 23, 'time': 'two days', 'downvotes': 8, 'upvotes': 4, 'type': 'ANSWERED', 'relDis': false,
+                'id': 37, 'qId': 5, 'authorId': 23, 'time': 'two days', 'downvotes': 8, 'upvotes': 4, 'type': 'ANSWERED', 'relatedDiscussion': false,
                 'content': 'Nullam lacinia dolor nunc. Mauris dignissim nisl viverra tellus fermentum molestie. Duis maximus in odio vel posuere.',
             },
             {
-                'id': 38, 'qId': 5, 'authorId': 24, 'time': 'yesterday', 'downvotes': 4, 'upvotes': 18, 'type': 'ANSWERED', 'relDis': true,
+                'id': 38, 'qId': 5, 'authorId': 24, 'time': 'yesterday', 'downvotes': 4, 'upvotes': 18, 'type': 'ANSWERED', 'relatedDiscussion': true,
                 'content': 'In consequat metus eros, a ullamcorper nibh ultrices vitae. Praesent et ligula arcu. Aliquam tincidunt dapibus lacus eu mollis.',
             },
             {

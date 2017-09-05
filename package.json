@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "An Angular project",
   "author": "RandomKeyboardInputGenerator <piotr.adrian.konopka@gmail.com>",
-  "license": "MIT",
+  "license": "MIT",  
+  "sasslintConfig": "sass-lint.yml",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "saas-lint": "sass-lint -c sass-lint.yml -v -q",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -52,6 +54,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
     "pug": "^2.0.0-rc.3",
+    "sass-lint": "^1.11.1",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
     "typescript": "~2.3.3"

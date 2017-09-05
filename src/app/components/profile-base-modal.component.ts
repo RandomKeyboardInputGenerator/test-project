@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Inject, Optional } from '@angular/core';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
+import { AppSettings } from '../config/app-settings';
+
 import _ from 'lodash'
 
 @Component({
@@ -9,16 +11,15 @@ import _ from 'lodash'
     styleUrls: ['../styles/profile-base-modal.component.scss']
 })
 export class ProfileBaseModalComponent implements OnInit {
-    aId = 0;
-    dic = {};   
-    author = {
-        'id': 0,
+    authorId = 0;
+    dictionary = {};
+    profileAuthor = {
+        'id': this.authorId,
         'memberTime': ''
         };
     users = {};
-    others = {};
-    hottestQ = {};
-    
+    equalJoinTimeUsers = {};
+    hottestDiscussion = {};
 
     constructor(
         @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
@@ -26,43 +27,50 @@ export class ProfileBaseModalComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        // Write injected data to local variable
-        this.aId = this.dialogData.userId;
+        this.authorId = this.dialogData.userId;
         this.users = this.dialogData.users;
-        this.dic = this.dialogData.dic;
-        let qData = this.dialogData.qData;
-        
-        this.getUsers();
-        this.getHotestDis(qData);
+        this.dictionary = this.dialogData.dictionary;
+        let questions = this.dialogData.questions;
+
+        this.getProfileAuthor();
+        this.getUsersWithEqualJoinTime();
+        this.getHotestDiscussion(questions);
     }
 
     closeModal(): void {
         this.dialogRef.close();
     }
     
-    // Get avatar's src
-    getAvatar(userId: number): string {
-        let users = this.users;
-        let src = _.find(users, function(o) { return o.id == userId }) || 'adelaide_hanscom1.png';
-        _.isObject(src) ? src = src.avatarSrc : src;
-        return 'assets/img/portraits/' + src;
+    findUser(userId: number): any {
+        return _.find(this.users, 'id', userId);
     }
     
-    // Get others users 'WHO JOINED THE PLATFORM THAT SAME PERIOD' and the author
-    getUsers(): void {
-        let _aId = this.aId;
-        this.author = _.find(this.users, function(o) { return o.id == _aId });
-        let memberTime = this.author.memberTime;
-        // Get max 3 users and exclude the author 
-        this.others = _.slice(
-                        _.filter(this.users, function(o) { 
-                            return ( ( o.memberTime == memberTime ) && ( o.id !== _aId ) )
-                            }),
-                        0, 3
-                        );
+    getAvatar(userId: number): string {
+        let src = this.findUser(userId) || AppSettings.DEFAULT_AVATAR;
+        _.isObject(src) ? src = src.avatarSrc : src;
+        return AppSettings.PORTRAITS_DIRECTORY + src;
     }
-    //Get 'THE HOTTEST DISCUSSION THESE DAYS'
-    getHotestDis(qData: any): void {
-        this.hottestQ = _.max(qData, function(o) { return o.peerInv });
+    
+    getProfileAuthor() {
+        this.profileAuthor = this.findUser(this.authorId);
+    }
+    
+    getUsersWithEqualJoinTime(): void {
+        let authorId = this.profileAuthor.id;
+        let memberTime = this.profileAuthor.memberTime;
+        this.equalJoinTimeUsers = _.slice(
+            _.filter(this.users, user => { 
+                return ( ( user.memberTime === memberTime ) && ( user.id !== authorId ) )
+                }),
+                0, 3
+            );
+    }
+    
+    getUserName(userId: number): string {
+        return this.findUser(userId).name;
+    }
+    
+    getHotestDiscussion(questions: any): void {
+        this.hottestDiscussion = _.max(questions, question => question.peersInvolved);
     }
 }

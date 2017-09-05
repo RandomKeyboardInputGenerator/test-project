@@ -2,9 +2,10 @@ import { Component, OnInit, HostListener  } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { ProfileBaseModalComponent } from '../components/profile-base-modal.component';
 
-import { DbService }  from '../services/db.service';
+import { DbService } from '../services/db.service';
+import { AppSettings } from '../config/app-settings';
 
-import { LimitQToPipe } from '../pipes/limit-qto.pipe';
+import { LimitQuestionsByAuthorPipe } from '../pipes/limit-questions-by-author.pipe';
 import { SearchPipe } from '../pipes/search.pipe';
 
 import _ from 'lodash'
@@ -15,39 +16,30 @@ import _ from 'lodash'
     styleUrls: ['../styles/all-questions-base.component.scss']
 })
 export class AllQuestionsBaseComponent implements OnInit {
-    questions: string = 'all'; // radio btn
-    selected: string = 'recent'; // another trigger
-    searchQuery: string = ''; // bufor for searching query connected with search input
-    term: string = '';  // This one is sent to Search Pipe when user clicks search btn
-    loading = { text: 'Please wait. I\'m loading data...', status: { 'dic': false, 'q': false, 'com': false, 'users': false } };
-    
-    // Simulated user - userId
-    me: number = 1;
-    
-    // Limit of visable comments
-    visCom = 4;
-    // Limit of displayed questions
-    maxQ = 3;
-    // Dictionary with static texts
-    dic = {};
-    // Questions data from Db
-    qData = [];
-    // Comments data from Db
-    comData = [];
-    // Users data
+    appSettings = new AppSettings();
+    userId = AppSettings.DEFAULT_USER_ID;
+    radioFilter = 'all';
+    sortOrder = 'recent';
+    searchQueryBuffor = '';
+    searchQuery = '';
+    visableComments = 4;
+    visableQuestions = 3;
+    dictionary = {};
+    questions = [];
+    comments = [];
     users = [];
-    hottestQ = {};
     
-    // Listen for resizing window
+    checkCommentsVisibility(windowWidth: number): void {
+        if (windowWidth < AppSettings.FULL_VIEW_MODE_MIN_WIDTH ) {  
+            this.visableComments = 1; 
+        }
+        else { 
+            this.visableComments = 4; 
+        }
+    }
+    
     @HostListener('window:resize', ['$event']) onResize(event: any) {
-        // phone and tablet mode (<830px)
-        if (event.target.innerWidth < 830) {
-            this.visCom = 1;
-        }
-        // Full view mode
-        else {
-            this.visCom = 4;
-        }
+        this.checkCommentsVisibility(event.target.innerWidth);
     }
     constructor(
         public dialog: MdDialog,
@@ -55,137 +47,120 @@ export class AllQuestionsBaseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        // phone and tablet mode (<830px)
-        if (window.innerWidth < 830) {
-            this.visCom = 1;
-        }
-        // Full view mode
-        else {
-            this.visCom = 4;
-        }
+        this.checkCommentsVisibility(window.innerWidth);
         
         this.getDictionary();
-        this.getQData();
-        this.getComData();
-        this.sortQ();
+        this.getComments();
         this.getUsers();
     }
 
-    // Show modal dialog with injected data
     openModal(userId: number): void {
         this.dialog.open(ProfileBaseModalComponent, {
-            data: { 'userId': userId, 'users': this.users, 'dic': this.dic, 'qData': this.qData }
+            data: { 
+                'userId': userId, 
+                'users': this.users, 
+                'dictionary': this.dictionary, 
+                'questions': this.questions 
+            }
         });
     }
     
-    // Sort trigger: recent or hot
-    click(event: any): void {
-        this.selected = event.target.innerText;
-        this.sortQ();
+    changeQuestionsSortOrder(event: any): void {
+        this.sortOrder = event.target.innerText;
+        this.sortQuestions();
     }
     
-    // Sort questions by hot or recent
-    sortQ(): void {
-        if (this.selected === 'recent') {
-            this.qData = _.sortBy(this.qData, 'lastTimeDiscusedDays');
+    sortQuestions(): void {
+        if (this.sortOrder === 'recent') {
+            this.questions = _.sortBy(this.questions, 'lastTimeDiscusedDays');
         }
         else {
-            this.qData = _.sortByOrder(this.qData, 'peerInv', 'desc');
+            this.questions = _.sortByOrder(this.questions, 'peersInvolved', 'desc');
         }
     }
     
-    // Needs optimisation... but later
     getComment(id: number): any {
-        let index = _.findIndex(this.comData, function(o) { return o.id == id; });
-        return this.comData[index];
+        let index = _.findIndex(this.comments, comment => comment.id === id);
+        return this.comments[index];
     }
     
-    // Increase the max number of displayed questions
-    showMoreQ(): void {
-        this.maxQ += 3;
+    showMoreQuestions(): void {
+        this.visableQuestions += 3;
     }
     
-    // Get dictionary from database
     getDictionary(): void {
-        this.dataService
-            .getDictionary()
-            .then(
+        this.dataService.getDictionary().then(
                 dictionary => {
-                    this.dic = dictionary;
-                    this.loading.status.dic = true;
+                    this.dictionary = dictionary;
+                    this.appSettings.setLoadedStatus('dictionary');
                 }
             );
     }
     
-    // Get questions data from database
-    getQData(): void {
-        this.dataService
-            .getQData()
-            .then(
+    getQuestions(): void {
+        this.dataService.getQuestions().then(
                 questions => {
-                    this.qData = questions;
-                    this.loading.status.q = true;
+                    this.questions = questions;
+                    let author = { name: ''};
+                    _.forEach(this.questions, (question, index, questions) => {
+                        author = this.findUser(question.authorId);
+                        question.author = author.name;
+                        questions[index] = question;
+                    });
+                    this.sortQuestions();
+                    this.appSettings.setLoadedStatus('questions');
                 }
             );
     }
     
-    // Get comments data from database
-    getComData(): void {
-        this.dataService
-            .getComData()
-            .then(
+    getComments(): void {
+        this.dataService.getCommments().then(
                 comments => {
-                    this.comData = comments;
-                    this.loading.status.com = true;
+                    this.comments = comments;
+                    this.appSettings.setLoadedStatus('comments');
                 }
             );
     }
     
-    // Get avatars data
     getAvatars(): void {
-        this.dataService
-            .getAvatars()
-            .then(
+        this.dataService.getAvatars().then(
                 avatars => {
                         let avatar = {};
-                        // For each user
-                        _.forEach(this.users, function(u, i, users) {
-                            // Find related avatar
-                            avatar = _.find(avatars, function(a) { return a.id == u.avatarId });
+                        _.forEach(this.users, (user, index, users) => {
+                            avatar = _.find(avatars, avatar => avatar.id === user.avatarId);
                             // Remove needless keys and merge the objects
-                            users[i] = _.assign(_.omit(u, 'avatarId'), _.omit(avatar, 'id'));
+                            users[index] = _.assign(_.omit(user, 'avatarId'), _.omit(avatar, 'id'));
                         });
-                        this.loading.status.users = true;
+                        this.appSettings.setLoadedStatus('users');
                     }
             );
     }
     
-    // Get avatar's src
-    getAvatar(userId: number): string {
-        let users = this.users;
-        let src = _.find(users, function(o) { return o.id == userId }) || 'adelaide_hanscom1.png';
-        _.isObject(src) ? src = src.avatarSrc : src;
-        return 'assets/img/portraits/' + src;
+    findUser(userId: number): any {
+        return _.find(this.users, 'id', userId);
     }
     
-    // Get users data
+    getAvatar(userId: number): string {
+        let src = this.findUser(userId) || AppSettings.DEFAULT_AVATAR;
+        _.isObject(src) ? src = src.avatarSrc : src;
+        return AppSettings.PORTRAITS_DIRECTORY + src;
+    }
+    
     getUsers(): void {
-        this.dataService
-            .getUsers()
-            .then(
+        this.dataService.getUsers().then(
                 users => {
                         this.users = users;
                         this.getAvatars();
+                        this.getQuestions();
                     }
             );
     }
     
     getUserName(userId: number): string {
-        let users = this.users;
-        return _.find(users, function(o) { return o.id == userId }).name;
+        return this.findUser(userId).name;
     }
 
-    searchQ(): void {
-        this.term = this.searchQuery;
+    searchQuestions(): void {
+        this.searchQuery = this.searchQueryBuffor;
     }
 }

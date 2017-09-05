@@ -1,8 +1,8 @@
-import { LimitQToPipe } from '../../../pipes/limit-qto.pipe';
+import { LimitQuestionsByAuthorPipe } from '../../../pipes/limit-questions-by-author.pipe';
 
-describe('LimitQToPipe', () => {
+describe('LimitQuestionsByAuthorPipe', () => {
   it('create an instance', () => {
-    const pipe = new LimitQToPipe();
+    const pipe = new LimitQuestionsByAuthorPipe();
     expect(pipe).toBeTruthy();
   });
 });

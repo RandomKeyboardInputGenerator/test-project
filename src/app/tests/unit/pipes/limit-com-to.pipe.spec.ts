@@ -1,8 +1,8 @@
-import { LimitComToPipe } from '../../../pipes/limit-com-to.pipe';
+import { LimitCommentsByAnswerPipe } from '../../../pipes/limit-comments-by-answer.pipe';
 
-describe('LimitComToPipe', () => {
+describe('LimitCommentsByAnswerPipe', () => {
   it('create an instance', () => {
-    const pipe = new LimitComToPipe();
+    const pipe = new LimitCommentsByAnswerPipe();
     expect(pipe).toBeTruthy();
   });
 });

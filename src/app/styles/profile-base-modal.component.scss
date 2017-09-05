@@ -1,245 +1,288 @@
 div {
-  &.modal-content {
-    position: relative;
-    background-color: white;
-    margin: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid #888;
-    max-width: 1024px;
-    min-width: 380px;
-    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);*/
-  }
-  &.modal-exit-btn {
-    text-align: right;
-    font-size: 20px;
-    margin-right: 20px;
-    cursor: pointer;
-  }
-  &.modal-avatar {
-    text-align: center;
-    cursor: pointer;
-  }
-  &.modal-user-name {
-    color: #0266b3;
-    font-weight: bold;
-    text-align: center;
-  }
-  &.modal-user-info {
-    margin: auto;
-    display: table;
-    width: 80% !important;
-    text-align: center;
-  }
-  &.modal-user-info-left, &.modal-user-info-center {
-    display: table-cell;
-    padding: 0 !important;
-    margin-bottom: 5px;
-    width: 100%;
-    float: left;
-  }
-  &.modal-user-info-right {
-    display: table-cell;
-    padding: 0 !important;
-    color: orange;
-    margin-bottom: 5px;
-    width: 100%;
-    float: left;
-  }
-  &.modal-other-profiles {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 20px;
-    margin: auto;
-    text-align: center;
-  }
-  &.modal-other-profiles-row {
-    display: table;
-    width: 100%;
-    margin: auto;
-    text-align: center;
-  }
-  &.modal-other-profiles-title {
-    display: inline-block;
-    padding: 0 30px;
-  }
-  &.modal-other-profiles-profile {
-    display: table-cell;
-    cursor: pointer;
-    text-align: center;
-    margin: auto;
-    max-width: 80px;
-  }
-  &.modal-other-profiles-profile-ico {
-    padding: 20px 5px;
-    margin: auto;
-    width: 80px;
-    height: 80px;
-    background: repeating-linear-gradient(45deg, white, #ededed 5px);
-  }
-  &.modal-other-profiles-profile-name {
-    width: 100%;
-    color: #0266b3;
-    font-weight: bold;
-    font-size: 14px;
-    padding: 5px;
-    text-align: center;
-    margin: auto;
-  }
-  &.modal-hottest-discussion {
-    display: table;
-    width: 100%;
-    text-align: center;
-  }
-  &.modal-hottest-discussion-title {
-    margin-bottom: 50px;
-  }
-  &.modal-hottest-discussion-row {
-    display: table;
-    width: 100%;
-    margin: 20px auto;
-    padding: 0 20px 20px 20px;
-    background: repeating-linear-gradient(45deg, white, #ededed 5px);
-  }
-  &.modal-hottest-discussion-avatar {
-    position: relative;
-    top: -20px;
-    text-align: center;
-    cursor: pointer;
-    margin: auto;
-  }
-  &.modal-hottest-discussion-desc {
-    position: relative;
-    top: -10px;
-    color: #0266b3;
-    font-style: italic;
-    font-weight: bold;
-  }
-  &.modal-hottest-discussion-info {
-    display: inline-block;
-    font-size: 14px;
-    min-width: 160px;
-  }
-  &.modal-hottest-discussion-info-row {
-    display: table;
-    width: 100%;
-    margin: auto;
-    position: relative;
-    top: -10px;
-  }
-  &.modal-user-menu {
-    margin: auto;
-    display: table;
-    font-size: 20px;
-    text-align: center;
-  }
-  &.modal-user-menu-left {
-    display: table-cell;
-    padding: 0px 10px;
-    cursor: pointer;
-  }
-  &.modal-user-menu-name {
-    display: table-cell;
-    padding: 0px 30px;
-    font-style: italic;
-  }
-  &.modal-user-menu-right {
-    display: table-cell;
-    padding: 0px 10px;
-    cursor: pointer;
-  }
-  &.modal-profile-info {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 30px;
-    margin: auto;
-    text-align: center;
-  }
-  &.modal-profile-info-row {
-    width: 100%;
-  }
-  &.modal-profile-info-title {
-    display: inline-block;
-    margin-bottom: 40px;
-  }
-  &.modal-profile-info-peers {
-    display: inline-block;
-    padding: 0px 30px;
-    margin: 5px !important;
-    background-color: #e5f5fd;
-    -webkit-transform: rotate(50deg);
-    transform: rotate(50deg);
-  }
-  &.modal-profile-info-peers-unrotate {
-    -webkit-transform: rotate(-50deg);
-    transform: rotate(-50deg);
-  }
-  &.modal-profile-info-dis {
-    display: inline-block;
-    padding: 0px 15px;
-    margin: 5px !important;
-    background-color: #e5f5fd;
-    -webkit-transform: rotate(-20deg);
-    transform: rotate(-20deg);
-  }
-  &.modal-profile-info-dis-unrotate {
-    -webkit-transform: rotate(20deg);
-    transform: rotate(20deg);
-  }
-  &.modal-profile-info-find {
-    display: inline-block;
-    padding: 0px 25px;
-    margin: 5px !important;
-    background-color: #e5f5fd;
-    -webkit-transform: rotate(50deg);
-    transform: rotate(50deg);
-  }
-  &.modal-profile-info-find-unrotate {
-    -webkit-transform: rotate(-50deg);
-    transform: rotate(-50deg);
-  }
-  &.modal-profile-info-q {
-    display: inline-block;
-    padding: 0px 20px;
-    margin: 5px !important;
-    background-color: #e5f5fd;
-    -webkit-transform: rotate(10deg);
-    transform: rotate(10deg);
-  }
-  &.modal-profile-info-q-unrotate {
-    -webkit-transform: rotate(-10deg);
-    transform: rotate(-10deg);
-  }
+    &.modal-content {
+        position: relative;
+        background-color: white;
+        margin: auto;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: 1px solid #888;
+        max-width: 1024px;
+        min-width: 380px;
+        /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);*/
+    }
+    &.modal-exit-btn {
+        text-align: right;
+        margin-right: 20px;
+        &:after {
+            content: ' \274C'; 
+            cursor: pointer;
+        }
+    }
+    &.modal-avatar {
+        text-align: center;
+        cursor: pointer;
+    }
+    &.modal-user-name {
+        color: #0266b3;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0;
+        font-size: 140%;
+    }
+    &.modal-user-info {
+        margin: auto;
+        display: table;
+        width: 80% !important;
+        text-align: center;
+    }
+    &.modal-user-info-left, &.modal-user-info-center {
+        display: table-cell;
+        padding: 0 !important;
+        margin-bottom: 5px;
+        width: 100%;
+        float: left;
+        font-weight: bold;
+    }
+    &.modal-user-info-right {
+        display: table-cell;
+        padding: 0 !important;
+        color: orange;
+        margin-bottom: 5px;
+        width: 100%;
+        float: left;
+    }
+    &.modal-other-profiles {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 20px;
+        margin: auto;
+        text-align: center;
+    }
+    &.modal-other-profiles-row {
+        display: table;
+        width: 100%;
+        margin: auto;
+        text-align: center;
+    }
+    &.modal-other-profiles-title {
+        display: inline-block;
+        padding: 0 30px;
+    }
+    &.modal-other-profiles-profile {
+        display: table-cell;
+        cursor: pointer;
+        text-align: center;
+        margin: auto;
+        max-width: 80px;
+    }
+    &.modal-other-profiles-profile-ico {
+        padding: 20px 5px;
+        margin: auto;
+        width: 80px;
+        height: 80px;
+        background: repeating-linear-gradient(45deg, white, #ededed 5px);
+    }
+    &.modal-other-profiles-profile-name {
+        width: 100%;
+        color: #0266b3;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 5px;
+        text-align: center;
+        margin: auto;
+    }
+    &.modal-hottest-discussion {
+        display: table;
+        width: 100%;
+        text-align: center;
+    }
+    &.modal-hottest-discussion-title {
+        margin-bottom: 50px;
+    }
+    &.modal-hottest-discussion-row {
+        display: table;
+        width: 100%;
+        margin: 20px auto;
+        padding: 0 20px 20px 20px;
+        background: repeating-linear-gradient(45deg, white, #ededed 5px);
+    }
+    &.modal-hottest-discussion-avatar {
+        position: relative;
+        top: -20px;
+        text-align: center;
+        cursor: pointer;
+        margin: auto;
+    }
+    &.modal-hottest-discussion-desc {
+        position: relative;
+        top: -10px;
+        color: #0266b3;
+        font-style: italic;
+        font-weight: bold;
+    }
+    &.modal-hottest-discussion-info {
+        display: inline-block;
+        font-size: 14px;
+        min-width: 160px;
+    }
+    &.modal-hottest-discussion-info-row {
+        display: table;
+        width: 100%;
+        margin: auto;
+        position: relative;
+        top: -10px;
+    }
+    &.modal-user-menu {
+        margin: auto;
+        display: table;
+        font-size: 20px;
+        text-align: center;
+    }
+    &.modal-user-menu-left {
+        display: table-cell;
+        padding: 0px 10px;
+        cursor: pointer;
+    }
+    &.modal-user-menu-name {
+        display: table-cell;
+        padding: 0px 30px;
+        font-style: italic;
+    }
+    &.modal-user-menu-right {
+        display: table-cell;
+        padding: 0px 10px;
+        cursor: pointer;
+    }
+    &.modal-profile-info {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 30px;
+        margin: auto;
+        text-align: center;
+    }
+    &.modal-profile-info-row {
+        width: 100%;
+    }
+    &.modal-profile-info-title {
+        display: inline-block;
+        margin-bottom: 40px;
+    }
+    &.modal-profile-info-peers {
+        display: inline-block;
+        padding: 0px 30px;
+        margin: 5px !important;
+        background-color: #e5f5fd;
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
+    &.modal-profile-info-peers-unrotate {
+        -webkit-transform: rotate(-50deg);
+        transform: rotate(-50deg);
+    }
+    &.modal-profile-info-dis {
+        display: inline-block;
+        padding: 0px 15px;
+        margin: 5px !important;
+        background-color: #e5f5fd;
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+    }
+    &.modal-profile-info-dis-unrotate {
+        -webkit-transform: rotate(20deg);
+        transform: rotate(20deg);
+    }
+    &.modal-profile-info-find {
+        display: inline-block;
+        padding: 0px 25px;
+        margin: 5px !important;
+        background-color: #e5f5fd;
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
+    &.modal-profile-info-find-unrotate {
+        -webkit-transform: rotate(-50deg);
+        transform: rotate(-50deg);
+    }
+    &.modal-profile-info-q {
+        display: inline-block;
+        padding: 0px 20px;
+        margin: 5px !important;
+        background-color: #e5f5fd;
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+    }
+    &.modal-profile-info-q-unrotate {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+    }
 }
 
 hr.modal-hr {
-  border-top: 1px solid black;
-  margin: 5px auto;
-  width: 80%;
+    border-top: 1px solid black;
+    margin: 5px auto;
+    width: 80%;
 }
 
 button {
-  &.blue {
-    color: white;
-    border-width: 0;
-    border-radius: 40px;
-    font-size: 20px;
-    background-color: #0266b3;
-    padding: 0px 10px 0px 10px;
-  }
-  &.grey {
-    color: white;
-    border-width: 0;
-    border-radius: 40px;
-    font-size: 20px;
-    background-color: grey;
-    padding: 0px 10px 0px 10px;
-  }
+    &.blue {
+        color: white;
+        border-width: 0;
+        border-radius: 40px;
+        font-size: 20px;
+        background-color: #0266b3;
+        padding: 0px 10px 0px 10px;
+    }
+    &.grey {
+        color: white;
+        border-width: 0;
+        border-radius: 40px;
+        font-size: 20px;
+        background-color: grey;
+        padding: 0px 10px 0px 10px;
+    }
 }
 
 span.modal-hottest-discussion-info-nr {
-  font-size: 18px;
-  font-weight: bold;
+    @extend .space;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+span.space {
+    &:after {
+        content: ' \0020'; 
+    }
+}
+
+span.left-pointing-angle {
+    &:after {
+        content: ' \2039'; 
+    }
+}
+
+span.right-pointing-angle {
+    &:after {
+        content: ' \203A'; 
+    }
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+    font-size: 140%;
+}
+
+span.headler {
+    display: block;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 15px 0 0px;
+}
+
+span.paragraph {
+    display: block;
+    margin-bottom: 15px;
 }
 
 img {
@@ -254,162 +297,162 @@ img {
         border-radius: 50%;
     }
 }
-    
+
 
 @media only screen and (min-width: 600px) {
-  hr.modal-hr {
-    border-top: 1px solid black;
-    margin: 10px auto;
-    width: 75%;
-  }
-  div {
-    &.modal-profile-info-find {
-      display: inline-block;
-      padding: 0px 25px;
-      margin: 10px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(50deg);
-      transform: rotate(50deg);
+    hr.modal-hr {
+        border-top: 1px solid black;
+        margin: 10px auto;
+        width: 75%;
     }
-    &.modal-profile-info-q {
-      display: inline-block;
-      padding: 0px 20px;
-      margin: 10px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(10deg);
-      transform: rotate(10deg);
+    div {
+        &.modal-profile-info-find {
+            display: inline-block;
+            padding: 0px 25px;
+            margin: 10px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+        }
+        &.modal-profile-info-q {
+            display: inline-block;
+            padding: 0px 20px;
+            margin: 10px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+        }
+        &.modal-hottest-discussion-info {
+            display: inline-block;
+            font-size: 16px;
+            min-width: 180px;
+        }
+        &.modal-profile-info-dis {
+            display: inline-block;
+            padding: 0px 15px;
+            margin: 10px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+        }
+        &.modal-profile-info-peers {
+            display: inline-block;
+            padding: 0px 30px;
+            margin: 10px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+        }
+        &.modal-user-menu {
+            margin: auto;
+            display: table;
+            font-size: 30px;
+            text-align: center;
+        }
+        &.modal-user-menu-left {
+            display: table-cell;
+            padding: 0px 30px;
+            cursor: pointer;
+        }
+        &.modal-user-menu-name {
+            display: table-cell;
+            padding: 0px 30px;
+            font-style: italic;
+        }
+        &.modal-user-menu-right {
+            display: table-cell;
+            padding: 0px 30px;
+            cursor: pointer;
+        }
+        &.modal-user-info-left, &.modal-user-info-center {
+            display: table-cell;
+            padding: 0 !important;
+            width: 33.33%;
+        }
+        &.modal-user-info-right {
+            display: table-cell;
+            padding: 0 !important;
+            color: orange;
+            width: 33.33%;
+        }
     }
-    &.modal-hottest-discussion-info {
-      display: inline-block;
-      font-size: 16px;
-      min-width: 180px;
-    }
-    &.modal-profile-info-dis {
-      display: inline-block;
-      padding: 0px 15px;
-      margin: 10px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(-20deg);
-      transform: rotate(-20deg);
-    }
-    &.modal-profile-info-peers {
-      display: inline-block;
-      padding: 0px 30px;
-      margin: 10px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(50deg);
-      transform: rotate(50deg);
-    }
-    &.modal-user-menu {
-      margin: auto;
-      display: table;
-      font-size: 30px;
-      text-align: center;
-    }
-    &.modal-user-menu-left {
-      display: table-cell;
-      padding: 0px 30px;
-      cursor: pointer;
-    }
-    &.modal-user-menu-name {
-      display: table-cell;
-      padding: 0px 30px;
-      font-style: italic;
-    }
-    &.modal-user-menu-right {
-      display: table-cell;
-      padding: 0px 30px;
-      cursor: pointer;
-    }
-    &.modal-user-info-left, &.modal-user-info-center {
-      display: table-cell;
-      padding: 0 !important;
-      width: 33.33%;
-    }
-    &.modal-user-info-right {
-      display: table-cell;
-      padding: 0 !important;
-      color: orange;
-      width: 33.33%;
-    }
-  }
 }
 
 @media only screen and (min-width: 768px) {
-  div {
-    &.modal-hottest-discussion-info {
-      display: inline-block;
-      font-size: 16px;
-      min-width: 180px;
+    div {
+        &.modal-hottest-discussion-info {
+            display: inline-block;
+            font-size: 16px;
+            min-width: 180px;
+        }
+        &.modal-profile-info-peers {
+            display: inline-block;
+            padding: 0px 30px;
+            margin: 15px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+        }
+        &.modal-profile-info-dis {
+            display: inline-block;
+            padding: 0px 15px;
+            margin: 15px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+        }
+        &.modal-profile-info-find {
+            display: inline-block;
+            padding: 0px 25px;
+            margin: 15px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+        }
+        &.modal-profile-info-q {
+            display: inline-block;
+            padding: 0px 20px;
+            margin: 15px !important;
+            background-color: #e5f5fd;
+            -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+        }
+        &.modal-user-menu {
+            margin: auto;
+            display: table;
+            font-size: 40px;
+            text-align: center;
+        }
+        &.modal-user-menu-left {
+            display: table-cell;
+            padding: 0px 50px;
+            cursor: pointer;
+        }
+        &.modal-user-menu-name {
+            display: table-cell;
+            padding: 0px 50px;
+            font-style: italic;
+        }
+        &.modal-user-menu-right {
+            display: table-cell;
+            padding: 0px 50px;
+            cursor: pointer;
+        }
+        &.modal-user-info-left, &.modal-user-info-center {
+            display: table-cell;
+            padding: 0 !important;
+            width: 33.33%;
+        }
+        &.modal-user-info-right {
+            display: table-cell;
+            padding: 0 !important;
+            color: orange;
+            width: 33.33%;
+        }
     }
-    &.modal-profile-info-peers {
-      display: inline-block;
-      padding: 0px 30px;
-      margin: 15px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(50deg);
-      transform: rotate(50deg);
+    hr.modal-hr {
+        border-top: 1px solid black;
+        margin: 20px auto;
+        width: 75%;
     }
-    &.modal-profile-info-dis {
-      display: inline-block;
-      padding: 0px 15px;
-      margin: 15px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(-20deg);
-      transform: rotate(-20deg);
-    }
-    &.modal-profile-info-find {
-      display: inline-block;
-      padding: 0px 25px;
-      margin: 15px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(50deg);
-      transform: rotate(50deg);
-    }
-    &.modal-profile-info-q {
-      display: inline-block;
-      padding: 0px 20px;
-      margin: 15px !important;
-      background-color: #e5f5fd;
-      -webkit-transform: rotate(10deg);
-      transform: rotate(10deg);
-    }
-    &.modal-user-menu {
-      margin: auto;
-      display: table;
-      font-size: 40px;
-      text-align: center;
-    }
-    &.modal-user-menu-left {
-      display: table-cell;
-      padding: 0px 50px;
-      cursor: pointer;
-    }
-    &.modal-user-menu-name {
-      display: table-cell;
-      padding: 0px 50px;
-      font-style: italic;
-    }
-    &.modal-user-menu-right {
-      display: table-cell;
-      padding: 0px 50px;
-      cursor: pointer;
-    }
-    &.modal-user-info-left, &.modal-user-info-center {
-      display: table-cell;
-      padding: 0 !important;
-      width: 33.33%;
-    }
-    &.modal-user-info-right {
-      display: table-cell;
-      padding: 0 !important;
-      color: orange;
-      width: 33.33%;
-    }
-  }
-  hr.modal-hr {
-    border-top: 1px solid black;
-    margin: 20px auto;
-    width: 75%;
-  }
 }

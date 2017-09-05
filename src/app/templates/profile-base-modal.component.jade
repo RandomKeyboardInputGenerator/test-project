@@ -1,89 +1,92 @@
 md-dialog-content
 	.modal-content
-		.modal-exit-btn((click)='closeModal()') &#10799;
+		.modal-exit-btn((click)='closeModal()')
+                
 		.modal-avatar
-			h1
-				img.img-circle(src='{{ getAvatar(author.id) }}', alt='...')
-		.modal-user-name
-			h3 {{ author.name }}
+			img.img-circle(src='{{ getAvatar(profileAuthor.id) }}', alt='...')
+                                
+		.modal-user-name {{ profileAuthor.name }}
+                        
 		.modal-user-info
 			.modal-user-info-left
-				span(style='color: grey;') {{ dic.memberTime }}
-				.nowrap
-					b {{ author.memberTime }}
+				span.description {{ dictionary.memberTime }}
+				.nowrap {{ profileAuthor.memberTime }}
 			.modal-user-info-center
-				span(style='color: grey;') {{ dic.lastLogTime }}
-				.nowrap
-					b {{ author.lastLogTime }}
+				span.description {{ dictionary.lastLogTime }}
+				.nowrap {{ profileAuthor.lastLogTime }}
 			.modal-user-info-right
-				span(style='color: grey;') {{ dic.activityLvl }}
+				span.description {{ dictionary.activityLevel }}
 				.nowrap
 					span.glyphicon.glyphicon-star
 					span.glyphicon.glyphicon-star
 					span.glyphicon.glyphicon-star-empty
+                                        
 		hr.modal-hr
+                
 		.modal-user-menu
 			.modal-user-menu-left
 				button.grey
-					span &lt;
+					span.left-pointing-angle
 			.modal-user-menu-name
-				| {{ dic.modalTitles[0] }}
+				| {{ dictionary.modalTitles[0] }}
 			.modal-user-menu-right
 				button.blue
-					span &gt;
+					span.right-pointing-angle
+                                        
 		.modal-profile-info
 			.modal-profile-info-row
 				.modal-profile-info-title
-					span.nowrap {{ dic.modalTitles[1] }}&nbsp;
-					span.nowrap {{ dic.modalTitles[2] }}
+					span.nowrap.space {{ dictionary.modalTitles[1] }}
+					span.nowrap {{ dictionary.modalTitles[2] }}
 			.modal-profile-info-row
 				.modal-profile-info-peers
 					.modal-profile-info-peers-unrotate
-						h1 {{ author.peers}}
-						p {{ dic.peers}}
+						span.headler {{ profileAuthor.peers}}
+						span.paragraph {{ dictionary.peers}}
 				.modal-profile-info-dis
 					.modal-profile-info-dis-unrotate
-						h1 {{ author.discussions}}
-						p {{ dic.discussions}}
+						span.headler {{ profileAuthor.discussions}}
+						span.paragraph {{ dictionary.discussions}}
 				.modal-profile-info-find
 					.modal-profile-info-find-unrotate
-						h1 {{ author.findings}}
-						p {{ dic.findings}}
+						span.headler {{ profileAuthor.findings}}
+						span.paragraph {{ dictionary.findings}}
 				.modal-profile-info-q
 					.modal-profile-info-q-unrotate
-						h1 {{ author.questions}}
-						p {{ dic.questions}}
+						span.headler {{ profileAuthor.questions}}
+						span.paragraph {{ dictionary.questions}}
+                                                
 		.modal-other-profiles
 			.modal-other-profiles-title
-				span.nowrap {{ dic.modalTitles[3] }}&nbsp;
-				span.nowrap {{ dic.modalTitles[4] }}
+				span.nowrap.space {{ dictionary.modalTitles[3] }}
+				span.nowrap {{ dictionary.modalTitles[4] }}
 			.modal-other-profiles-row
-				.modal-other-profiles-profile(*ngFor='let o of others; index as _i;')
+				.modal-other-profiles-profile(*ngFor='let user of equalJoinTimeUsers; index as _i;')
 					.modal-other-profiles-profile-ico
-						img.img-circle-small(src='{{ getAvatar(o.id) }}', alt='...')
+						img.img-circle-small(src='{{ getAvatar(user.id) }}', alt='...')
 					.modal-other-profiles-profile-name
-						| {{ o.name }}
+						| {{ user.name }}
+                                                
 		.modal-hottest-discussion
 			.modal-hottest-discussion-title
-				| {{ dic.modalTitles[5] }}
+				| {{ dictionary.modalTitles[5] }}
 			.modal-hottest-discussion-row
 				.modal-hottest-discussion-avatar
-					img.img-circle-small(src='{{ getAvatar(hottestQ.authorId) }}', alt='...')
+					img.img-circle-small(src='{{ getAvatar(hottestDiscussion.authorId) }}', alt='...')
 				.modal-hottest-discussion-desc
-					p
-						| {{ hottestQ.author }} 
-						span(style='color: grey; font-style: normal; font-weight: normal;') {{ dic.qDesc[0] }}
-					h4 {{ hottestQ.title }}
+					span {{ getUserName(hottestDiscussion.authorId) }} 
+					span.description {{ dictionary.questionAuthorDescription[0] }}
+					.title {{ hottestDiscussion.title }}
 				.modal-hottest-discussion-info-row
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ hottestQ.peerInv }}&nbsp;
-						span {{ dic.peerInv }}
+						span.modal-hottest-discussion-info-nr {{ hottestDiscussion.peersInvolved }}
+						span {{ dictionary.peersInvolved }}
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ hottestQ.relDis }}&nbsp;
-						span {{ dic.relDis }}
+						span.modal-hottest-discussion-info-nr {{ hottestDiscussion.relatedDiscussion }}
+						span {{ dictionary.relatedDiscussion }}
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ hottestQ.conv }}&nbsp;
-						span {{ dic.conv }}
+						span.modal-hottest-discussion-info-nr {{ hottestDiscussion.conversations }}
+						span {{ dictionary.conversations }}
 					.modal-hottest-discussion-info
-						span.modal-hottest-discussion-info-nr {{ hottestQ.upvotes }}&nbsp;
-						span {{ dic.upVote }}
+						span.modal-hottest-discussion-info-nr {{ hottestDiscussion.upvotes }}
+						span {{ dictionary.upVote }}

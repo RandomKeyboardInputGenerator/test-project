@@ -11,132 +11,95 @@ export class DbService {
 
     constructor(private http: Http) { }
     
-    // Get dictionary
+    private getFromDatabase(url: string): Promise<any> {
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
+    
+    private putToDatabase(url: string, entry: any): Promise<any> {
+        return this.http
+            .put(url, entry, { headers: this.headers })
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+    
     getDictionary(): Promise<any>  {
-        return this.http.get(this.dbUrl + '/dictionary')
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+        return this.getFromDatabase(this.dbUrl + '/dictionary');
     }
     
-    // Get questions data
-    getQData(qId?: number): Promise<any>  {
-        let url: string; 
-        
-        if (_.isUndefined(qId)) {
-            url = this.dbUrl + '/questions';
-        }
-        else {
-            url = this.dbUrl + '/questions/' + qId;
-        }
-        
-        return this.http.get(url)
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+    getQuestions(): Promise<any>  {
+        return this.getFromDatabase(this.dbUrl + '/questions');
     }
     
-    // Get comments data
-    getComData(qId?: number): Promise<any>  {
-        let url: string; 
-        
-        if (_.isUndefined(qId)) {
-            url = this.dbUrl + '/comments';
-        }
-        else {
-            url = this.dbUrl + '/comments/?qId=' + qId;
-        }
-        
-        return this.http.get(url)
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+    getQuestion(questionId: number): Promise<any>  {
+        return this.getFromDatabase(this.dbUrl + '/questions/' + questionId);
     }
     
-    // upVote for comment
-    comUpVote(com: any): Promise<any> {
-        com.upvotes += 1;
-        return this.http
-            // sadly patch is not supported by in-memory-web-api
-            //.patch(this.dbUrl + '/comments/' + id + '$upvotes', JSON.stringify('++'), { headers: this.headers })
-            .put(this.dbUrl + '/comments/' + com.id, com, { headers: this.headers })
-            .toPromise()
-            .then(response => response.json())
-            .catch(this.handleError);
+    getCommments(): Promise<any>  {
+        return this.getFromDatabase(this.dbUrl + '/comments');
     }
     
-    // downVote for comment
-    comDownVote(com: any): Promise<any> {
-        com.downvotes += 1;
-        return this.http
-            .put(this.dbUrl + '/comments/' + com.id, com, { headers: this.headers })
-            .toPromise()
-            .then(response => response.json())
-            .catch(this.handleError);
+    getCommmentsOnTheQuestion(questionId: number): Promise<any>  {
+        return this.getFromDatabase(this.dbUrl + '/comments/?qId=' + questionId);
     }
     
-    // upVote for question
-    qUpVote(question: any): Promise<any> {
-        question.upvotes += 1;
-        return this.http
-            .put(this.dbUrl + '/questions/' + question.id, question, { headers: this.headers })
-            .toPromise()
-            .then(response => response.json())
-            .catch(this.handleError);
+    private commmentVote(comment: any): Promise<any> {
+        return this.putToDatabase(this.dbUrl + '/comments/' + comment.id, comment);
     }
     
-    // downVote for question
-    qDownVote(question: any): Promise<any> {
-        question.downvotes += 1;
-        return this.http
-            .put(this.dbUrl + '/questions/' + question.id, question, { headers: this.headers })
-            .toPromise()
-            .then(response => response.json())
-            .catch(this.handleError);
+    private questionVote(question: any): Promise<any> {
+        return this.putToDatabase(this.dbUrl + '/questions/' + question.id, question);
     }
     
-    // Get user data
-    getUser(userId: number): Promise<any>  {
-        return this.http.get(this.dbUrl + '/authors/' + userId)
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+    private upVote(entry: any): any {
+        entry.upvotes += 1;
+        return entry;
     }
     
-    // Save user data
-    saveUser(user: any): Promise<any>  {
-        return this.http
-            .put(this.dbUrl + '/authors/' + user.id, user, { headers: this.headers })
-            .toPromise()
-            .then(response => response.json())
-            .catch(this.handleError);
+    private downVote(entry: any): any {
+        entry.downvotes += 1;
+        return entry;
     }
     
-    // Get avatar
-    getAvatar(avatarId: number): Promise<any>  {
-        return this.http.get(this.dbUrl + '/avatars/' + avatarId)
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+    commmentUpVote(comment: any): Promise<any> {
+        return this.commmentVote(this.upVote(comment));
     }
     
-    // Get avatars
-    getAvatars(): Promise<any>  {
-        return this.http.get(this.dbUrl + '/avatars')
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+    commentDownVote(comment: any): Promise<any> {
+        return this.commmentVote(this.downVote(comment));
     }
     
-    // Get users
+    questionUpVote(question: any): Promise<any> {
+        return this.questionVote(this.upVote(question));
+    }
+    
+    questionDownVote(question: any): Promise<any> {
+        return this.questionVote(this.downVote(question));
+    }
+    
     getUsers(): Promise<any>  {
-        return this.http.get(this.dbUrl + '/authors')
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
+        return this.getFromDatabase(this.dbUrl + '/authors');
+    }
+    
+    getUser(userId: number): Promise<any>  {
+        return this.getFromDatabase(this.dbUrl + '/authors/' + userId);
+    }
+    
+    saveUser(user: any): Promise<any>  {
+        return this.putToDatabase(this.dbUrl + '/authors/' + user.id, user);
+    }
+    
+    getAvatar(avatarId: number): Promise<any>  {
+        return this.getFromDatabase(this.dbUrl + '/avatars/' + avatarId);
+    }
+    
+    getAvatars(): Promise<any>  {
+        return this.getFromDatabase(this.dbUrl + '/avatars');
     }
 
-    // Simple error handler
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

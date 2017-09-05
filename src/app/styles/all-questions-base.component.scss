@@ -3,10 +3,10 @@ $black: #000;
 $white: #fff; 
 $darkblue: #009; 
 $silver: #eee;
-$gray: #888;
-$darkgray: #aaa; 
-$lightgray: #fff;
-$lightblue: #dff3fd;;
+$lightgray: #fbfbfb;
+$gray: #aaa; 
+$darkgray: #888;
+$lightblue: #dff3fd;
 $blue: #06b;
 $red: #f00;
 
@@ -185,11 +185,11 @@ div {
         width: 11px;
         text-align: center;
         font-size: 8px;
-        color: $darkgray;
+        color: $gray;
         border: 0;
         margin: auto;
         border-radius: 20px;
-        background-color: $darkgray;
+        background-color: $gray;
         &::after {
             content: ' \00B7'; 
         }
@@ -201,11 +201,11 @@ div {
         width: 11px;
         text-align: center;
         font-size: 8px;
-        color: $darkgray;
+        color: $gray;
         border: 0;
         margin: auto;
         border-radius: 20px;
-        background-color: $darkgray;
+        background-color: $gray;
         &::after {
             content: ' \00B7'; 
         }
@@ -296,7 +296,7 @@ div {
         width: 100%;
         float: left;
         text-align: center;
-        color: $darkgray;
+        color: $gray;
     }
     &.question-count-footer {
         width: 100%;
@@ -379,8 +379,8 @@ button {
     }
     &.q-search-btn {
         float: left;
-        border: 1px solid $silver;
-        color: $silver;
+        border: 1px solid $gray;
+        color: $gray;
         background-color: $white;
         font-weight: bold;
         height: 30px;
@@ -403,7 +403,7 @@ span {
     &.q-sort-link-active {
         margin: 5px;
         text-decoration: underline;
-        color: $silver;
+        color: $gray;
         font-weight: bold;
         cursor: pointer;
     }
@@ -445,14 +445,14 @@ p {
 }
 
 hr {
-    border-top: 1px solid $gray;
+    border-top: 1px solid $darkgray;
     margin: 5px;
     &.answered {
         border-top: 1px solid $black;
     }
     &.grey {
         width: 90%;
-        border-top: 1px solid $darkgray;
+        border-top: 1px solid $gray;
     }
     &.black {
         width: 90%;

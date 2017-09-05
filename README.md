@@ -1,17 +1,17 @@
 # TestProject
 
-## An Angular project. 
+### An Angular project. 
 
 The project consists of progressive phases.
 
-Task 1: Implement views - done
-Task 2: Make them responsive - done
-Task 3: Connect modal to users - done
-Task 4: Use templates - done
-Task 5: Add pagination and sorting - done
-Task 6: Add search - done
-Task 7: Implement voting - done
-Task 8: Add routing - done
+Task 1: Implement views - done  
+Task 2: Make them responsive - done  
+Task 3: Connect modal to users - done  
+Task 4: Use templates - done  
+Task 5: Add pagination and sorting - done  
+Task 6: Add search - done  
+Task 7: Implement voting - done  
+Task 8: Add routing - done  
 
 ## Gulp watchers
 

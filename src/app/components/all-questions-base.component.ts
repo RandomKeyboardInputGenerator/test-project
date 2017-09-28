@@ -8,7 +8,7 @@ import { AppSettings } from '../config/app-settings';
 import { LimitQuestionsByAuthorPipe } from '../pipes/limit-questions-by-author.pipe';
 import { SearchPipe } from '../pipes/search.pipe';
 
-import _ from 'lodash'
+import _ from 'lodash';
 
 @Component({
     selector: 'app-all-questions-base',
@@ -17,7 +17,7 @@ import _ from 'lodash'
 })
 export class AllQuestionsBaseComponent implements OnInit {
     appSettings = new AppSettings();
-    userId = AppSettings.DEFAULT_USER_ID;
+    userId = 0;
     radioFilter = 'all';
     sortOrder = 'recent';
     searchQueryBuffor = '';
@@ -30,10 +30,9 @@ export class AllQuestionsBaseComponent implements OnInit {
     users = [];
     
     checkCommentsVisibility(windowWidth: number): void {
-        if (windowWidth < AppSettings.FULL_VIEW_MODE_MIN_WIDTH ) {  
+        if (windowWidth < this.appSettings.FULL_VIEW_MODE_MIN_WIDTH ) {  
             this.visableComments = 1; 
-        }
-        else { 
+        } else { 
             this.visableComments = 4; 
         }
     }
@@ -47,6 +46,8 @@ export class AllQuestionsBaseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.appSettings = new AppSettings();
+        this.userId = this.appSettings.DEFAULT_USER_ID;
         this.checkCommentsVisibility(window.innerWidth);
         
         this.getDictionary();
@@ -57,7 +58,7 @@ export class AllQuestionsBaseComponent implements OnInit {
     openModal(userId: number): void {
         this.dialog.open(ProfileBaseModalComponent, {
             data: { 
-                'userId': userId, 
+                userId, 
                 'users': this.users, 
                 'dictionary': this.dictionary, 
                 'questions': this.questions 
@@ -73,14 +74,13 @@ export class AllQuestionsBaseComponent implements OnInit {
     sortQuestions(): void {
         if (this.sortOrder === 'recent') {
             this.questions = _.sortBy(this.questions, 'lastTimeDiscusedDays');
-        }
-        else {
+        } else {
             this.questions = _.sortByOrder(this.questions, 'peersInvolved', 'desc');
         }
     }
     
     getComment(id: number): any {
-        let index = _.findIndex(this.comments, comment => comment.id === id);
+        const index = _.findIndex(this.comments, comment => comment.id === id);
         return this.comments[index];
     }
     
@@ -89,8 +89,7 @@ export class AllQuestionsBaseComponent implements OnInit {
     }
     
     getDictionary(): void {
-        this.dataService.getDictionary().then(
-                dictionary => {
+        this.dataService.getDictionary().then(dictionary => {
                     this.dictionary = dictionary;
                     this.appSettings.setLoadedStatus('dictionary');
                 }
@@ -98,10 +97,9 @@ export class AllQuestionsBaseComponent implements OnInit {
     }
     
     getQuestions(): void {
-        this.dataService.getQuestions().then(
-                questions => {
+        this.dataService.getQuestions().then(questions => {
                     this.questions = questions;
-                    let author = { name: ''};
+                    let author = {name: ''};
                     _.forEach(this.questions, (question, index, questions) => {
                         author = this.findUser(question.authorId);
                         question.author = author.name;
@@ -109,22 +107,18 @@ export class AllQuestionsBaseComponent implements OnInit {
                     });
                     this.sortQuestions();
                     this.appSettings.setLoadedStatus('questions');
-                }
-            );
+                });
     }
     
     getComments(): void {
-        this.dataService.getCommments().then(
-                comments => {
+        this.dataService.getCommments().then(comments => {
                     this.comments = comments;
                     this.appSettings.setLoadedStatus('comments');
-                }
-            );
+                });
     }
     
     getAvatars(): void {
-        this.dataService.getAvatars().then(
-                avatars => {
+        this.dataService.getAvatars().then(avatars => {
                         let avatar = {};
                         _.forEach(this.users, (user, index, users) => {
                             avatar = _.find(avatars, avatar => avatar.id === user.avatarId);
@@ -132,8 +126,7 @@ export class AllQuestionsBaseComponent implements OnInit {
                             users[index] = _.assign(_.omit(user, 'avatarId'), _.omit(avatar, 'id'));
                         });
                         this.appSettings.setLoadedStatus('users');
-                    }
-            );
+                    });
     }
     
     findUser(userId: number): any {
@@ -141,19 +134,17 @@ export class AllQuestionsBaseComponent implements OnInit {
     }
     
     getAvatar(userId: number): string {
-        let src = this.findUser(userId) || AppSettings.DEFAULT_AVATAR;
+        let src = this.findUser(userId) || this.appSettings.DEFAULT_AVATAR;
         _.isObject(src) ? src = src.avatarSrc : src;
-        return AppSettings.PORTRAITS_DIRECTORY + src;
+        return this.appSettings.PORTRAITS_DIRECTORY + src;
     }
     
     getUsers(): void {
-        this.dataService.getUsers().then(
-                users => {
+        this.dataService.getUsers().then(users => {
                         this.users = users;
                         this.getAvatars();
                         this.getQuestions();
-                    }
-            );
+                    });
     }
     
     getUserName(userId: number): string {

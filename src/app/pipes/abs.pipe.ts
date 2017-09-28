@@ -6,7 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AbsPipe implements PipeTransform {
 
     transform(value: number): number {
-        if (value == null) return value;
+        if (value == null) {
+            return value;
+        }
         
         return Math.abs(value);
     }

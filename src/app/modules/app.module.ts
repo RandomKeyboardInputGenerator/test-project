@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from '../services/in-memory-data.service';
 import { DbService }  from '../services/db.service';
+import { AppSettings } from '../config/app-settings';
 
 import { AppComponent } from '../components/app.component';
 import { AllQuestionsBaseComponent } from '../components/all-questions-base.component';

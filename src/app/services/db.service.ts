@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import _ from 'lodash'
+import _ from 'lodash';
 
 @Injectable()
 export class DbService {
@@ -19,39 +19,38 @@ export class DbService {
     }
     
     private putToDatabase(url: string, entry: any): Promise<any> {
-        return this.http
-            .put(url, entry, { headers: this.headers })
+        return this.http.put(url, entry, { headers: this.headers })
             .toPromise()
-            .then(response => response.json())
+            .then()
             .catch(this.handleError);
     }
     
     getDictionary(): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/dictionary');
+        return this.getFromDatabase(`${this.dbUrl}/dictionary`);
     }
     
     getQuestions(): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/questions');
+        return this.getFromDatabase(`${this.dbUrl}/questions`);
     }
     
     getQuestion(questionId: number): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/questions/' + questionId);
+        return this.getFromDatabase(`${this.dbUrl}/questions/${questionId}`);
     }
     
     getCommments(): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/comments');
+        return this.getFromDatabase(`${this.dbUrl}/comments`);
     }
     
     getCommmentsOnTheQuestion(questionId: number): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/comments/?qId=' + questionId);
+        return this.getFromDatabase(`${this.dbUrl}/comments/?qId=${questionId}`);
     }
     
     private commmentVote(comment: any): Promise<any> {
-        return this.putToDatabase(this.dbUrl + '/comments/' + comment.id, comment);
+        return this.putToDatabase(`${this.dbUrl}/comments/${comment.id}`, comment);
     }
     
     private questionVote(question: any): Promise<any> {
-        return this.putToDatabase(this.dbUrl + '/questions/' + question.id, question);
+        return this.putToDatabase(`${this.dbUrl}/questions/${question.id}`, question);
     }
     
     private upVote(entry: any): any {
@@ -81,23 +80,23 @@ export class DbService {
     }
     
     getUsers(): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/authors');
+        return this.getFromDatabase(`${this.dbUrl}/authors`);
     }
     
     getUser(userId: number): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/authors/' + userId);
+        return this.getFromDatabase(`${this.dbUrl}/authors/${userId}`);
     }
     
     saveUser(user: any): Promise<any>  {
-        return this.putToDatabase(this.dbUrl + '/authors/' + user.id, user);
+        return this.putToDatabase(`${this.dbUrl}/authors/${user.id}`, user);
     }
     
     getAvatar(avatarId: number): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/avatars/' + avatarId);
+        return this.getFromDatabase(`${this.dbUrl}/avatars/${avatarId}`);
     }
     
     getAvatars(): Promise<any>  {
-        return this.getFromDatabase(this.dbUrl + '/avatars');
+        return this.getFromDatabase(`${this.dbUrl}/avatars`);
     }
 
     private handleError(error: any): Promise<any> {

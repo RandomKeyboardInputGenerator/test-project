@@ -3,7 +3,7 @@ import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
 import { AppSettings } from '../config/app-settings';
 
-import _ from 'lodash'
+import _ from 'lodash';
 
 @Component({
     selector: 'app-profile-base-modal',
@@ -11,6 +11,7 @@ import _ from 'lodash'
     styleUrls: ['../styles/profile-base-modal.component.scss']
 })
 export class ProfileBaseModalComponent implements OnInit {
+    appSettings = new AppSettings();
     authorId = 0;
     dictionary = {};
     profileAuthor = {
@@ -27,10 +28,11 @@ export class ProfileBaseModalComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.appSettings = new AppSettings();
         this.authorId = this.dialogData.userId;
         this.users = this.dialogData.users;
         this.dictionary = this.dialogData.dictionary;
-        let questions = this.dialogData.questions;
+        const questions = this.dialogData.questions;
 
         this.getProfileAuthor();
         this.getUsersWithEqualJoinTime();
@@ -46,9 +48,9 @@ export class ProfileBaseModalComponent implements OnInit {
     }
     
     getAvatar(userId: number): string {
-        let src = this.findUser(userId) || AppSettings.DEFAULT_AVATAR;
+        let src = this.findUser(userId) || this.appSettings.DEFAULT_AVATAR;
         _.isObject(src) ? src = src.avatarSrc : src;
-        return AppSettings.PORTRAITS_DIRECTORY + src;
+        return this.appSettings.PORTRAITS_DIRECTORY + src;
     }
     
     getProfileAuthor() {
@@ -56,11 +58,11 @@ export class ProfileBaseModalComponent implements OnInit {
     }
     
     getUsersWithEqualJoinTime(): void {
-        let authorId = this.profileAuthor.id;
-        let memberTime = this.profileAuthor.memberTime;
+        const authorId = this.profileAuthor.id;
+        const memberTime = this.profileAuthor.memberTime;
         this.equalJoinTimeUsers = _.slice(
             _.filter(this.users, user => { 
-                return ( ( user.memberTime === memberTime ) && ( user.id !== authorId ) )
+                return user.memberTime === memberTime && user.id !== authorId;
                 }),
                 0, 3
             );

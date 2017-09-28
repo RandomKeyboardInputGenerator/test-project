@@ -10,7 +10,7 @@ import { AppSettings } from '../config/app-settings';
 import { LimitCommentsByAnswerPipe } from '../pipes/limit-comments-by-answer.pipe';
 import { AbsPipe } from '../pipes/abs.pipe';
 
-import _ from 'lodash'
+import _ from 'lodash';
 
 @Component({
     selector: 'app-single-question-base',
@@ -19,7 +19,7 @@ import _ from 'lodash'
 })
 export class SingleQuestionBaseComponent implements OnInit {
     appSettings = new AppSettings();
-    userId = AppSettings.DEFAULT_USER_ID;
+    userId = 0;
     questionId = 0;
     user = {
         'votedComments': [],
@@ -42,6 +42,7 @@ export class SingleQuestionBaseComponent implements OnInit {
 
     ngOnInit() {
         this.appSettings = new AppSettings();
+        this.userId = this.appSettings.DEFAULT_USER_ID;
         this.questionId = +this.route.snapshot.paramMap.get('id') || 0;
 
         this.getDictionary();
@@ -52,7 +53,7 @@ export class SingleQuestionBaseComponent implements OnInit {
     openModal(userId: number): void {
         this.dialog.open(ProfileBaseModalComponent, {
             data: {
-                'userId': userId,
+                userId,
                 'users': this.users,
                 'dictionary': this.dictionary,
                 'questions': this.questions
@@ -61,32 +62,26 @@ export class SingleQuestionBaseComponent implements OnInit {
     }
 
     getRelatedComments(questionId: number): void {
-        this.dataService.getCommmentsOnTheQuestion(questionId).then(
-            comments => {
+        this.dataService.getCommmentsOnTheQuestion(questionId).then(comments => {
                 this.relatedComments = _.filter(comments, comment => comment.type === 'ANSWERED');
                 this.subRelatedComments = _.filter(comments, comment => comment.type === 'COMMENTED');
                 this.appSettings.setLoadedStatus('comments');
-            }
-        );
+            });
     }
 
     getQuestions(questionId: number): void {
-        this.dataService.getQuestions().then(
-            questions => {
+        this.dataService.getQuestions().then(questions => {
                 this.questions = questions;
                 this.question = _.find(this.questions, question => question.id === questionId);
                 this.appSettings.setLoadedStatus('questions');
-            }
-        );
+            });
     }
 
     getDictionary(): void {
-        this.dataService.getDictionary().then(
-            dictionary => {
+        this.dataService.getDictionary().then(dictionary => {
                 this.dictionary = dictionary;
                 this.appSettings.setLoadedStatus('dictionary');
-            }
-        );
+            });
     }
 
     isUserNotVoteOnComment(commentId: number): boolean {
@@ -104,24 +99,20 @@ export class SingleQuestionBaseComponent implements OnInit {
     commentUpVote(comment: any): void {
         if (this.isCommentVotingEnabled(comment.id)) {
             this.voteEnable = false;
-            this.dataService.commmentUpVote(comment).then(
-                () => {
+            this.dataService.commmentUpVote(comment).then(() => {
                     this.user.votedComments.push(comment.id);
                     this.saveUser();
-                }
-            );
+                });
         }
     }
 
     commentDownVote(comment: any): void {
         if (this.isCommentVotingEnabled(comment.id)) {
             this.voteEnable = false;
-            this.dataService.commentDownVote(comment).then(
-                () => {
+            this.dataService.commentDownVote(comment).then(() => {
                     this.user.votedComments.push(comment.id);
                     this.saveUser();
-                }
-            );
+                });
         }
     }
 
@@ -140,24 +131,20 @@ export class SingleQuestionBaseComponent implements OnInit {
     questionUpVote(question: any): void {
         if (this.isQuestionVotingEnabled(question.id)) {
             this.voteEnable = false;
-            this.dataService.questionUpVote(question).then(
-                () => {
+            this.dataService.questionUpVote(question).then(() => {
                     this.user.votedQuestions.push(question.id);
                     this.saveUser();
-                }
-            );
+                });
         }
     }
 
     questionDownVote(question: any): void {
         if (this.isQuestionVotingEnabled(question.id)) {
             this.voteEnable = false;
-            this.dataService.questionDownVote(question).then(
-                () => {
+            this.dataService.questionDownVote(question).then(() => {
                     this.user.votedQuestions.push(question.id);
                     this.saveUser();
-                }
-            );
+                });
         }
     }
 
@@ -175,8 +162,7 @@ export class SingleQuestionBaseComponent implements OnInit {
     }
 
     getAvatars(): void {
-        this.dataService.getAvatars().then(
-            avatars => {
+        this.dataService.getAvatars().then(avatars => {
                 let avatar = {};
                 _.forEach(this.users, (user, iindex, users) => {
                     avatar = _.find(avatars, avatar => avatar.id === user.avatarId);
@@ -184,8 +170,7 @@ export class SingleQuestionBaseComponent implements OnInit {
                     users[iindex] = _.assign(_.omit(user, 'avatarId'), _.omit(avatar, 'id'));
                 });
                 this.getUser(this.userId);
-            }
-        );
+            });
     }
 
     findUser(userId: number): any {
@@ -193,19 +178,17 @@ export class SingleQuestionBaseComponent implements OnInit {
     }
     
     getAvatar(userId: number): string {
-        let src = this.findUser(userId) || AppSettings.DEFAULT_AVATAR;
+        let src = this.findUser(userId) || this.appSettings.DEFAULT_AVATAR;
         _.isObject(src) ? src = src.avatarSrc : src;
-        return AppSettings.PORTRAITS_DIRECTORY + src;
+        return this.appSettings.PORTRAITS_DIRECTORY + src;
     }
 
     getUsers(): void {
-        this.dataService.getUsers().then(
-            users => {
+        this.dataService.getUsers().then(users => {
                 this.users = users;
                 this.getAvatars();
                 this.getQuestions(this.questionId);
-            }
-        );
+            });
     }
 
     getUserName(userId: number): string {

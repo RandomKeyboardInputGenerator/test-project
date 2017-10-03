@@ -8,7 +8,7 @@ import { AppSettings } from '../config/app-settings';
 import { LimitQuestionsByAuthorPipe } from '../pipes/limit-questions-by-author.pipe';
 import { SearchPipe } from '../pipes/search.pipe';
 
-import _ from 'lodash';
+import * as _ from "lodash";
 
 @Component({
     selector: 'app-all-questions-base',

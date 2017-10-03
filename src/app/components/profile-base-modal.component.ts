@@ -3,7 +3,7 @@ import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
 import { AppSettings } from '../config/app-settings';
 
-import _ from 'lodash';
+import * as _ from "lodash";
 
 @Component({
     selector: 'app-profile-base-modal',

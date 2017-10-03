@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import _ from 'lodash';
+import * as _ from "lodash";
 
 @Injectable()
 export class DbService {

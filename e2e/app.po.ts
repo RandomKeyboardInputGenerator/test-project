@@ -1,11 +1,36 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, protractor } from 'protractor';
 
 export class TestProjectPage {
-  navigateTo() {
-    return browser.get('/');
-  }
+    vaitForDataLoad() {
+        let EC = protractor.ExpectedConditions;
+        let layout = element(by.css('.layout'));
+        browser.wait(EC.visibilityOf(layout), 5000);
+    }
+    
+    vaitForAngular() {
+        browser.waitForAngularEnabled(true);
+    }
+    
+    navigateTo(url) {
+        this.vaitForAngular();
+        browser.get(url);
+        this.vaitForDataLoad();
+    }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
-  }
+    getTitleText() {
+        return element(by.css('.q-title')).getText();
+    }
+    
+    openModalByAuthorName() {
+        return element(by.css('.question-author-name')).click();
+    }
+    
+    getAuthorName() {
+        return element(by.css('.question-author-name')).getText();
+    }
+    
+    getUserNameFromModal() {
+        return element(by.css('.modal-user-name')).getText();
+    }
+    
 }

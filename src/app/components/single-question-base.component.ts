@@ -10,7 +10,7 @@ import { AppSettings } from '../config/app-settings';
 import { LimitCommentsByAnswerPipe } from '../pipes/limit-comments-by-answer.pipe';
 import { AbsPipe } from '../pipes/abs.pipe';
 
-import _ from 'lodash';
+import * as _ from "lodash";
 
 @Component({
     selector: 'app-single-question-base',

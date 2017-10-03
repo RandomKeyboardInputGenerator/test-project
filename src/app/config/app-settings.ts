@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from "lodash";
 
 export class AppSettings {
     public readonly PORTRAITS_DIRECTORY = 'assets/img/portraits/'; 

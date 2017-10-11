@@ -1,4 +1,4 @@
-![Angular] (https://commons.wikimedia.org/wiki/File:Angular_full_color_logo.svg)
+![Angular](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/200px-Angular_full_color_logo.svg.png)
 
 # Angular demonstration application
 

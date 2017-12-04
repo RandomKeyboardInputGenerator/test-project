@@ -6,7 +6,7 @@ Discussion forum consisting of three views.
 Lists of all topics, a single topic with a discussion about it, and a user profile view. 
 The project consists of progressive phases.
 
-Task 1: Implementation of views - done 
+Task 1: Implementation of views - done  
 Task 2: Make them responsive - done  
 Task 3: Connect modal to users - done  
 Task 4: Use templates - done  

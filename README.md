@@ -2,9 +2,11 @@
 
 # Angular demonstration application
 
+Discussion forum consisting of three views. 
+Lists of all topics, a single topic with a discussion about it, and a user profile view. 
 The project consists of progressive phases.
 
-Task 1: Implement views - done  
+Task 1: Implementation of views - done 
 Task 2: Make them responsive - done  
 Task 3: Connect modal to users - done  
 Task 4: Use templates - done  
@@ -26,26 +28,26 @@ To get the server running locally:
 
 ## Dependencies
 
-- [angular] (https://github.com/angular/angular) - The platform for handling routing, pagination, sorting, search, voting, etc.
-- [material2] (https://github.com/angular/material2) - For handling modal windows
-- [angular-in-memory-web-api] (https://github.com/angular/in-memory-web-api) - For emulation CRUD operations over a RESTy API
-- [bootstrap] (https://github.com/twbs/bootstrap) - For a base to custom styling
-- [lodash] (https://github.com/lodash/lodash) - For complex operations with data
-- [pug] (https://github.com/pugjs/pug) - For building complex templates
-- [gulp] (https://github.com/gulpjs/gulp) - For generating elegant views from Pug templates
+- [angular](https://github.com/angular/angular) - The platform for handling routing, pagination, sorting, search, voting, etc.
+- [material2](https://github.com/angular/material2) - For handling modal windows
+- [angular-in-memory-web-api](https://github.com/angular/in-memory-web-api) - Emulation CRUD operations over a RESTy API
+- [bootstrap](https://github.com/twbs/bootstrap) - A base to custom styling
+- [lodash](https://github.com/lodash/lodash) - For complex operations with data
+- [pug](https://github.com/pugjs/pug) - Templates engine
+- [gulp](https://github.com/gulpjs/gulp) - For generating elegant views from Pug templates
 
 ## Application Structure
 
-- `e2e/` - This folder contains automated end-to-end UI tests
+- `e2e/` - Automated end-to-end UI tests
 - `src/`
     - `app/`
-        - `components/` - This folder contains configuration for aplication's components
-        - `config/` - This folder contains base configuration for views loader and application's readonly default values
+        - `components/` - Configuration for aplication's components
+        - `config/` - Base configuration for views loader and application's readonly default values
         - `modules/` - This folder contains configuration for app modules and the route definitions
-        - `pipes/` - This folder contains pipes for data transformations 
-        - `services/` - This folder contains services to organize and share code across the application
-        - `styles/` - This folder contains custom Sass styles
-        - `templates/` - This folder contains Pug templates and generated html templates
-        - `tests/` - This folder contains unit tests for components, pipes and services
-    - `assets/` - This folder contains images and fonts
+        - `pipes/` - Pipes for data transformations 
+        - `services/` - Services to organize and share code across the application
+        - `styles/` - Custom Sass styles
+        - `templates/` - Pug templates and generated html templates
+        - `tests/` - Unit tests for components, pipes and services
+    - `assets/` - Images and fonts
     - `main.ts` - The entry point to the application.

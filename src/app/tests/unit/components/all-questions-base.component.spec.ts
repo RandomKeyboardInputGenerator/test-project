@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCheckboxModule, MaterialModule, MdDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from '../../../modules/app-routing.module';
 
@@ -80,10 +80,9 @@ describe('AllQuestionsBaseComponent', () => {
                 FormsModule,
                 AppRoutingModule,
                 BrowserAnimationsModule,
-                MdButtonModule,
-                MdCheckboxModule,
-                MaterialModule,
-                MdDialogModule,
+                MatButtonModule,
+                MatCheckboxModule,
+                MatDialogModule,
                 HttpModule,
                 InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 0 })
             ],

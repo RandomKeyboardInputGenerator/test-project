@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener  } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ProfileBaseModalComponent } from '../components/profile-base-modal.component';
 
 import { DbService } from '../services/db.service';
@@ -41,7 +41,7 @@ export class AllQuestionsBaseComponent implements OnInit {
         this.checkCommentsVisibility(event.target.innerWidth);
     }
     constructor(
-        public dialog: MdDialog,
+        public dialog: MatDialog,
         private dataService: DbService
     ) { }
 
@@ -75,7 +75,8 @@ export class AllQuestionsBaseComponent implements OnInit {
         if (this.sortOrder === 'recent') {
             this.questions = _.sortBy(this.questions, 'lastTimeDiscusedDays');
         } else {
-            this.questions = _.sortByOrder(this.questions, 'peersInvolved', 'desc');
+            this.questions = _.sortBy(this.questions, 'peersInvolved');
+            this.questions = _.reverse(this.questions);
         }
     }
     

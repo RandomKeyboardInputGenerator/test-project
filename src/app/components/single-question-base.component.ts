@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ProfileBaseModalComponent } from './profile-base-modal.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location }                 from '@angular/common';
@@ -34,7 +34,7 @@ export class SingleQuestionBaseComponent implements OnInit {
     voteEnable = true;
 
     constructor(
-        public dialog: MdDialog,
+        public dialog: MatDialog,
         private dataService: DbService,
         private route: ActivatedRoute,
         private location: Location

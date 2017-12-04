@@ -14,7 +14,7 @@ export class DbService {
     private getFromDatabase(url: string): Promise<any> {
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data)
+            .then(response => response.json())
             .catch(this.handleError);
     }
     

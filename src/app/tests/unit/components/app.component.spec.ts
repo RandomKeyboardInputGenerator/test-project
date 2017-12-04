@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCheckboxModule, MaterialModule, MdDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from '../../../modules/app-routing.module';
 
@@ -38,10 +38,9 @@ describe('AppComponent', () => {
                 FormsModule,
                 AppRoutingModule,
                 BrowserAnimationsModule,
-                MdButtonModule,
-                MdCheckboxModule,
-                MaterialModule,
-                MdDialogModule,
+                MatButtonModule,
+                MatCheckboxModule,
+                MatDialogModule,
                 RouterTestingModule,
                 HttpModule
             ],

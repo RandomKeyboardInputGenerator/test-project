@@ -2,10 +2,10 @@ import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
-import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCheckboxModule, MaterialModule, MdDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from '../../../modules/app-routing.module';
 
@@ -47,17 +47,16 @@ describe('ProfileBaseModalComponent', () => {
                 FormsModule,
                 AppRoutingModule,
                 BrowserAnimationsModule,
-                MdButtonModule,
-                MdCheckboxModule,
-                MaterialModule,
-                MdDialogModule,
+                MatButtonModule,
+                MatCheckboxModule,
+                MatDialogModule,
                 HttpModule,
                 InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 0 })
             ],
             providers: [
                 {provide: APP_BASE_HREF, useValue: '/'},
-                {provide: MD_DIALOG_DATA, useValue: data},
-                {provide: MdDialogRef, useValue: {}}
+                {provide: MAT_DIALOG_DATA, useValue: data},
+                {provide: MatDialogRef, useValue: {}}
             ]
         })
         .compileComponents();

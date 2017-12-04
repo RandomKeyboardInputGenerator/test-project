@@ -4,14 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCheckboxModule, MaterialModule, MdDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from '../services/in-memory-data.service';
 import { DbService }  from '../services/db.service';
-import { AppSettings } from '../config/app-settings';
 
 import { AppComponent } from '../components/app.component';
 import { AllQuestionsBaseComponent } from '../components/all-questions-base.component';
@@ -39,10 +38,9 @@ import { SearchPipe } from '../pipes/search.pipe';
         FormsModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MdButtonModule,
-        MdCheckboxModule,
-        MaterialModule,
-        MdDialogModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatDialogModule,
         HttpModule,
         // Simulate connection to Db with delay
         InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 })

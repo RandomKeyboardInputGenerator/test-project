@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject, Optional } from '@angular/core';
-import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { AppSettings } from '../config/app-settings';
 
@@ -23,8 +23,8 @@ export class ProfileBaseModalComponent implements OnInit {
     hottestDiscussion = {};
 
     constructor(
-        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
-        public dialogRef: MdDialogRef<ProfileBaseModalComponent>
+        @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
+        public dialogRef: MatDialogRef<ProfileBaseModalComponent>
     ) { }
 
     ngOnInit() {

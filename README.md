@@ -4,16 +4,10 @@
 
 Discussion forum consisting of three views. 
 Lists of all topics, a single topic with a discussion about it, and a user profile view. 
-The project consists of progressive phases.
-
-Task 1: Implementation of views - done  
-Task 2: Make them responsive - done  
-Task 3: Connect modal to users - done  
-Task 4: Use templates - done  
-Task 5: Add pagination and sorting - done  
-Task 6: Add search - done  
-Task 7: Implement voting - done  
-Task 8: Add routing - done  
+Project demonstrating the use of the Angular framework, 
+implementation of responsive views, integration with modal windows, 
+use of templates, routing, data manipulation in the services, 
+and implementation RESTful API calls.
 
 # Getting started
 
